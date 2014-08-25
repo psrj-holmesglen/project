@@ -310,7 +310,7 @@
 <li>
 
     <?PHP
-    //New commit 
+    //New commit - hello
     if ($page == "report") {
         //If page is selected change link style
         echo "<a href='#'><span class='nav_selected_item'>Report</span></a>";
