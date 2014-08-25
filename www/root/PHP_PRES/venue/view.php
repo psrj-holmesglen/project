@@ -32,7 +32,7 @@ foreach ($table as $row) {
 //// Setup END
 ////
 */
-
+require "PHP_PRES/helpers/dateTimePicker.php";
 
 ?>
 
@@ -118,7 +118,7 @@ foreach ($table as $row) {
         </table>
     </div>
 
-    <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . date('Y-m-d H:i:s'); ?></p> 
+    <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p> 
     <span style="text-align:right;">
       <form method="get" action="index.php">
         <input type="submit" class='buttonStyle1' value="Add Venue"/>
