@@ -12,7 +12,6 @@
 
 */
 
-/*
 // Import Libraries
 require "PHP_DB/dbObject.php";
 
@@ -23,7 +22,7 @@ $data = new Data();
 //Store Conference Titles before creating table
 $ConTitle = array();
 
-$table = $data->conference->getRow();
+$table = $data->venue->getRow();
 foreach ($table as $row) {
     $ConTitle[] = $row["Title"];
 }
@@ -31,8 +30,6 @@ foreach ($table as $row) {
 ////
 //// Setup END
 ////
-*/
-
 
 ?>
 
@@ -57,6 +54,7 @@ foreach ($table as $row) {
             </thead>
             <tbody>
 
+<!--
                 <tr align="left" valign="middle" style="font-size:86%;">
                     <td>1</td>
                     <td>Venue1</td>
@@ -87,8 +85,8 @@ foreach ($table as $row) {
                       <a href="index.php?page=venue&action=delete&id=3">Delete</a>
                     </td>
                </tr>
+-->
             <?PHP
-            /*
             $table = $data->venue->getRow("all");
             //Populates the Table from database.
             foreach ($table as $row) {
@@ -97,22 +95,17 @@ foreach ($table as $row) {
                 <tr align="left" valign="middle" style="font-size:86%;">
 
                     <td><?= $row["ID"]; ?></td>
-                    <td><?php
-                        $CoId = $row["Conference"] - 1;
-                        echo $ConTitle[$CoId];
-                        ?>
-                    </td>
-
-
-                    <td align="center" valign="middle">
-
-                        <a href="index.php?page=venue&action=venue_f&id=<?= $row["ID"] ?>">View Venue</a>
-
+                    <td><?= $row["Name"]; ?></td>
+                    <td><?= $row["Company"]; ?></td>
+                    <td><?= printf('%s, %s %s', $row["Street"], $row["Suburb"], $row["Postcode"]); ?></td>
+                    
+                    <td align="center" valign="middle"> 
+                      <a href="index.php?page=venue&action=edit&id=<?= $row["ID"] ?>">Edit</a>
+                      <a href="index.php?page=venue&action=delete&id=<?= $row["ID"] ?>">Delete</a>
                     </td>
                 </tr>
             <?PHP
             }
-            */
             ?>
             </tbody>
         </table>

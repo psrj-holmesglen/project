@@ -16,90 +16,75 @@
     //// Setup START
     ////
 
-/*
     // Import libraries.
     require "PHP_DB/dbObject.php";
-
-    $validated = false;
 
     // Get a copy of the DAL object.
     $data = new Data();
     //set file upload variables
-    $uploLoc = "UPLOADED_FILES/Venues/";
+    //$uploLoc = "UPLOADED_FILES/Venues/";
     ////
     //// Setup END
     ////
 
-    // If submit has been clicked:
+    $validated = false;
+
+    $newData = array(
+      "name" => "",
+      "company" => "",
+      "street" => "",
+      "suburb" => "",
+      "postcode" => "",
+    );
+
+    $NameErr = "";
+    $CompanyErr = "";
+    $StreetErr = "";
+    $SuburbErr = "";
+    $PostCodeErr = "";
+
     if (isset($_POST['clicked_submit'])) {
 
-        // Grab our data from the form.
-        $Dire = $_POST['txtDire'];
-        $CoId = $_POST['selCoId'];
-        //$PFil = $_POST['selCoId'];
+      $newData = array(
+        "name" => $_POST['data_name'],
+        "company" => $_POST['data_company'],
+        "street" => $_POST['data_street'],
+        "suburb" => $_POST['data_suburb'],
+        "postcode" => $_POST['data_postcode'],
+      );
 
+      $validated = true;
 
-        ////
-        //// Validation Checking START.
-        ////
-        require "PHP_VALIDATION/validation.php";
+      if (empty($_POST['data_name'])) {
+        $validated = false;
+        $NameErr = "Name cannot be empty";
+      }
+      if (empty($_POST['data_company'])) {
+        $validated = false;
+        $CompanyErr = "Company cannot be empty";
+      }
+      if (empty($_POST['data_street'])) {
+        $validated = false;
+        $StreetErr = "Street cannot be empty";
+      }
+      if (empty($_POST['data_suburb'])) {
+        $validated = false;
+        $SuburbErr = "Suburb cannot be empty";
+      }
+      if (empty($_POST['data_postcode'])) {
+        $validated = false;
+        $PostCodeErr = "Post code cannot be empty";
+      }
 
-        // A bool flag that determines validation success.
-        $validated = true;
-
-        // nv() is a small shorthand function that switches the validation flag
-        // to false.  It then returns the current validation error from our validation lib.
-        function nv()
-        {
-            global $validated;
-            $validated = false;
-            return vGetErr();
-        }
-
-        // Validate Venue Directory:
-        if (vIsBlank($Dire)) // not blank, only numbers.
-            $OrdrErr = nv();
-        //validate file upload
-        if (fileUpload($page, $_files, $_post))
-            $uploErr = nv();
-        ////
-        //// Validation Checking END.
-        ////
-        // Assume validated for now.
-        //$validated = true;
     }
 
     // Once the data has been validated, let's insert the data.
     if ($validated) {
-        ////
-        //// Database Write START
-        ////
-        //Check for file in file upload
-        if (empty($_FILES["file"]["name"])) {
-            $PFil = "No File Uploaded";
-        } else { //if file found then move and save to folder
 
-            //send link to database:..
-            $PFil = $target_file;
-            $PFil = "File Uploaded";
-        }
-
-        $newData = array(
-                "Venue_Directory" => $Dire,
-                "Conference" => $CoId,
-                "Filepath" => $PFil,
-
-        );
-        $newID = $data->venue->addRow($newData);
-        if ($newID) {
-            if ($PFil != "No File Uploaded") {
-                $fileData = explode(".", $_FILES['file']['name']);
-                $target_file = $uploLoc . $newID . "." . $fileData[1];
-                move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-            }
-
-            header("Location: index.php?page=venue");
-
+        if($data->venue->addRow($newData)) {
+          header('Location: ' . 'index.php?page=venue&amp;action=view');
+        } else {
+          print 'hoge';
         }
         ////
         //// Database Write END
@@ -108,8 +93,6 @@
         ////
         //// HTML Form START
         ////
-
-*/
         ?>
 
         <!-- Back button -->
@@ -122,14 +105,14 @@
         <!-- Heading -->
         <h1 align="center">Add a Venue</h1>
         <!-- Form START -->
-        <form method='post' action='index.php?page=venue&amp;action=add' enctype="multipart/form-data">
+        <form method='post' action='index.php?page=venue&amp;action=add'>
 
           <table class='std_form'>
 
               <tr>
                 <td class='label'>Name</td>
-                <td><input type='text' name='txtDire' class='textBoxStyle1' value='' /></td>
-                <td><span class='errorText'></span></td>
+                <td><input type='text' name='data_name' class='textBoxStyle1' value='<?=$newData["name"]?>' /></td>
+                <td><span class='errorText'><?= $NameErr ?></span></td>
               </tr>
               <tr>
                   <td colspan="2">
@@ -138,8 +121,8 @@
               </tr>
               <tr>
                 <td class='label'>Company</td>
-                <td><input type='text' name='txtDire' class='textBoxStyle1' value='' /></td>
-                <td><span class='errorText'></span></td>
+                <td><input type='text' name='data_company' class='textBoxStyle1' value='<?=$newData["company"]?>' /></td>
+                <td><span class='errorText'><?= $CompanyErr ?></span></td>
               </tr>
               <tr>
                   <td colspan="2">
@@ -148,8 +131,8 @@
               </tr>
               <tr>
                 <td class='label'>Street</td>
-                <td><input type='text' name='txtDire' class='textBoxStyle1' value='' /></td>
-                <td><span class='errorText'></span></td>
+                <td><input type='text' name='data_street' class='textBoxStyle1' value='<?=$newData["street"]?>' /></td>
+                <td><span class='errorText'><?= $StreetErr ?></span></td>
               </tr>
               <tr>
                   <td colspan="2">
@@ -158,8 +141,8 @@
               </tr>
               <tr>
                 <td class='label'>Suburb</td>
-                <td><input type='text' name='txtDire' class='textBoxStyle1' value='' /></td>
-                <td><span class='errorText'></span></td>
+                <td><input type='text' name='data_suburb' class='textBoxStyle1' value='<?=$newData["suburb"]?>' /></td>
+                <td><span class='errorText'><?= $SuburbErr ?></span></td>
               </tr>
               <tr>
                   <td colspan="2">
@@ -168,8 +151,8 @@
               </tr>
               <tr>
                 <td class='label'>Post Code</td>
-                <td><input type='text' name='txtDire' class='textBoxStyle1' value='' /></td>
-                <td><span class='errorText'></span></td>
+                <td><input type='text' name='data_postcode' class='textBoxStyle1' value='<?=$newData["postcode"]?>' /></td>
+                <td><span class='errorText'><?= $PostCodeErr ?></span></td>
               </tr>
               <tr>
                   <td colspan="2">
@@ -190,17 +173,17 @@
 
                   <span style='float: right;'>
 
+<!--
                     <form method="get" action="index.php">
-                      <input type="submit" class='buttonStyle1' value="Go back"/>
+                      <input type="submit" name='clicked_submit' class='buttonStyle1' value="Go back"/>
                       <input type="hidden" name="page" value="venue"/>
                       <input type="hidden" name="action" value="view"/>
                     </form>
+-->
 
-                    <form method="get" action="index.php">
-                      <input type="submit" class='buttonStyle1' value="Save"/>
-                      <input type="hidden" name="page" value="venue"/>
-                      <input type="hidden" name="action" value="view"/>
-                    </form>
+                    <input type="submit" name='clicked_submit' class='buttonStyle1' value="Save"/>
+                    <input type="hidden" name="page" value="venue"/>
+                    <input type="hidden" name="action" value="add"/>
 
                   </span>
 
@@ -210,9 +193,7 @@
 
         </form>
     <?PHP
-/*
     }
-*/
     ?>
 </div>
 
