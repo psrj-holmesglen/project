@@ -1,3 +1,0 @@
-[27-May-2014 18:39:43 America/Chicago] PHP Warning:  require(Slim/Slim.php): failed to open stream: No such file or directory in /home3/robfaie/public_html/eCon/root/WEB_SERVICE/index.php on line 2
-[27-May-2014 18:39:43 America/Chicago] PHP Warning:  require(Slim/Slim.php): failed to open stream: No such file or directory in /home3/robfaie/public_html/eCon/root/WEB_SERVICE/index.php on line 2
-[27-May-2014 18:39:43 America/Chicago] PHP Fatal error:  require(): Failed opening required 'Slim/Slim.php' (include_path='.:/opt/php55/lib/php') in /home3/robfaie/public_html/eCon/root/WEB_SERVICE/index.php on line 2
