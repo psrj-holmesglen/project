@@ -1,0 +1,1 @@
+[26-May-2014 08:39:38 America/Chicago] PHP Fatal error:  Call to a member function prepare() on a non-object in /home3/robfaie/public_html/eCon/root/PHP_DB/dbTable.php on line 122
