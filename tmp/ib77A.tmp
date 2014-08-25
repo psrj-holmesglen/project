@@ -1,0 +1,2 @@
+,
+  CONSTRAINT `Polling_Option_Polling_fk` FOREIGN KEY (`Polling`) REFERENCES `polling` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE

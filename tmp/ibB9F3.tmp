@@ -1,0 +1,1 @@
+`epworth_ec`.`polling`, CONSTRAINT `Polling_Session_fk` FOREIGN KEY (`Session`) REFERENCES `session` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
