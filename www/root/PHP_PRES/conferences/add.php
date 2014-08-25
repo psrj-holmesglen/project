@@ -22,6 +22,7 @@
 require "PHP_PRES/helpers/dateTimePicker.php";
 require "PHP_DB/dbObject.php";
 
+
 $uploLoc = "UPLOADED_FILES/Conference/";
 $validated = false;
 
@@ -67,7 +68,8 @@ if (isset($_POST["clicked_submit"])) {
     $Star["hour"] = $_POST["selStarHour"];
     $Star["minute"] = $_POST["selStarMinute"];
     $Star["second"] = "00";
-    $Star["string"] = dtConvertToString($Star);
+    //$Star["string"] = dtConvertToString($Star);
+	$StartDate = $Star["string"] = dtConvertToString($Star);
 
     $EndT["year"] = $_POST["selEndTYear"];
     $EndT["month"] = $_POST["selEndTMonth"];
@@ -75,7 +77,8 @@ if (isset($_POST["clicked_submit"])) {
     $EndT["hour"] = $_POST["selEndTHour"];
     $EndT["minute"] = $_POST["selEndTMinute"];
     $EndT["second"] = "00";
-    $EndT["string"] = dtConvertToString($EndT);
+    //$EndT["string"] = dtConvertToString($EndT);
+	$EndDate = $EndT["string"] = dtConvertToString($EndT);
 
     // A bool flag that determines validation success.
     $validated = true;
@@ -102,7 +105,7 @@ if (isset($_POST["clicked_submit"])) {
         $StarErr = nv();
 
     // Validate End date:
-    if (vIsBlank($EndT["string"]) || !vIsDate($EndT)) // not blank, is sql datetime.
+    if (vIsBlank($EndT["string"]) || !vIsDate($EndT)|| vIsValidDate($StartDate,$EndDate)) // not blank, is sql datetime.
         $EndTErr = nv();
 
     // Validate Organisation:

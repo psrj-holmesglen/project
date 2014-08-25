@@ -32,7 +32,7 @@ if (isset($_POST['clicked_submit'])) {
     $CSId = $_POST['txtCSId'];
     $Titl = $_POST['txtTitl'];
     $Desc = $_POST['txtDesc'];
-    $EndS = $_POST['txtStar'];
+    $Star = $_POST['txtStar'];
     $EndT = $_POST['txtEndT'];
     $Room = $_POST['txtRoom'];
     $Chair = $_POST['txtChai'];
@@ -67,7 +67,8 @@ if (isset($_POST['clicked_submit'])) {
     $Star["hour"] = $_POST["selStarHour"];
     $Star["minute"] = $_POST["selStarMinute"];
     $Star["second"] = "00";
-    $Star["string"] = dtConvertToString($Star);
+    //$Star["string"] = dtConvertToString($Star);
+	 $StartDate = $Star["string"] = dtConvertToString($Star);
 
     $EndT["year"] = $_POST["selEndTYear"];
     $EndT["month"] = $_POST["selEndTMonth"];
@@ -75,7 +76,8 @@ if (isset($_POST['clicked_submit'])) {
     $EndT["hour"] = $_POST["selEndTHour"];
     $EndT["minute"] = $_POST["selEndTMinute"];
     $EndT["second"] = "00";
-    $EndT["string"] = dtConvertToString($EndT);
+    //$EndT["string"] = dtConvertToString($EndT);
+	 $EndDate = $EndT["string"] = dtConvertToString($EndT);
 
     $validated = true;
 
@@ -91,7 +93,16 @@ if (isset($_POST['clicked_submit'])) {
 
     if (vIsBlank($Desc) || !vMaxChars($Desc, 400)) // not blank, max 400 chars.
         $DescErr = nv();
-    if (vIsBlank($Room)) // not blank, max 400 chars.
+    
+	// Validate Start date:
+    if (vIsBlank($Star["string"]) || !vIsDate($Star)) // not blank, is sql datetime.
+        $StarErr = nv();
+
+    // Validate End date:
+    if (vIsBlank($EndT["string"]) || !vIsDate($EndT)|| vIsValidDate($StartDate,$EndDate)) // not blank, is sql datetime.
+        $EndTErr = nv();
+
+	if (vIsBlank($Room)) // not blank, max 400 chars.
         $LocaErr = nv();
 
     for ($i = 0; $i < $Pres; $i++) {
@@ -343,7 +354,7 @@ if ($validated) {
                     </tr>
                 </table>
             </td>
-            <td><span class='errorText'><?= $EndErr ?></span></td>
+            <td><span class='errorText'><?= $EndTErr ?></span></td>
         </tr>
 
         <tr>

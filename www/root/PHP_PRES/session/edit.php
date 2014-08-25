@@ -39,8 +39,8 @@ if (isset($_POST['clicked_submit'])) {
     $CSId = $_POST['txtCSId'];
     $Titl = $_POST['txtTitl'];
     $Desc = $_POST['txtDesc'];
-    //$EndS = $_POST['txtStar'];
-    //$EndT = $_POST['txtEndT'];
+    $Star = $_POST['txtStar'];
+    $EndT = $_POST['txtEndT'];
     $Room = $_POST['txtRoom'];
     $Chair = $_POST['txtChai'];
 //			$Feed = $_POST['txtFeed'];
@@ -78,7 +78,8 @@ if (isset($_POST['clicked_submit'])) {
     $Star["hour"] = $_POST["selStarHour"];
     $Star["minute"] = $_POST["selStarMinute"];
     $Star["second"] = "00";
-    $Star["string"] = dtConvertToString($Star);
+    //$Star["string"] = dtConvertToString($Star);
+	$StartDate = $Star["string"] = dtConvertToString($Star);
 
     $EndT["year"] = $_POST["selEndTYear"];
     $EndT["month"] = $_POST["selEndTMonth"];
@@ -86,14 +87,14 @@ if (isset($_POST['clicked_submit'])) {
     $EndT["hour"] = $_POST["selEndTHour"];
     $EndT["minute"] = $_POST["selEndTMinute"];
     $EndT["second"] = "00";
-    $EndT["string"] = dtConvertToString($EndT);
+    //$EndT["string"] = dtConvertToString($EndT);
+	$EndDate = $EndT["string"] = dtConvertToString($EndT);
 
     // TODO: Validation code goes here.
     // TODO: Validation code goes here.
     // TODO: Validation code goes here.
-
-    // HACK: Assume validated for now.
-    $validated = true;
+	
+	$validated = true;
 
     function nv()
     {
@@ -102,6 +103,16 @@ if (isset($_POST['clicked_submit'])) {
         return vGetErr();
     }
 
+	// Validate Start date:
+    if (vIsBlank($Star["string"]) || !vIsDate($Star)) // not blank, is sql datetime.
+        $StarErr = nv();
+
+    // Validate End date:
+    if (vIsBlank($EndT["string"]) || !vIsDate($EndT)|| vIsValidDate($StartDate,$EndDate)) // not blank, is sql datetime.
+        $EndTErr = nv();
+		
+    // HACK: Assume validated for now.
+    
     if (vIsBlank($Titl)) // not blank
         $TitErr = nv();
     if (vIsBlank($Desc)) // not blank
@@ -195,6 +206,7 @@ if (isset($_POST['clicked_submit'])) {
                 "Conference_Section" => $CSId,
 //                    "Feedback"                  => $Feed,
 //					"Feedback_Section"			=> $Sect,
+				"Feedback"=> $fb,
         );
 
         if ($Sect != "NULL") {
@@ -228,12 +240,12 @@ if (isset($_POST['clicked_submit'])) {
                             break;
                     }
 
-                    $newData = array(
+                    $newDataPresenter = array(
                             "Presenter" => $Presenter,
                             "Session" => $SesId,
                     );
 
-                    $data->sessionPresenter->addRow($newData);
+                    $data->sessionPresenter->addRow($newDataPresenter);
                 }
 
                 header("Location: index.php?page=session");
@@ -371,6 +383,7 @@ if (isset($_POST['clicked_submit'])) {
         </table>
     </td>
     <td><span class='errorText'><?= $StarErr ?></span></td>
+
 </tr>
 
 <tr>
@@ -438,41 +451,9 @@ if (isset($_POST['clicked_submit'])) {
     <td><input type='text' class='textBoxStyle1' name='txtChai' value='<?= $Chair ?>'/></td>
     <td><span class='errorText'><?= $ChaiErr ?></span></td>
 </tr>
-<!--
-            <tr> <td colspan="2"> <hr> </td> </tr>
-            <tr>
-                <td class='label'>Feedback Id:</td>
-                <td>
-                    <select name='txtFeed'  class='selectStyle1'>
-                <?PHP
-$data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
-?>
-                	</select>
-                </td>
-            </tr>
 
--->
-<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
-<!--            -->
-<!--            <tr><td class='label'>Feedback Id:</td>-->
-<!--            <td><select name='txtFeed' class='selectStyle1'>-->
-<!--     -->
-<!--            --><?PHP
-//                $data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
-//
-?>
-<!--        -->
-<!--            -->
-<!--                </select></td>-->
-<!--                </tr>-->
-
-<tr>
-    <td colspan="2">
-        <hr>
-    </td>
-</tr>
-
-<tr>
+      <tr> <td colspan="2"> <hr> </td> </tr>
+      <tr>
     <td class='label'>Section Id:</td>
     <td><select name='txtSect' class='selectStyle1'>
             <option value="NULL">None</option>
@@ -490,35 +471,6 @@ $data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
     </td>
 </tr>
 
-<!--            <tr>-->
-<!--            	<td class='label'>Polling Available:</td>-->
-<!--                <td>-->
-<!--                	<select name="txtPoll"   class='selectStyle1'>-->
-<!--                			<option value='Yes'-->
-<?php //if($Poll==1) echo " selected=\"selected\" "; ?><!--Yes</option>-->
-<!--							<option value='No'-->
-<?php //if($Poll==0) echo " selected=\"selected\" "; ?><!--No</option>-->
-<!--                    </select>-->
-<!--                </td>  	-->
-<!--            </tr>-->
-<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
-<!--           <tr>-->
-<!--            	<td class='label'>Polling Open:</td>-->
-<!--                <td>-->
-<!--                	<select name="txtOpen"  class='selectStyle1'>-->
-<!--                			<option value='Yes'-->
-<?php //if($Open==1) echo " selected=\"selected\" "; ?><!--Yes</option>-->
-<!--							<option value='No'-->
-<?php //if($Open==0) echo " selected=\"selected\" "; ?><!--No</option>-->
-<!--                    </select>-->
-<!--                </td>-->
-<!--                -->
-<!--            	-->
-<!--            </tr>-->
-<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
-
-
-<!-- Add Presenter -->
 <tr>
     <td class='label'>Presenter:</td>
     <td>
@@ -630,7 +582,7 @@ $data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
         </div>
     </table>
 
-
+</div>
     <table class='std_form'>
 
         <tr>
@@ -668,3 +620,74 @@ $data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
     }
 
 </script>
+
+
+
+   <!-- Previous team code - rudhra
+               <tr>
+                <td class='label'>Feedback Id:</td>
+                <td>
+                    <select name='txtFeed'  class='selectStyle1'>
+                <?PHP
+//$data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
+?>
+                	</select>
+                </td>
+            </tr>
+
+-->
+<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
+<!--            -->
+<!--            <tr><td class='label'>Feedback Id:</td>-->
+<!--            <td><select name='txtFeed' class='selectStyle1'>-->
+<!--     -->
+<!--            --><?PHP
+//                $data->feedback->printDropDownOptions($Feed, "ID", "Feedback_Title");
+//
+?>
+<!--        -->
+<!--            -->
+<!--                </select></td>-->
+<!--                </tr>-->
+
+<!--<tr>
+    <td colspan="2">
+        <hr>
+    </td>
+</tr>-->
+
+
+
+<!--   //Previous team code
+         <tr>-->
+<!--            	<td class='label'>Polling Available:</td>-->
+<!--                <td>-->
+<!--                	<select name="txtPoll"   class='selectStyle1'>-->
+<!--                			<option value='Yes'-->
+<?php //if($Poll==1) echo " selected=\"selected\" "; ?><!--Yes</option>-->
+<!--							<option value='No'-->
+<?php //if($Poll==0) echo " selected=\"selected\" "; ?><!--No</option>-->
+<!--                    </select>-->
+<!--                </td>  	-->
+<!--            </tr>-->
+<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
+<!--           <tr>-->
+<!--            	<td class='label'>Polling Open:</td>-->
+<!--                <td>-->
+<!--                	<select name="txtOpen"  class='selectStyle1'>-->
+<!--                			<option value='Yes'-->
+<?php //if($Open==1) echo " selected=\"selected\" "; ?><!--Yes</option>-->
+<!--							<option value='No'-->
+<?php //if($Open==0) echo " selected=\"selected\" "; ?><!--No</option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                -->
+<!--            	-->
+<!--            </tr>-->
+<!--            <tr> <td colspan="2"> <hr> </td> </tr>-->
+
+
+<!-- Add Presenter -->
+
+
+

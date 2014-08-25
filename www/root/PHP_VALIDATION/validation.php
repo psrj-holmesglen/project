@@ -40,6 +40,8 @@ $vDescriptions = array(
         11 => "Field can only contain alphanumeric characters.", //string inputs
         12 => "Invalid file type. Must be JPEG, PNG, or GIF",
         13 => "File is too large. Must be under 5MB",
+		//new code added for date validation/ Rudhra
+		14 => "Start date and time must be earlier than end date and time"
 );
 buildErrorDescriptions();
 
@@ -552,6 +554,31 @@ function vGetErr()
     global $vErrCode;
     return vGetInvDesc($vErrCode);
 }
+
+//Validate valid end date - Rudhra
+function vIsValidDate($StartDate,$EndDate)
+{
+	global $vErrCode;
+	
+list($strYear, $strMonth, $strDay) = explode('-', $StartDate);
+list($endYear, $endMonth, $endDay) = explode('-', $EndDate);
+
+list($strDays,$strTime)= explode(' ',$strDay);
+list($endDays,$endTime)= explode(' ',$endDay);
+
+list($strHour, $strMin, $strSec) = explode(':', $strTime);
+list($endHour, $endMin, $endSec) = explode(':', $endTime);
+
+ $startSeconds = mktime($strHour, $strMin, $strSec, $strMonth, $strDays, $strYear);
+ $endSeconds   = mktime($endHour, $endMin, $endSec, $endMonth, $endDays, $endYear);
+
+if ($startSeconds >= $endSeconds) {
+   	$vErrCode = 14;
+	return true;
+	}
+	return false;
+}
+
 
 // TODO: (Low priority) Function and assoc array to ensure correct ID 
 // key formatting for correct database queries.
