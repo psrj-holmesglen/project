@@ -85,3 +85,13 @@ function printOptionMinutes($selected)
             echo "<option>$mins</option>";
     }
 }
+//Function to show current returned time in the document
+//Function added by Rudhra
+function get_Datetime_Now()
+{
+		$tz_object = new DateTimeZone('Australia/Victoria');
+		
+		$datetime = new DateTime();
+		$datetime->setTimezone($tz_object);
+		return $datetime->format('Y\-m\-d\ h:i:s A'); 
+}

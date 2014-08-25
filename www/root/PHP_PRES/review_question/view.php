@@ -15,6 +15,7 @@
 
 // Import Libraries
 require "PHP_DB/dbObject.php";
+require "PHP_PRES/helpers/dateTimePicker.php";
 
 // Get a copy of the DAL object
 $data = new Data();
@@ -139,7 +140,7 @@ if (isset($_POST['session_selected'])) {
 
         </div>
 
-        <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . date('Y-m-d H:i:s'); ?></p>
+        <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
 
         <div style="text-align:right;">
             <input type="submit" value="Presenter Display Selected Questions" class="buttonStyle1"

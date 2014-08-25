@@ -30,6 +30,8 @@ $_SESSION['lastActivity'] = time();
 // Session authorise code.
 if (isset($_SESSION["userFirstName"])) {
     $headerUserName = "" . $_SESSION["userFirstName"] . " " . $_SESSION["userLastName"];
+	//The code is to restrict username to max of 20 characters- Rudhra
+	$headerUserName = substr($headerUserName,0,20); 
 } else {
     header("Location: PHP_LOGIN/login.php");
 }
