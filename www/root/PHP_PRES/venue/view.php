@@ -27,14 +27,6 @@ foreach ($table as $row) {
     $ConTitle[] = $row["Title"];
 }
 
-////
-//// Setup END
-////
-<<<<<<< HEAD
-=======
-*/
-require "PHP_PRES/helpers/dateTimePicker.php";
->>>>>>> 444d1086633d223e8dee428fa535646e4fdba2f9
 
 ?>
 
