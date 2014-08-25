@@ -219,21 +219,6 @@ if ($page == "conference") {
             require 'PHP_LOGIN/reset.php';
             break;
     }
-} else if ($page == "map") {
-    switch ($action) {
-        case "view":
-            require 'PHP_PRES/map/view.php';
-            break;
-        case "edit":
-            require 'PHP_PRES/map/edit.php';
-            break;
-        case "add":
-            require 'PHP_PRES/map/add.php';
-            break;
-        case "delete":
-            require 'PHP_PRES/map/delete.php';
-            break;
-    }
 } else if ($page == "venue") {
     switch ($action) {
         case "view":
@@ -249,5 +234,43 @@ if ($page == "conference") {
             require 'PHP_PRES/venue/delete.php';
             break;
     }
+}else if ($page == "report") {
+    switch ($action) {
+        case "conference":
+            require 'PHP_PRES/conferences/conference_report.php';
+            break;
+        case "section":
+            require 'PHP_PRES/sections/section_report.php';
+            break;
+        case "session":
+            require 'PHP_PRES/session/session_report.php';
+            break;
+       case "question":
+            require 'PHP_PRES/feedback_question/question_report.php';
+            break;
+       case "polling":
+            require 'PHP_PRES/polling_question/polling_report.php';
+            break;
+       case "feedback":
+            require 'PHP_PRES/feedback_form/feedback_report.php';
+            break;
+    } 
 }
+// else if ($page == "map") {
+//     switch ($action) {
+//         case "view":
+//             require 'PHP_PRES/map/view.php';
+//             break;
+//         case "edit":
+//             require 'PHP_PRES/map/edit.php';
+//             break;
+//         case "add":
+//             require 'PHP_PRES/map/add.php';
+//             break;
+//         case "delete":
+//             require 'PHP_PRES/map/delete.php';
+//             break;
+//     }
+// }
+
 ?>

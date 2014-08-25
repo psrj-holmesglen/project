@@ -281,31 +281,6 @@
     </ul>
 </li>
 
-<!-- MAP -->
-<li>
-
-    <?PHP
-    if ($page == "map") {
-        //If page is selected change link style
-        echo "<a href='#'><span class='nav_selected_item'>Maps</span></a>";
-    } else {
-        //If page is not selected leave menu link style
-        echo "<a href='index.php?page=map' title='Maps'>Maps</a>";
-    }
-    ?>
-    <!-- Create sub-menu links -->
-    <ul>
-        <li>
-            <a href='index.php?page=map&action=view'> View All</a>
-            <ul>
-                <li>
-                    <a href='index.php?page=map&action=add'> Add New</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</li>
-
 <!-- VENUE -->
 <li>
 
@@ -327,6 +302,42 @@
                     <a href='index.php?page=venue&action=add'> Add New</a>
                 </li>
             </ul>
+        </li>
+    </ul>
+</li>
+
+<!-- REPORT -->
+<li>
+
+    <?PHP
+    
+    if ($page == "report") {
+        //If page is selected change link style
+        echo "<a href='#'><span class='nav_selected_item'>Report</span></a>";
+    } else {
+        //If page is not selected leave menu link style
+        echo "<a href='index.php?page=report' title='Report'>Report</a>";
+    }
+    ?>
+    <!-- Create sub-menu links -->
+    <ul>
+        <li>
+            <a href='index.php?page=report&action=conference'>Conference</a>
+        </li>
+        <li>
+            <a href='index.php?page=report&action=section'>Section</a>
+        </li>
+        <li>
+            <a href='index.php?page=report&action=session'>Session</a>
+        </li>
+        <li>
+            <a href='index.php?page=report&action=question'>Question</a>
+        </li>
+        <li>
+            <a href='index.php?page=report&action=polling'>Polling</a>
+        </li>
+        <li>
+            <a href='index.php?page=report&action=feedback'>Feedback</a>
         </li>
     </ul>
 </li>
