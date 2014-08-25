@@ -14,7 +14,7 @@
 ////
 //// Setup START
 ////
-// Last Updated by rudhra
+// Last Updated by Rudhra
 // Import libraries.
 require "PHP_DB/dbObject.php";
 require "PHP_PRES/helpers/dateTimePicker.php";
