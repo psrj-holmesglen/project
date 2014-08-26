@@ -74,6 +74,7 @@ function vIsBlank($input)
     if (empty($input) || (trim($input) == "")) {
         $vErrCode = 0;
         return true;
+
     }
     return false;
 }

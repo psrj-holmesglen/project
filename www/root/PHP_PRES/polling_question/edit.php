@@ -77,9 +77,11 @@ if (isset($_POST["clicked_submit"])) {
     // Grab our data from the form.
     $Ques = $_POST['txtQuestion'];
     $Session = $_POST['selectSession'];
+echo $Ques = $_POST['txtQuestion'];
+echo    $Session = $_POST['selectSession'];
 
-    // Get number of options
-    $Options = $_POST['txtOptionNo'];
+    // Get number of optionstxtOptionNo
+    $Options = $_POST[''];
 
     // Set array for txtOptionText?
     $input = array();
@@ -175,6 +177,8 @@ if (isset($_POST["clicked_submit"])) {
 
         );
 
+echo $Ques = $_POST['txtQuestion'];
+echo    $Session = $_POST['selectSession'];
         // Execute sql query to add new data to the Polling questions
         $insert = $data->pollingQuestion->updateRow($_GET["id"], $newData);
         //echo $newData["Polling_Question"]." ".$newData["session"];
@@ -199,7 +203,7 @@ if (isset($_POST["clicked_submit"])) {
                     $data->pollingOption->updateRow($row3[$j]["ID"], $newData2);
                 }
                 //redirect user to Polling view page
-                header('Location: index.php?page=polling_question');
+              //  header('Location: index.php?page=polling_question');
             } //If user adds options to this question
 
             else if (count($row3) < $Options) {
@@ -229,7 +233,7 @@ if (isset($_POST["clicked_submit"])) {
                 }
                 //redirect user to Polling view page
 
-                header("Location: index.php?page=polling_question");
+              //  header("Location: index.php?page=polling_question");
             } //If user deletes options from this question
             else {
                 $subClicked = true;
@@ -258,7 +262,7 @@ if (isset($_POST["clicked_submit"])) {
                     $data->pollingOption->deleteRow($row3[$j]["ID"]);
                 }
                 //redirect user to Polling view page
-                header("Location: index.php?page=polling_question");
+              //  header("Location: index.php?page=polling_question");
             }
         }
         ////
@@ -446,7 +450,7 @@ if (isset($_POST["clicked_submit"])) {
                     }
                 }
                 ?>
-            </select> options&nbsp;
+            </select> <!--options&nbsp;-->
         </td>
         <td><span class='errorText'><?= $OpNoErr ?></span></td>
         </tr>

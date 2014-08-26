@@ -7,7 +7,7 @@
 // * File: reset.php
 // * Add User for the dstc e conference web application.
 // * Written by TEAM SPARTA 
-// * Last updated: 20-05-14 by Jennifer de Peyrecave -->
+// * Last updated: 26-08-14 by Rudhrakumar Gurunathan -->
 
 
 // Import libraries.

@@ -60,6 +60,7 @@ if (isset($_POST["clicked_submit"])) {
     $Loca = $_POST["txtLoca"];
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"]; // taking the venue id only, not full string.
+	$Febk = $_POST["selFbform"];
 
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
@@ -152,6 +153,7 @@ if ($validated) {
             "Location" => $Loca,
             "Contact" => $Cont,
             "Venue" => $Venu,
+			"Feedback" => $Febk,
             "FilePath" => $PFil,
     );
 
@@ -334,6 +336,21 @@ if ($validated) {
                     <select name='selVenu' class='selectStyle1'>
                         <?PHP
                         $data->venue->printDropDownOptions(NULL, "Name");
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td class='label'>Feedback Form:</td>
+                <td>
+                    <select name='selFbform' class='selectStyle1'>
+                        <?PHP
+                        $data->feedback->printDropDownOptions(NULL, "Feedback_Title");
                         ?>
                     </select>
                 </td>

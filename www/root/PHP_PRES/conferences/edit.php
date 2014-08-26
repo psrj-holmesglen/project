@@ -52,6 +52,7 @@ if (isset($_POST["clicked_submit"])) {
     $Loca = $_POST["txtLoca"];
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"];
+	$Febk = $_POST["selFbform"];
 
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
@@ -131,6 +132,7 @@ if (isset($_POST["clicked_submit"])) {
                 "Location" => $Loca,
                 "Contact" => $Cont,
                 "Venue" => $Venu,
+				"Feedback" => $Febk
         );
 
         //var_dump($newData);
@@ -160,6 +162,7 @@ if (isset($_POST["clicked_submit"])) {
     $Loca = $row["Location"];
     $Cont = $row["Contact"];
     $Venu = $row["venue"];
+	$Febk = $row["Feedback"];
 
 }
 ////
@@ -332,6 +335,26 @@ if (isset($_POST["clicked_submit"])) {
                 </select>
             </td>
         </tr>
+        <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+        <tr>
+                <td class='label'>Feedback Form:</td>
+                <td>
+                    <select name='selFbform' class='selectStyle1'>
+                        <?PHP
+                        $data->feedback->printDropDownOptions(NULL, "Feedback_Title");
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
         <tr>
             <td colspan='2'><span style='float: right;'>
                 	<br/>

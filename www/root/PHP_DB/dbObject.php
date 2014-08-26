@@ -204,6 +204,15 @@ class AttendeeProfile extends Table
     }
 }
 
+class Feedback extends Table
+{
+	function Feedback()
+	{
+		parent::init();
+		$this->tableName="feedback";	
+	}
+	
+}
 
 class FeedbackSection extends Table
 {
@@ -768,6 +777,7 @@ class Data
         $this->map = new Map();
         $this->equipment = new Equipment();
         $this->reviewQuestion = new ReviewQuestion();
+		$this->feedback = new Feedback();
     }
 }
 
