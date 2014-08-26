@@ -12,6 +12,7 @@
 
 // Import libraries.
 require "../PHP_DB/dbObject.php";
+require "../PHP_VALIDATION/validation.php";
 
 // Get a copy of the DAL object.
 $data = new Data();
@@ -24,60 +25,70 @@ session_start();
 if ($_POST['submit'] == 'Reset')
 {
 
-// Validate the email address.
-//$e = true;
-    /*if (!empty($_POST['txtEmail'])) {
-        $e = escape_data($_POST['txtEmail']);
-    } else {
-        echo "<p><font color=”red” size=”+1″>You forgot to enter your email address!</font></p>";
-        $e = FALSE;
-    }*/
+	if(vIsEmail($email))
+	{
+			echo "valid";
+			// Validate the email address.
+			//$e = true;
+			/*if (!empty($_POST['txtEmail'])) {
+				$e = escape_data($_POST['txtEmail']);
+			} else {
+				echo "<p><font color=”red” size=”+1″>You forgot to enter your email address!</font></p>";
+				$e = FALSE;
+			}*/
+			
+		
+			if ($userRow = $data->user->getRowByMatch("Email", $_POST["txtEmail"])) {
+				$ResetErr = "User exists";
+				
+					if ($userRow = $data->user->getRowByMatch("Email", $_POST["txtEmail"])) {
+			
+					//create a new random password
+			
+					$password = "Password2";
+					$pass = md5($password); //encrypted version for database entry
+			
+					//send email
+					$to = $email;
+					$subject = "Account Details Recovery";
+					$body = "Hi, you or someone else have requested your account details. Here is your account information please keep this as you may need this at a later stage. Your new password is $password .Your password has been reset please login and change your password to something more rememberable. Regards Site Admin";
+					$additionalheaders = "From: <noreply@econ.robfaie.net>";
+					mail($to, $subject, $body, $additionalheaders);
+					$ResetErr = "Email Sent";
+					$newData = array(
+							"Password" => $pass,
+			
+					);
+					if ($data->user->updateRow($userRow[0]['ID'], $newData))
+			
+						echo "<script>window.location = 'login.php?page=login'</script>";
+						//			header("Location: login.php?page=login");
+						/*$code=rand(100,999);
+						$message="Your activation link is: http://localhost/webapp/root/PHP_LOGIN/index.php?eEmail=$email&code=$code";
+						mail($email, "Password Reset", $message);
+						$ResetErr = "Email sent";
+						echo "your password has been emailed to you";
+				
+				
+						$email_check=mysql_query("SELECT Password FROM user WHERE Email='$email'");
+						$count=mysql_num_rows($email_check);
+						$subject="Login Info";
+						$message="Your password is .$count";
+						$from="From: jenniferdepeyrecave@gmail.com";
+				
+						mail($email, $subject, $message, $from);
+						echo "your password has been emailed to you";*/
+					} 
+			}
+			else 
+			{
+				$ResetErr = "No user exist with this email id";
+			}
+	}
+	else{
+		$ResetErr = "Enter a valid email id";
+	}
 
-    if ($userRow = $data->user->getRowByMatch("Email", $_POST["txtEmail"])) {
-        $ResetErr = "User exists";
-    } else {
-        $ResetErr = "No user exist with this email id";
-    }
-    if ($userRow = $data->user->getRowByMatch("Email", $_POST["txtEmail"])) {
-
-        //create a new random password
-
-        $password = "Password2";
-        $pass = md5($password); //encrypted version for database entry
-
-        //send email
-        $to = $email;
-        $subject = "Account Details Recovery";
-        $body = "Hi, you or someone else have requested your account details. Here is your account information please keep this as you may need this at a later stage. Your new password is $password .Your password has been reset please login and change your password to something more rememberable. Regards Site Admin";
-        $additionalheaders = "From: <noreply@econ.robfaie.net>";
-        mail($to, $subject, $body, $additionalheaders);
-        $ResetErr = "Email Sent";
-        $newData = array(
-                "Password" => $pass,
-
-        );
-        if ($data->user->updateRow($userRow[0]['ID'], $newData))
-
-            echo "<script>window.location = 'login.php?page=login'</script>";
-//			header("Location: login.php?page=login");
-        /*$code=rand(100,999);
-        $message="Your activation link is: http://localhost/webapp/root/PHP_LOGIN/index.php?eEmail=$email&code=$code";
-        mail($email, "Password Reset", $message);
-        $ResetErr = "Email sent";
-        echo "your password has been emailed to you";
-
-
-        $email_check=mysql_query("SELECT Password FROM user WHERE Email='$email'");
-        $count=mysql_num_rows($email_check);
-        $subject="Login Info";
-        $message="Your password is .$count";
-        $from="From: jenniferdepeyrecave@gmail.com";
-
-        mail($email, $subject, $message, $from);
-        echo "your password has been emailed to you";*/
-    } else {
-        $ResetErr = "No user exists with this email id";
-    }
 }else { ////
 //// HTML Form START
 ////
