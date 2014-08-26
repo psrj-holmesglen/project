@@ -147,7 +147,7 @@
 <!--
                   <span style='float: right;'>
 
-                    <input type='reset' value='Reset' name='clicked_reset' class="buttonStyle1"/>
+                    <input type='submit' value='Reset' name='clicked_reset' class="buttonStyle1"/>
                     <input type='submit' value='Submit' name='clicked_submit' class="buttonStyle1"/>
 
                   </span>

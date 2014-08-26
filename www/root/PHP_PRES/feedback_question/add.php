@@ -488,7 +488,7 @@ if ($validated) {
         <tr>
             <td colspan="2"><span style='float: right;'>
                                 <br/>
-                        <input type='reset' value='Reset' name='clicked_reset' class="buttonStyle1"
+                        <input type='submit' value='Reset' name='clicked_reset' class="buttonStyle1"
                                onclick="addChoice();hideOption();"/>
                         <input type='submit' value='Submit' name='clicked_submit' class="buttonStyle1"/></td>
         </tr>

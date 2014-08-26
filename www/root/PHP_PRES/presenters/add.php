@@ -312,7 +312,7 @@ if ($validated) {
             <tr>
                 <td colspan='2'><span style='float: right;'>
                                 
-                                <input type='reset' value='Reset' class='buttonStyle1' name='clicked_reset'/>
+                                <input type='submit' value='Reset' class='buttonStyle1' name='clicked_reset'/>
                                 <input type='submit' value='Submit' class='buttonStyle1' name='clicked_submit'/>
 
                 </td>

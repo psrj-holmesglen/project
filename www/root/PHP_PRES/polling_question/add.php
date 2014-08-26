@@ -490,7 +490,7 @@ if (isset($_POST["clicked_submit"])) {
     <tr>
         <td colspan='2'><span style='float: right;'>
                 	<br/>
-                    <input type='reset' value='Reset' name='clicked_reset' class='buttonStyle1'
+                    <input type='submit' value='Reset' name='clicked_reset' class='buttonStyle1'
                            onclick='refreshOptions();'/>
                     <input type='submit' value='Submit' name='clicked_submit' class='buttonStyle1'/>
                     </span>
