@@ -49,6 +49,13 @@ if (isset($_POST['clicked_submit'])) {
 //			$Poll = $_POST['txtPoll'];
 //			$Open = $_POST['txtOpen'];
     $Pres = $_POST['txtPresNo'];
+	
+	if($Sect != "NULL")
+	{
+		$row=$data->feedbackSection->getRow($Sect);
+		$fb=$row["Feedback"];
+		
+	}
 
     //Store data of presenter
     for ($i = 0; $i < $Pres; $i++) {

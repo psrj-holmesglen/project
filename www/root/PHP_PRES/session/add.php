@@ -38,6 +38,14 @@ if (isset($_POST['clicked_submit'])) {
     $Chair = $_POST['txtChai'];
     $Sect = $_POST['txtSect'];
     $Pres = $_POST['txtPresNo'];
+	
+	if($Sect != "NULL")
+	{
+		
+		$row = $data->feedbackSection->getRow($Sect);
+		$fb=$row["Feedback"]	;
+	}
+
 
     //Store data of presenter
     for ($i = 0; $i < $Pres; $i++) {
@@ -168,7 +176,8 @@ if ($validated) {
             "Start_Time" => dtConvertToString($Star),
             "End_Time" => dtConvertToString($EndT),
             "Room_Location" => $Room,
-            "Session_Chairperson" => $Chair
+            "Session_Chairperson" => $Chair,
+			"Feedback"=>$fb
     );
 
     if ($Sect != "NULL") {

@@ -229,8 +229,10 @@ class Table
         // Write our statement.
         if ($type == "all") {
             $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
+			
         } else {
             $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
+			
         }
 
 
@@ -241,6 +243,7 @@ class Table
             $query = $this->pdo->prepare($sql);
             $query->bindParam(":id", $id);
             $query->execute();
+		
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $results[$i] = $row;
             }
