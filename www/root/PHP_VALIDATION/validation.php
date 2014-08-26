@@ -41,7 +41,8 @@ $vDescriptions = array(
         12 => "Invalid file type. Must be JPEG, PNG, or GIF",
         13 => "File is too large. Must be under 5MB",
 		//new code added for date validation/ Rudhra
-		14 => "Start date and time must be earlier than end date and time"
+		14 => "Start date and time must be earlier than end date and time",
+		15 => "Input must be a numerical character."
 );
 buildErrorDescriptions();
 
@@ -121,6 +122,7 @@ function vIsNumer($input)
     if (ctype_digit(trim($input))) {
         return true;
     }
+	$vErrCode = 15;
     return false;
 }
 
