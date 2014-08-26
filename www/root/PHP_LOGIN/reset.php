@@ -43,7 +43,7 @@ if(isset($_POST['submit'])) {
 						);
 				if ($data->user->updateRow($userRow[0]['ID'], $newData))
 		
-      	$ResetErr="New password has been emailed.<br/> Redirecting to login page...";
+      	$ResetErr="New password has been emailed to you.<br/> Redirecting to login page...";
 		?>
 		<script type="text/JavaScript">
 		<!--
