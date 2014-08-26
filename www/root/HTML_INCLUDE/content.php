@@ -109,6 +109,9 @@ if ($page == "conference") {
         case "add":
             require 'PHP_PRES/feedback_question/add.php';
             break;
+		case "delete":
+            require 'PHP_PRES/feedback_question/delete.php';
+            break;
     }
 } else if ($page == "feedback_form") {
     switch ($action) {
