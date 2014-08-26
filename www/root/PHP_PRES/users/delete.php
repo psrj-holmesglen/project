@@ -38,7 +38,7 @@
             <td>Last Name</td>
             <td>User Name</td>
             <td>Email</td>
-            <td>Password</td>
+            <!--<td>Password</td>-->
 
         </tr>
         </thead>
@@ -50,7 +50,7 @@
             <td align='left' valign='middle'><?= $row["Last_Name"] ?></td>
             <td align='left' valign='middle'><?= $row["User_name"] ?></td>
             <td align='left' valign='middle'><?= $row["Email"] ?></td>
-            <td align='left' valign='middle'><?= $row["Password"] ?></td>
+            <!--<td align='left' valign='middle'><?= $row["Password"] ?></td>-->
 
         </tr>
         </tbody>

@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                     <td class='label'>Password:</td>
-                    <td><input type='text' name='txtPass' class='textBoxStyle1' value='<?= $Pass ?>'/></td>
+                    <td><input type='password' name='txtPass' class='textBoxStyle1' value='<?= $Pass ?>'/></td>
                     <td><span class='errorText'><?= $PassErr ?></span></td>
                 </tr>
                 <tr>
