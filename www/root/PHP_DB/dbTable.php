@@ -109,15 +109,31 @@ class Table
 
     function getRowByMatch($colName, $value)
     {
-
+		global $userid;
+		//echo $userid;
         // Check to see if its a valid col name
-
         //TODO.
-
         // Write our statement.
-
-        $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
-
+		if(($this->tableName == "session")&& ($userid != "1"))	{
+			$sql="SELECT conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, session.Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title," . $this->tableName . ".Description," . $this->tableName . ".Start_Time," . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location," . $this->tableName . ".Session_Chairperson 
+	  FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section =  conference_section.Conference WHERE conference.ID = conference_section.Conference AND " . $colName . " ='".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL AND AND conference.Conference_Admin_Id = '".$userid."'ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
+		}
+		else if(($this->tableName == "conference_section") && ($userid != "1"))	{
+			$sql = "SELECT DISTINCT conference.Conference_Admin_Id, " . $this->tableName . ".Section_Title, " . $this->tableName . ".Ordering FROM " . $this->tableName . ", conference WHERE conference_section." . $colName . " = '".$value."' AND conference.ID = " . $this->tableName . ".Conference AND conference.Conference_Admin_Id = '".$userid."' ORDER BY " . $this->tableName . ".ID ";
+			//echo $sql;
+		}
+		else if(($this->tableName == "conference_section") && ($userid == "1"))	{
+			$sql = "SELECT DISTINCT conference.Conference_Admin_Id, " . $this->tableName . ".Section_Title, " . $this->tableName . ".Ordering FROM " . $this->tableName . ", conference WHERE conference_section." . $colName . " = '".$value."' AND conference.ID = " . $this->tableName . ".Conference ORDER BY " . $this->tableName . ".ID ";
+			//echo $sql;
+		}
+	 	else{       
+			if($value != "1"){
+				$sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
+			}
+			else {
+				$sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
+			}	
+	 }
         // Execute our statement.
         $this->Connect();
         try {
@@ -222,18 +238,31 @@ class Table
 
     function getRow($id)
     {
+		global $userid;
         // Determine query type.  all = full table array.
         $type = "single";
         if ($id == "all" || !isset($id))
             $type = "all";
         // Write our statement.
-        if ($type == "all") {
+     /*   if ($type == "all") {
             $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
 			
         } else {
             $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
 			
-        }
+        }*/
+		if(($this->tableName == "conference_section") && ($userid != "1")){
+			  $sql = "SELECT DISTINCT conference.Conference_Admin_Id, conference_section.Section_Title, conference_section.Ordering FROM conference_section, conference WHERE conference.ID = " . $this->tableName . ".Conference AND conference.Conference_Admin_Id = '".$userid."' ORDER BY conference_section.ID "; 
+			 // echo $sql;
+		}
+        else if ($type == "all") {
+			 $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
+		}
+		else {
+			$sql = "SELECT * FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
+		 	//echo $sql;	
+		}
+
 
 
         // Execute our statement.
@@ -243,7 +272,7 @@ class Table
             $query = $this->pdo->prepare($sql);
             $query->bindParam(":id", $id);
             $query->execute();
-		
+//		echo $query;
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $results[$i] = $row;
             }
@@ -305,6 +334,7 @@ class Table
         $colString = "" . implode(", ", $colList);
         $valString = ":" . implode(", :", $colList);
         $sql = "INSERT INTO " . $this->tableName . " (" . $colString . ") VALUES (" . $valString . ");";
+	//	echo $sql;
         // Execute our statement.
         $this->Connect();
         try {
@@ -315,6 +345,7 @@ class Table
             }
             if ($query->execute()) {
                 //echo "<br/><br/>Record Added. <br/><br/>" . var_dump($data) . "<br/><br/>";
+//				echo $query;
                 $lastID = $this->pdo->lastInsertId();
                 unset($pdo);
                 unset($query);

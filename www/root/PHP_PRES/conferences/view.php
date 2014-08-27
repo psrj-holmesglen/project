@@ -49,7 +49,10 @@ $data = new Data();
             </thead>
             <tbody>
             <?PHP
-            $table = $data->conference->getRowWithVenueName(null);
+           // $table = $data->conference->getRowWithVenueName(null);
+		   //To display logged in user's conference details
+			 $table = $data->conference->getRowByMatch("Conference_Admin_Id", $userid);
+			 
             if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
             foreach ($table as $row) {
                 ?>

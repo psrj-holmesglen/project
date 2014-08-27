@@ -33,6 +33,8 @@ if (isset($_SESSION["userFirstName"])) {
 	//The code is to restrict username to max of 20 characters- Rudhra
 	$headerUserName = substr($headerUserName,0,20); 
 	$accesslevel = $_SESSION["userAccessLevel"];
+	$userid = $_SESSION["userID"];
+	
 } else {
     header("Location: PHP_LOGIN/login.php");
 }

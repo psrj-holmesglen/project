@@ -72,6 +72,7 @@
         <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
             <thead>
             <tr style="background-color:#999" align="left" valign="middle">
+           <!-- <td>admin id</td>-->
                 <td>Section Order</td>
                 <td>Title</td>
                 <td>Actions</td>
@@ -93,6 +94,7 @@
             foreach ($table as $row) {
                 ?>
                 <tr style="font-size:86%;">
+                	<!--<td align="left" valign="middle"><?= $row["Conference_Admin_Id"] ?></td>-->
                     <td align="left" valign="middle"><?= $row["Ordering"] ?></td>
                     <td align="left" valign="middle"><?= $row["Section_Title"] ?></td>
                     <td align="center" valign="middle">

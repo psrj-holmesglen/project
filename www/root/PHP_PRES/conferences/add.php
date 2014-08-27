@@ -61,6 +61,9 @@ if (isset($_POST["clicked_submit"])) {
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"]; // taking the venue id only, not full string.
 	$Febk = $_POST["selFbform"];
+	$CAdmi = $_POST["selCAdmi"];
+	//echo $CAdmi;
+	
 
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
@@ -155,8 +158,10 @@ if ($validated) {
             "Venue" => $Venu,
 			"Feedback" => $Febk,
             "FilePath" => $PFil,
+			"Conference_Admin_Id" => $CAdmi
     );
 
+	
     $newID = $data->conference->addRow($newData);
     if ($newID) {
         if ($PFil != "No File Uploaded") {
@@ -324,6 +329,21 @@ if ($validated) {
                 <td class='label'>Contact:</td>
                 <td><input type='text' class='textBoxStyle1' name='txtCont' value='<?= $Cont ?>'/></td>
                 <td><span class='errorText'><?= $ContErr ?></span></td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td class='label'>Conference Administrator:</td>
+                <td>
+                    <select name='selCAdmi' class='selectStyle1'>
+                        <?PHP
+                        $data->user->printDropDownOptions(NULL, "User_name");
+                        ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td colspan='2'>

@@ -53,6 +53,7 @@ if (isset($_POST["clicked_submit"])) {
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"];
 	$Febk = $_POST["selFbform"];
+	$CAdmi = $_POST["selCAdmi"];
 
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
@@ -132,7 +133,8 @@ if (isset($_POST["clicked_submit"])) {
                 "Location" => $Loca,
                 "Contact" => $Cont,
                 "Venue" => $Venu,
-				"Feedback" => $Febk
+				"Feedback" => $Febk,
+				"Conference_Admin_Id" => $CAdmi
         );
 
         //var_dump($newData);
@@ -163,7 +165,7 @@ if (isset($_POST["clicked_submit"])) {
     $Cont = $row["Contact"];
     $Venu = $row["venue"];
 	$Febk = $row["Feedback"];
-
+	$CAdmi = $row["Conference_Admin_Id"];
 }
 ////
 //// Database Read END
@@ -325,6 +327,21 @@ if (isset($_POST["clicked_submit"])) {
                 <hr>
             </td>
         </tr>
+         <tr>
+                <td class='label'>Conference Administrator:</td>
+                <td>
+                    <select name='selCAdmi' class='selectStyle1'>
+                        <?PHP
+                        $data->user->printDropDownOptions($user, "User_name");
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <hr>
+                </td>
+            </tr>
         <tr>
             <td class='label'>Venue:</td>
             <td>
