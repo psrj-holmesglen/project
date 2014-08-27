@@ -57,6 +57,7 @@
     <ul>
         <li>
             <a href='index.php?page=conference&action=view'> View All</a>
+        <?PHP	if($accesslevel == "1"){ ?>
             <ul>
                 <li>
                     <a href='index.php?page=conference&action=add'> Add New</a>
@@ -65,6 +66,7 @@
                     <a href='index.php?page=conference&action=cloneView'> Clone</a>
                 </li>
             </ul>
+            <?php } ?>
         </li>
     </ul>
 </li>
@@ -144,13 +146,15 @@
 <!-- USER -->
 <li>
     <?PHP
-    if ($page == "user") {
-        //If page is selected change link style
-        echo "<a href='#'><span class='nav_selected_item'>User</span></a>";
-    } else {
-        //If page is not selected leave menu link style
-        echo "<a href='index.php?page=user' title='User'>User</a>";
-    }
+	if($accesslevel == "1"){
+		if ($page == "user") {
+			//If page is selected change link style
+			echo "<a href='#'><span class='nav_selected_item'>User</span></a>";
+		} else {
+			//If page is not selected leave menu link style
+			echo "<a href='index.php?page=user' title='User'>User</a>";
+		}
+	}
     ?>
     <!-- Create sub-menu links -->
     <ul>

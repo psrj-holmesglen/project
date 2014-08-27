@@ -98,6 +98,7 @@
                 "User_name" => $UNam,
                 "Email" => $Emai,
                 "Password" => $hashPass,
+				"Access_Level" => 0,
 
         );
         if ($data->user->addRow($newData))
@@ -176,7 +177,7 @@
                 </tr>
                 <tr>
                     <td class='label'>Re-enter Password:</td>
-                    <td><input type='text' name='txtPas2' class='textBoxStyle1' value='<?= $Pas2 ?>'/></td>
+                    <td><input type='password' name='txtPas2' class='textBoxStyle1' value='<?= $Pas2 ?>'/></td>
                     <td><span class='errorText'><?= $Pas2Err ?></span></td>
                 </tr>
                 <tr>

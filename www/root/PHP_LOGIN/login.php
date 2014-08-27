@@ -30,6 +30,8 @@ if (isset($_POST["clicked_submit"])) {
             $_SESSION["userFirstName"] = $userRow[0]["First_Name"];
             $_SESSION["userLastName"] = $userRow[0]["Last_Name"];
             $_SESSION["userEmail"] = $userRow[0]["Email"];
+			$_SESSION["userName"] = $userRow[0]["User_name"];
+			$_SESSION["userAccessLevel"] = $userRow[0] ["Access_Level"];
             header("Location: ../index.php");
         }
     }

@@ -78,6 +78,7 @@ $data = new Data();
 
     <p align='right' style='font-size:75%'> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
     <br/>
+    <?php if($accesslevel == "1") { ?>
     <!-- Add and clone buttons -->
     <table width="100%">
         <tr>
@@ -102,4 +103,5 @@ $data = new Data();
         </tr>
     </table>
     <!-- Add and clone buttons END -->
+    <?php }?>
 </div>
