@@ -16,21 +16,21 @@ class Conference extends Table
     function getRowWithVenueName($id)
     {
         $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
+		
         if (isset($id))
             $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID AND conference.ID = :id";
         $this->Connect();
         try {
-            $query = $this->pdo->prepare($sql);
-            $query->execute(["id" => $id]);
-            $results = $query->fetchAll();
-            if ($results == null) {
-                echo $this->pdo->errorInfo()[2];
-            }
-            unset($pdo);
-            unset($query);
-
-            return $results;
-        } catch (PDOException $error) {
+				$query = $this->pdo->prepare($sql);
+				$query->execute(["id" => $id]);
+				$results = $query->fetchAll();
+				if ($results == null) {
+                	echo $this->pdo->errorInfo()[2];
+            	}
+           		unset($pdo);
+            	unset($query);
+				return $results;
+        }catch (PDOException $error) {
             // Display error message if applicable
             echo "An error occurred: " . $error->getMessage();
         }

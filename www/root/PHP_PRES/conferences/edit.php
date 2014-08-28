@@ -22,6 +22,7 @@ require "PHP_PRES/helpers/dateTimePicker.php";
 require "PHP_DB/dbObject.php";
 
 $validated = false;
+global $userid;
 
 // Get a copy of the DAL object.
 $data = new Data();
@@ -53,8 +54,16 @@ if (isset($_POST["clicked_submit"])) {
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"];
 	$Febk = $_POST["selFbform"];
-	$CAdmi = $_POST["selCAdmi"];
-
+	//$CAdmi = $_POST["selCAdmi"];
+	
+	if ($userid=='1'){
+		$CAdmi = $_POST["selCAdmi"];
+	}
+	else if($userid != '1'){
+		$CAdmi = $userid;
+	}
+		
+	
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
     $Star["month"] = $_POST["selStarMonth"];
@@ -121,10 +130,11 @@ if (isset($_POST["clicked_submit"])) {
 
     // Once the data has been validated, let's insert the data.
     if ($validated) {
+	
         ////
         //// Database Write START
         ////
-        $newData = array(
+     echo   $newData = array(
                 "Title" => $Titl,
                 "Description" => $Desc,
                 "Start_Time" => dtConvertToString($Star),
@@ -138,8 +148,8 @@ if (isset($_POST["clicked_submit"])) {
         );
 
         //var_dump($newData);
-        if ($data->conference->updateRow($_GET["id"], $newData))
-            header("Location: index.php?page=conference");
+      	if ($data->conference->updateRow($_GET["id"], $newData))
+           header("Location: index.php?page=conference");
 
         ////
         //// Database Write END
@@ -163,7 +173,7 @@ if (isset($_POST["clicked_submit"])) {
     $Orga = $row["Organiser"];
     $Loca = $row["Location"];
     $Cont = $row["Contact"];
-    $Venu = $row["venue"];
+    $Venu = $row["Venue"];
 	$Febk = $row["Feedback"];
 	$CAdmi = $row["Conference_Admin_Id"];
 }

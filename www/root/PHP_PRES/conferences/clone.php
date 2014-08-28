@@ -26,7 +26,8 @@ require "PHP_VALIDATION/validation.php";
 // Make our DAL Object.
 $data = new Data();
 
-$txtTitl = $data->conference->getRow($_GET['id'])["Title"] . " Copy";
+$txtTitl = $data->conference->getRow($_GET['id']);
+$txtTitl = $txtTitl ["Title"] . " Copy";
 
 // If they clicked confirm delete:
 if (isset($_POST["clicked_clone"])) {
@@ -36,6 +37,7 @@ if (isset($_POST["clicked_clone"])) {
     if (!vIsBlank($_POST["txtNewTitle"])) {
         $validated = true;
     }
+	$CAdmi = $_POST["selCAdmi"];
 
 
     if ($validated) {
@@ -50,6 +52,8 @@ if (isset($_POST["clicked_clone"])) {
         $res = $data->conference->getRow($confID);
         unset($res["ID"]);
         $res["Title"] = $_POST["txtNewTitle"];
+		$res["Conference_Admin_Id"] = $_POST["selCAdmi"];
+		
         $newConfID = $data->conference->addRow($res);
 
         // copy map
@@ -268,6 +272,21 @@ else if (isset($_POST["clicked_no"])) {
             </td>
             <td><span class='errorText'><?= $TitlErr ?></span></td>
         </tr>
+        <tr>
+                <td colspan='2'>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td class='label'>Conference Administrator:</td>
+                <td>
+                    <select name='selCAdmi' class='selectStyle1'>
+                        <?PHP
+                        $data->user->printDropDownOptions(NULL, "User_name");
+                        ?>
+                    </select>
+                </td>
+            </tr>
         <tr>
 
             <td colspan="2" style='text-align:right;'>
