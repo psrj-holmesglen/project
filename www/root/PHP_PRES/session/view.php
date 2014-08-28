@@ -111,6 +111,8 @@ if (isset($_POST['conference_selected'])) {
             </tbody>
         </table>
     </div>
+    
+    <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
     <br/>
     <span style="text-align:right;"><form method="get" action="index.php">
             <input type="submit" value="Add Session" class="buttonStyle1"/>
@@ -118,5 +120,5 @@ if (isset($_POST['conference_selected'])) {
             <input type="hidden" name="action" value="add"/>
         </form></span>
 
-    <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
+    
 </div>

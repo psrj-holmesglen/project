@@ -141,7 +141,7 @@ if (isset($_POST['session_selected'])) {
         </div>
 
         <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
-
+		<br/>
         <div style="text-align:right;">
             <input type="submit" value="Presenter Display Selected Questions" class="buttonStyle1"
                    name="display_selected" onClick="return checkSelected()"/>

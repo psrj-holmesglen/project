@@ -86,6 +86,7 @@ class Session extends Table
             }
             if ($type == "all")
                 return $results;
+				
             else
                 return $results[0];
         } catch (PDOException $error) {

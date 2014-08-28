@@ -87,6 +87,7 @@ $data = new Data();
         </table>
     </div>
     <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p> 
+    <br/>
     <span style="text-align:right;"><form method="get" action="index.php">
             <input type="submit" class='buttonStyle1' value="Add Presenter"/>
             <input type="hidden" name="page" value="presenter"/>

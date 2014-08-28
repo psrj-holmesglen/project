@@ -121,6 +121,7 @@
         </table>
     </div>
     <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
+    <br/>
     <span style="text-align:right;"><form method="get" action="index.php">
             <input type="submit" value="Add FQ" class="buttonStyle1"/>
             <input type="hidden" name="page" value="feedback_question"/>
