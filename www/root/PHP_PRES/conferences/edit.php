@@ -322,6 +322,7 @@ if (isset($_POST["clicked_submit"])) {
             <td><input type='text' class='textBoxStyle1' name='txtCont' value='<?= $Cont ?>'/></td>
             <td><span class='errorText'><?= $ContErr ?></span></td>
         </tr>
+         <?php if($accesslevel == "1") { ?>
         <tr>
             <td colspan='2'>
                 <hr>
@@ -337,6 +338,7 @@ if (isset($_POST["clicked_submit"])) {
                     </select>
                 </td>
             </tr>
+            <?php } ?>
             <tr>
                 <td colspan='2'>
                     <hr>

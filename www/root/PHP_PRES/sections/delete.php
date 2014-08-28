@@ -29,25 +29,31 @@
 
     ?>
     <h1 style='; text-align:center;'>Delete a Section</h1>
-    <table width='100%' border='1' cellpadding='5' cellspacing='0' class='stdDataTable'>
+    <table width='100%' border='1' cellpadding='7' cellspacing='0' class='stdDataTable'>
         <thead>
         <tr style='background-color:#999'>
-            <td>Conference Section Id</td>
+            <td>Conference Section ID</td>
             <td>Title</td>
+            <td>Ordering</td>
             <td>Last Updated</td>
-            <td>Conference Id</td>
+            <td>Conference ID</td>
+            <td>Session ID</td>
+            <td>Session Title</td>
 
 
         </tr>
         </thead>
         <tbody>
-        <?PHP $row = $data->section->getRow($_GET["id"]); ?>
+        <?PHP $row = $data->section->getRow($_GET["id"]);
+			  $row1 = $data->session->getRow($_GET["id"]); ?>
         <tr style='font-size:86%;'>
             <td align='left' valign='middle'><?= $row["ID"] ?></td>
             <td align='left' valign='middle'><?= $row["Section_Title"] ?></td>
+            <td align='left' valign='middle'><?= $row["Ordering"] ?></td>         
             <td align='left' valign='middle'><?= $row["Last_Updated"] ?></td>
             <td align='left' valign='middle'><?= $row["Conference"] ?></td>
-
+            <td align='left' valign='middle'><?= $row1["ID"] ?></td>         
+            <td align='left' valign='middle'><?= $row1["Title"] ?></td>         
         </tr>
         </tbody>
     </table>
