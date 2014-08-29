@@ -114,9 +114,9 @@ class Table
         // Check to see if its a valid col name
         
         // Write our statement.
-		//works in view session
+		//works in view session filter conferenceSection
 		if(($this->tableName == "session")&& ($userid != '1'))	{
-			$sql = "SELECT conference.Conference_Admin_Id, conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, " . $this->tableName . ".Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section =  conference_section.ID WHERE conference.ID = conference_section.Conference AND " . $colName . ".ID ='".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL AND conference.Conference_Admin_Id = '".$userid."' ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
+			$sql = "select DISTINCT " . $this->tableName . ".ID, " . $this->tableName . ".TItle, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference_section JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section = " . $colName . ".ID = '".$value."' JOIN conference ON conference_section.Conference = conference.ID WHERE conference.Conference_Admin_Id = '".$userid."' ORDER BY " . $this->tableName . ".ID";
 			echo $sql;
 		}
 		else if(($this->tableName == "conference_section") && ($userid != '1'))	{
