@@ -3,7 +3,6 @@
 require "dbCondet.php";
 require "dbTable.php";
 
-
 class Conference extends Table
 {
     function Conference()

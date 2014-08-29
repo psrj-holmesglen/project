@@ -1,4 +1,5 @@
-<?
+<?php
+
 // Import libraries.
 require "PHP_DB/dbObject.php";
 // Get a copy of the DAL object.

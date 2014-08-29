@@ -1,14 +1,14 @@
-<?
+<?php
 // Import libraries.
 require "PHP_DB/dbObject.php";
+//var_dump(require("PHP_DB/dbObject.php"));
 // Get a copy of the DAL object.
 $data = new Data();
-
+//echo "data" . var_dump($data);
 ?>
 
 <div id='report'>
-    <link rel="stylesheet" type="text/css" href="CSS/std_data_table.css"/>
-
+	
     <h1>Report</h1>
 
     <div class="scroll">
@@ -40,6 +40,7 @@ $data = new Data();
             <tbody>
             <?PHP
             $table = $data->conference->getRowWithVenueName(null);
+			
             if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
             foreach ($table as $row) {
                 ?>
@@ -75,15 +76,16 @@ $data = new Data();
     </table>
 </div>
 
-<img src="http://localhost/epworth/root/ASSETS/IMG/header.png" id="myimage" hidden="true" />
+<img src="http://localhost/root/ASSETS/IMG/header.png" id="myimage" hidden="true" />
 <canvas width="590" height="50" id="mycanvas" style="display: none;"></canvas>
 
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/from-html.js"></script>
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/jspdf.min.js"></script>
+<script type="text/javascript" src="http://localhost/root/SCRIPTS_THIRD_PARTY/jspdf/from-html.js"></script>
+<script type="text/javascript" src="http://localhost/root/SCRIPTS_THIRD_PARTY/jspdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="http://localhost/root/SCRIPTS_THIRD_PARTY/jspdf/jspdf.min.js"></script>
 <script>
 
 function savePdf() {
+	
 	//Add manually the image to the pdf document
 	var myImage = document.getElementById('myimage');
 	var myCanvas = document.getElementById('mycanvas');
