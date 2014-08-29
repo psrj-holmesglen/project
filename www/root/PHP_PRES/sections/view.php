@@ -23,8 +23,6 @@
 
     // Get a copy of the DAL object.
     $data = new Data();
-
-
     $CoId = "All";
     ////
     //// Setup END
@@ -48,54 +46,42 @@
                         <option value="All">All Conferences</option>
                         <?php
                         $data->conference->printDropDownOptions($CoId, "Title");
-
-
-                        ?>
+	                    ?>
 
                     </select>
                 </td>
                 <td>
-
-                    <input type="submit" name="conference_selected" value="Filter" class="buttonStyle1"/>
+                <input type="submit" name="conference_selected" value="Filter" class="buttonStyle1"/>
                 </td>
             </tr>
         </table>
     </form>
     <?php
     //if data is found for the selected conference then the table will show
-    if ($data->section->getRowByMatch("Conference", $CoId) || $CoId == "All")
-    {
-
+    if ($data->section->getRowByMatch("Conference", $CoId) || $CoId == "All")  {
     ?>
 
     <div class="scroll"> <!--Add scroll bar to table -->
         <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
             <thead>
             <tr style="background-color:#999" align="left" valign="middle">
-           <!-- <td>admin id</td>-->
                 <td>Section Order</td>
                 <td>Title</td>
                 <td>Actions</td>
-
             </tr>
             </thead>
-
             <tbody>
-
             <?PHP
-
             if ($CoId == "All")
                 $table = $data->section->getRow("all");
-
             else
                 $table = $data->section->getRowByMatch("Conference", $CoId);
-
             // TODO: alert no entries.
             foreach ($table as $row) {
                 ?>
                 <tr style="font-size:86%;">
-                	<!--<td align="left" valign="middle"><?= $row["Conference_Admin_Id"] ?></td>-->
-                    <td align="left" valign="middle"><?= $row["Ordering"] ?></td>
+                	<!--<td align="left" valign="middle"><?= $row["Conference_Admin_Id"].$row["ID"] ?></td>-->
+                    <td align="left" valign="middle"><?= $row["Ordering"].$row["ID"]?></td>
                     <td align="left" valign="middle"><?= $row["Section_Title"] ?></td>
                     <td align="center" valign="middle">
                         <a href='index.php?page=section&action=edit&id=<?= $row["ID"] ?>'>Edit</a>

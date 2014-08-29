@@ -84,13 +84,11 @@ if (isset($_POST['conference_selected'])) {
                 $table = $data->session->getRowByMatch("Conference_Section", $CSId);
             // TODO: alert no entries.
             foreach ($table as $row) {
-
-
                 ?>
                 <tr align="left" valign="middle" style="font-size:86%;">
 
 
-                    <td><?= $row["Title"].$row["ID"] ?></td>
+                    <td><?= $row["Title"] ?></td>
                     <td><?= $row["Description"] ?></td>
                     <td><?= $row["Start_Time"] ?></td>
                     <td><?= $row["End_Time"] ?></td>

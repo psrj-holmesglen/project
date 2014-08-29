@@ -160,8 +160,31 @@ if ($validated) {
             "FilePath" => $PFil,
 			"Conference_Admin_Id" => $CAdmi
     );
-
+	/*
+echo "Title" . $Titl;
+echo "<br/>";
+echo "Description".  $Desc;
+echo "<br/>";
+echo            "Start_Time" . dtConvertToString($Star);
+echo "<br/>";
+    echo        "End_Time" . dtConvertToString($EndT);
+	echo "<br/>";
+        echo    "Organiser" . $Orga;
+		echo "<br/>";
+           echo "Location" . $Loca;
+		   echo "<br/>";
+echo            "Contact" . $Cont;
+echo "<br/>";
+    echo        "Venue" . $Venu;
+	echo "<br/>";
+		echo	"Feedback" . $Febk;
+		echo "<br/>";
+echo            "FilePath" . $PFil;
+echo "<br/>";
+	echo		"Conference_Admin_Id" . $CAdmi;
+	echo "<br/>";
 	
+	*/
     $newID = $data->conference->addRow($newData);
     if ($newID) {
         if ($PFil != "No File Uploaded") {
@@ -170,7 +193,7 @@ if ($validated) {
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
 
-        header("Location: index.php?page=conference");
+      //  header("Location: index.php?page=conference");
 //			       header('Location: index.php?page=presenter&action=view');
     }
 
