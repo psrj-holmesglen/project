@@ -55,7 +55,7 @@
         <td>Session Id</td>
         <td>Conference Section Id</td>
         <td>Title Topic</td>
-        <td>Description</td>
+       <!-- <td>Description</td> -->
         <td>Start Time</td>
         <td>End Time</td>
         <td>Room Location</td>
@@ -74,8 +74,8 @@
         <tr style='font-size:86%;' align='left' valign='middle'>
             <td><?= $row["ID"] ?></td>
             <td><?= $row["Conference_Section"] ?></td>
-            <td><?= $row["Title_Topic"] ?></td>
-            <td><?= $row["Description"] ?></td>
+            <td><?= $row["Title"] ?></td>
+           <!-- <td><?= $row["Description"] ?></td>  -->
             <td><?= $row["Start_Time"] ?></td>
             <td><?= $row["End_Time"] ?></td>
             <td><?= $row["Room_Location"] ?></td>
