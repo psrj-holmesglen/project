@@ -46,11 +46,11 @@
     if (isset($_POST['clicked_submit'])) {
 
       $newData = array(
-        "name" => $_POST['data_name'],
-        "company" => $_POST['data_company'],
-        "street" => $_POST['data_street'],
-        "suburb" => $_POST['data_suburb'],
-        "postcode" => $_POST['data_postcode'],
+        'Name' => $_POST['data_name'],
+        'Company' => $_POST['data_company'],
+        'Street' => $_POST['data_street'],
+        'suburb' => $_POST['data_suburb'],
+        'Post_Code' => $_POST['data_postcode'],
       );
 
       $validated = true;

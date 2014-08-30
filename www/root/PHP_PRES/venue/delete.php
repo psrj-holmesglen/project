@@ -11,22 +11,21 @@
     // * Written by TEAM SPARTA
     // * Last updated: 31-03-14 by Jennifer de Peyrecave -->
 
-/*
     // Import libraries.
     require "PHP_DB/dbObject.php";
 
     // Make our DAL Object.
     $data = new Data();
+    $values = $data->venue->getRow($_GET['id']);
 
     // If they clicked confirm delete:
     if (isset($_POST["clicked_delete"])) {
-        $data->sessionVenue->deleteRow($_GET["id"]);
+        $data->venue->deleteRow($_POST["id"]);
         header('Location: index.php?page=venue');
     } // if they clicked cancel:
     else if (isset($_POST["clicked_no"])) {
         header('Location: index.php?page=venue');
     }
-*/
 
     ?>
     <h1 style='; text-align:center;'>Delete the Venue</h1>
@@ -41,10 +40,10 @@
         </thead>
         <tbody>
         <tr style='font-size:86%;'>
-          <td>1</td>
-          <td>Venue1</td>
-          <td>Epworth</td>
-          <td>100 Elizabeth Street, Melbourne 3000</td>
+          <td><?=$values['ID'];?></td>
+          <td><?=$values['Name'];?></td>
+          <td><?=$values['Company'];?></td>
+          <td><?=sprintf('%s, %s %d', $values["Street"], $values["Suburb"], $values["Post_Code"]); ?></td>
         </tr>
         </tbody>
     </table>
@@ -67,13 +66,16 @@
         <tr>
             <td>Are you sure you want to delete this venue?</td>
             <td style='text-align:right;'>
-              <form method='post' action='index.php?page=venue&amp;action=delete&amp;id=1'>
+              <form method='post' action='index.php?page=venue&amp;action=delete'>
                 <input type='submit' name='clicked_no' value='Cancel' class="buttonStyle1"/>
                 <span style='padding-left:10px'>
 <!--
                   <input type='submit' name='clicked_delete' value='Delete' class="buttonStyle1"/>
 -->
-                  <a href='index.php?page=venue&amp;action=view' class="buttonStyle1">Delete</a>
+                    <input type="submit" name='clicked_delete' class='buttonStyle1' value="Delete"/>
+                    <input type="hidden" name="page" value="venue"/>
+                    <input type="hidden" name="action" value="delete"/>
+                    <input type="hidden" name="id" value="<?=$values['ID']?>"/>
                 </span>
               </form>
             </td>

@@ -27,7 +27,6 @@ foreach ($table as $row) {
     $ConTitle[] = $row["Title"];
 }
 
-
 ?>
 
 <div class="venue_view">
@@ -90,17 +89,17 @@ foreach ($table as $row) {
                 ?>
 
                 <tr align="left" valign="middle" style="font-size:86%;">
-
-                    <td><?= $row["ID"]; ?></td>
-                    <td><?= $row["Name"]; ?></td>
-                    <td><?= $row["Company"]; ?></td>
-                    <td><?= printf('%s, %s %s', $row["Street"], $row["Suburb"], $row["Postcode"]); ?></td>
-                    
-                    <td align="center" valign="middle"> 
-                      <a href="index.php?page=venue&action=edit&id=<?= $row["ID"] ?>">Edit</a>
-                      <a href="index.php?page=venue&action=delete&id=<?= $row["ID"] ?>">Delete</a>
-                    </td>
+                  <td><?= $row["ID"]; ?></td>
+                  <td><?= $row["Name"]; ?></td>
+                  <td><?= $row["Company"]; ?></td>
+                  <td><?= sprintf('%s, %s %d', $row["Street"], $row["Suburb"], $row["Post_Code"]); ?></td>
+                  
+                  <td align="center" valign="middle"> 
+                    <a href="index.php?page=venue&action=edit&id=<?= $row["ID"] ?>">Edit</a>
+                    <a href="index.php?page=venue&action=delete&id=<?= $row["ID"] ?>">Delete</a>
+                  </td>
                 </tr>
+
             <?PHP
             }
             ?>
@@ -108,7 +107,6 @@ foreach ($table as $row) {
         </table>
     </div>
 
-    <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p> 
     <span style="text-align:right;">
       <form method="get" action="index.php">
         <input type="submit" class='buttonStyle1' value="Add Venue"/>
