@@ -15,11 +15,11 @@ class Conference extends Table
     function getRowWithVenueName($id)
     {
 		global $userid;
-     //  echo  $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
-	 echo $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
+        $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
+	   //echo $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
 		
         if (isset($id))
-        echo    $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID AND conference.ID = :id";
+        $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID AND conference.ID = :id";
         $this->Connect();
         try {
 				$query = $this->pdo->prepare($sql);

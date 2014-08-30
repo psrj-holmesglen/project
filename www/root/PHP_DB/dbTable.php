@@ -374,7 +374,7 @@ class Table
         $colString = "" . implode(", ", $colList);
         $valString = ":" . implode(", :", $colList);
         $sql = "INSERT INTO " . $this->tableName . " (" . $colString . ") VALUES (" . $valString . ");";
-		echo $sql;
+		//echo $sql;
         // Execute our statement.
         $this->Connect();
         try {
