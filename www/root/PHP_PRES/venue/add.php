@@ -34,7 +34,7 @@
       "company" => "",
       "street" => "",
       "suburb" => "",
-      "postcode" => "",
+      "Post_Code" => "",
     );
 
     $NameErr = "";
@@ -71,9 +71,9 @@
         $validated = false;
         $SuburbErr = "Suburb cannot be empty";
       }
-      if (empty($_POST['data_postcode'])) {
+      if (empty($_POST['data_postcode']) || !is_numeric($_POST['data_postcode'])) {
         $validated = false;
-        $PostCodeErr = "Post code cannot be empty";
+        $PostCodeErr = "Post code cannot be empty and must be number";
       }
 
     }
@@ -111,7 +111,7 @@
 
               <tr>
                 <td class='label'>Name</td>
-                <td><input type='text' name='data_name' class='textBoxStyle1' value='<?=$newData["name"]?>' /></td>
+                <td><input type='text' name='data_name' class='textBoxStyle1' value='<?=$newData["Name"]?>' /></td>
                 <td><span class='errorText'><?= $NameErr ?></span></td>
               </tr>
               <tr>
@@ -121,7 +121,7 @@
               </tr>
               <tr>
                 <td class='label'>Company</td>
-                <td><input type='text' name='data_company' class='textBoxStyle1' value='<?=$newData["company"]?>' /></td>
+                <td><input type='text' name='data_company' class='textBoxStyle1' value='<?=$newData["Company"]?>' /></td>
                 <td><span class='errorText'><?= $CompanyErr ?></span></td>
               </tr>
               <tr>
@@ -131,7 +131,7 @@
               </tr>
               <tr>
                 <td class='label'>Street</td>
-                <td><input type='text' name='data_street' class='textBoxStyle1' value='<?=$newData["street"]?>' /></td>
+                <td><input type='text' name='data_street' class='textBoxStyle1' value='<?=$newData["Street"]?>' /></td>
                 <td><span class='errorText'><?= $StreetErr ?></span></td>
               </tr>
               <tr>
@@ -141,7 +141,7 @@
               </tr>
               <tr>
                 <td class='label'>Suburb</td>
-                <td><input type='text' name='data_suburb' class='textBoxStyle1' value='<?=$newData["suburb"]?>' /></td>
+                <td><input type='text' name='data_suburb' class='textBoxStyle1' value='<?=$newData["Suburb"]?>' /></td>
                 <td><span class='errorText'><?= $SuburbErr ?></span></td>
               </tr>
               <tr>
@@ -151,7 +151,7 @@
               </tr>
               <tr>
                 <td class='label'>Post Code</td>
-                <td><input type='text' name='data_postcode' class='textBoxStyle1' value='<?=$newData["postcode"]?>' /></td>
+                <td><input type='text' name='data_postcode' class='textBoxStyle1' value='<?=$newData["PostCode"]?>' /></td>
                 <td><span class='errorText'><?= $PostCodeErr ?></span></td>
               </tr>
               <tr>
@@ -181,6 +181,7 @@
                     </form>
 -->
 
+                    <a href='#' id='clicked_reset' class="buttonStyle1">Reset</a>
                     <input type="submit" name='clicked_submit' class='buttonStyle1' value="Save"/>
                     <input type="hidden" name="page" value="venue"/>
                     <input type="hidden" name="action" value="add"/>
@@ -196,4 +197,12 @@
     }
     ?>
 </div>
+<script>
+$(function(){
+  $('#clicked_reset').click(function(e){
+    e.preventDefault();
+    $('.errorText').remove();
+  });
+});
+</script>
 

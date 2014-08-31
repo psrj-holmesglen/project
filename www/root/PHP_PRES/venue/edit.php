@@ -88,9 +88,9 @@
         $validated = false;
         $SuburbErr = "Suburb cannot be empty";
       }
-      if (empty($_POST['data_postcode'])) {
+      if (empty($_POST['data_postcode']) || !is_numeric($_POST['data_postcode'])) {
         $validated = false;
-        $PostCodeErr = "Post code cannot be empty";
+        $PostCodeErr = "Post code cannot be empty and must be number";
       }
 
     }
@@ -198,6 +198,7 @@
                     </form>
 -->
 
+                    <a href='index.php?page=venue&amp;action=edit&id=<?=$editId?>' class="buttonStyle1">Reset</a>
                     <input type="submit" name='clicked_submit' class='buttonStyle1' value="Save"/>
                     <input type="hidden" name="page" value="venue"/>
                     <input type="hidden" name="action" value="edit"/>
@@ -210,8 +211,8 @@
           </table>
 
         </form>
+
     <?PHP
     }
     ?>
 </div>
-

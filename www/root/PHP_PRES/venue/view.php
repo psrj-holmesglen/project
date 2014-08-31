@@ -14,6 +14,7 @@
 
 // Import Libraries
 require "PHP_DB/dbObject.php";
+require "PHP_PRES/helpers/dateTimePicker.php";
 
 // Get a copy of the DAL object
 $data = new Data();
@@ -106,6 +107,8 @@ foreach ($table as $row) {
             </tbody>
         </table>
     </div>
+
+    <p align='right' style='font-size:75%'> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
 
     <span style="text-align:right;">
       <form method="get" action="index.php">
