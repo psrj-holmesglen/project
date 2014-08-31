@@ -5,7 +5,8 @@ class ConDet
     public static $localhost = "localhost";
     public static $db = "holmesglen_project";
     public static $user = "root";
-    public static $password = "";
+    //public static $password = "";
+	public static $password = "root";
     public static $dsn;
 
     // Rob's hosting

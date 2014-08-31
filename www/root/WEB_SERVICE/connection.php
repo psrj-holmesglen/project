@@ -11,13 +11,14 @@ function getConnection()
 { // Connection details
 
     $dbhost = "127.0.0.1";
-//    $dbUser = "root";
-//    $dbpass = "root";
-//    $dbName = "epworth_ec";
+    $dbUser = "root";
+    $dbpass = "root";
+ //   $dbName = "epworth_ec";
+ $dbName = "holmesglen_project";
 
-    $dbUser="robfaie_econ_2";
-    $dbpass="ohmcMJH&VI!T";
-    $dbName="robfaie_econ";
+ //   $dbUser="robfaie_econ_2";
+ //   $dbpass="ohmcMJH&VI!T";
+ //   $dbName="robfaie_econ";
 
     //$dbh = new PDO("mysql:host=$dbhost;dbname=$dbName",$dbUser,$dbpass);
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
