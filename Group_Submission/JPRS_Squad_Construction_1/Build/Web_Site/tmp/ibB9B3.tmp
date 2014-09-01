@@ -1,0 +1,2 @@
+,
+  CONSTRAINT `Polling_Option_Polling_fk` FOREIGN KEY (`Polling`) REFERENCES `polling` (`ID`) ON DELETE CASCADE ON UPDATE CASCADETE CASCADE ON UPDATE CASCADE  CONSTRAINT `Conference_FB_Section_Conference_fk` FOREIGN KEY (`Conference`) REFERENCES `conference` (`ID`) ON DELETE CASCADE ON UPDATE CASCADEion_Feedback_Section_fk` FOREIGN KEY (`Feedback_Section`) REFERENCES `feedback_section` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE

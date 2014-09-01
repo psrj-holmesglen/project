@@ -1,0 +1,3 @@
+,
+  CONSTRAINT `e_Session_e_Conference_Sections_fk` FOREIGN KEY (`Conference_Section_Id`) REFERENCES `e_conference_sections` (`Conference_Section_Id`),
+  CONSTRAINT `e_Session_e_Feedback_fk` FOREIGN KEY (`Feedback_Id`) REFERENCES `e_feedback` (`Feedback_Id`)
