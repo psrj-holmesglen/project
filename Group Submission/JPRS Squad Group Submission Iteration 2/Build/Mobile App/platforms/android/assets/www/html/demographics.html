@@ -1,0 +1,41 @@
+<div data-role="page" id="demographic" data-json="conference-feedback.json" data-btn-left="panel" data-title="Demographics">
+
+  <!-- Content -->
+  <div data-role="content">
+
+    <form data-action="Feedback">
+      <div data-role="collapsible" class="q"></div>
+      <input type="submit" value="Submit"/>
+    </form>
+
+  </div>
+
+  <!-- Pure Directive -->
+  <script>
+    eCon['demographic-pure'] = {
+
+      'div.q': {
+        'question<-Questions': {
+          '.': function (arg) {
+            return makeMCQuestion(arg.item).html();
+          }
+        }
+      }
+
+    };
+  </script>
+
+  <script>
+    $(function () {
+        $('#demographic').submit(function(evt){
+          evt.preventDefault();
+          evt.stopPropagation();
+          eCon.local.Profile = buildProfile($('form').serializeArray());
+          eCon.local['form-demographic'] = JSON.stringify($('form').serializeArray());
+          alert('Thank you for your submission');
+          history.back();
+        });
+    });
+  </script>
+
+</div>

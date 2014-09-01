@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="au.edu.holmesglen.econference" version="0.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>e-Conference</name>
+    <description>
+        A conference application that allows the browsing of session and presenter information as well as provide feedback.
+    </description>
+    <author email="robertwimcleod@gmail.com">
+        Holmesglen TAFE Team Zelda
+    </author>
+    <content src="html/index.html" />
+    <access origin="*" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+</widget>

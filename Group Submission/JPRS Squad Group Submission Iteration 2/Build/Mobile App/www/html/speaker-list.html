@@ -1,0 +1,31 @@
+<div data-role="page" id="speaker-list" data-json="speaker.json" data-btn-left="panel" data-title="Presenters">
+
+  <!-- Content -->
+  <div data-role="content">
+
+    <ul data-role="listview" data-icon="arrow-r" id="speakers-list">
+      <li>
+        <a href="speaker.html?id=">
+          <span id="name"></span>
+          <span id="org"></span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+  <!-- Pure Directive -->
+  <script>
+    eCon['speaker-list-pure'] = {
+
+      'li': {
+        'speaker<-context': {
+          'a@href+': 'speaker.ID',
+          'span#name+': 'speaker.Name'
+        }
+      }
+
+    };
+  </script>
+
+</div>
