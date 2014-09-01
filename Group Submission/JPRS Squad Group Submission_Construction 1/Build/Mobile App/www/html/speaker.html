@@ -1,0 +1,57 @@
+<div data-role="page" id="speaker" data-json="speaker.json" data-btn-left="back" data-title="Presenter Page">
+
+  <!-- Content -->
+  <div data-role="content">
+    <div class="ui-body-m ui-body">
+    <img id="speaker-img" class="img-fullscreen center-object border"/>
+
+      <h3></h3>
+      <table>
+        <tr>
+          <th>Position:</th>
+          <td id="pos"></td>
+        </tr>
+        <tr>
+          <th>Organization:</th>
+          <td id="org"></td>
+        </tr>
+        <tr>
+          <th>Field:</th>
+          <td id="field"></td>
+        </tr>
+      </table>
+      <p id="bio"></p>
+
+      <ul data-role="listview" data-inset="true" id="sessions">
+        <li>
+          <a href="session.html?id=" class="wsn"></a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- Pure Directive -->
+  <script id="speaker-pure-tag">
+    eCon['speaker-pure'] = {
+
+      'img@src': eCon.LocalDataRoot + eCon.local.ID +  eCon.LocalImageRoot + 'speaker/#{ID}',
+      'h3': 'Name',
+      '#pos': 'Position',
+      '#org': 'Org',
+      '#field': 'Field',
+      '#bio': 'Bio',
+      'ul#sessions li': {
+        'session<-Sessions': {
+          'a': function (arg) {
+            var Start = moment(arg.item.Time).format('h:mm a');
+            return Start + ' ' + arg.item.Name;
+          },
+          'a@href+': 'session.ID'
+        }
+      }
+
+    };
+  </script>
+
+</div>

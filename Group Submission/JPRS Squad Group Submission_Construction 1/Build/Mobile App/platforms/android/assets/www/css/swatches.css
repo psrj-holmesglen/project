@@ -1,0 +1,346 @@
+/* M - Main theme - Epworth colour
+-----------------------------------------------------------------------------------------------------------*/
+/* Bar: Toolbars, dividers, slider track */
+.ui-bar-m,
+.ui-page-theme-m .ui-bar-inherit,
+html .ui-bar-m .ui-bar-inherit,
+html .ui-body-m .ui-bar-inherit,
+html body .ui-group-theme-m .ui-bar-inherit {
+	background-color: 			#0061a2 /*{b-bar-background-color}*/;
+	border-color:	 		#005fa0 /*{b-bar-border}*/;
+	color: 					#fff /*{b-bar-color}*/;
+	text-shadow: 0 /*{b-bar-shadow-x}*/ 1px /*{b-bar-shadow-y}*/ 0 /*{b-bar-shadow-radius}*/ 	#111 /*{b-bar-shadow-color}*/;
+	font-weight: bold;
+}
+.ui-bar-m {
+	border-width: 1px;
+	border-style: solid;
+}
+/* Page and overlay */
+.ui-overlay-m,
+.ui-page-theme-m,
+.ui-page-theme-m .ui-panel-wrapper {
+	background-color: 			#0069aa /*{b-page-background-color}*/;
+	border-color:	 		#2089ca /*{b-page-border}*/;
+	color: 					#fff /*{b-page-color}*/;
+	text-shadow: 0 /*{b-page-shadow-x}*/ 1px /*{b-page-shadow-y}*/ 0 /*{b-page-shadow-radius}*/ 	#111 /*{b-page-shadow-color}*/;
+}
+/* Body: Read-only lists, text inputs, collapsible content */
+.ui-body-m,
+.ui-page-theme-m .ui-body-inherit,
+html .ui-bar-m .ui-body-inherit,
+html .ui-body-m .ui-body-inherit,
+html body .ui-group-theme-m .ui-body-inherit,
+html .ui-panel-page-container-m {
+	background-color: 			#056eaf /*{b-body-background-color}*/;
+	border-color:	 		#0061a2 /*{b-body-border}*/;
+	color: 					#fff /*{b-body-color}*/;
+	text-shadow: 0 /*{b-body-shadow-x}*/ 1px /*{b-body-shadow-y}*/ 0 /*{b-body-shadow-radius}*/ 	#111 /*{b-body-shadow-color}*/;
+}
+.ui-body-m {
+	border-width: 1px;
+	border-style: solid;
+}
+/* Links */
+.ui-page-theme-m a,
+html .ui-bar-m a,
+html .ui-body-m a,
+html body .ui-group-theme-m a {
+	color: #22aadd /*{b-link-color}*/;
+	font-weight: bold;
+}
+.ui-page-theme-m a:visited,
+html .ui-bar-m a:visited,
+html .ui-body-m a:visited,
+html body .ui-group-theme-m a:visited {
+    color: #22aadd /*{b-link-visited}*/;
+}
+.ui-page-theme-m a:hover,
+html .ui-bar-m a:hover,
+html .ui-body-m a:hover,
+html body .ui-group-theme-m a:hover {
+	color: #0088bb /*{b-link-hover}*/;
+}
+.ui-page-theme-m a:active,
+html .ui-bar-m a:active,
+html .ui-body-m a:active,
+html body .ui-group-theme-m a:active {
+	color: #0088bb /*{b-link-active}*/;
+}
+/* Button up */
+.ui-page-theme-m .ui-btn,
+html .ui-bar-m .ui-btn,
+html .ui-body-m .ui-btn,
+html body .ui-group-theme-m .ui-btn,
+html head + body .ui-btn.ui-btn-m,
+/* Button visited */
+.ui-page-theme-m .ui-btn:visited,
+html .ui-bar-m .ui-btn:visited,
+html .ui-body-m .ui-btn:visited,
+html body .ui-group-theme-m .ui-btn:visited,
+html head + body .ui-btn.ui-btn-m:visited {
+	background-color: 			#0e77b8 /*{b-bup-background-color}*/;
+	border-color:	 		#0063a4 /*{b-bup-border}*/;
+	color: 					#fff /*{b-bup-color}*/;
+	text-shadow: 0 /*{b-bup-shadow-x}*/ 1px /*{b-bup-shadow-y}*/ 0 /*{b-bup-shadow-radius}*/ #111 /*{b-bup-shadow-color}*/;
+}
+/* Button hover */
+.ui-page-theme-m .ui-btn:hover,
+html .ui-bar-m .ui-btn:hover,
+html .ui-body-m .ui-btn:hover,
+html body .ui-group-theme-m .ui-btn:hover,
+html head + body .ui-btn.ui-btn-m:hover {
+	background-color: 			#127bbc /*{b-bhover-background-color}*/;
+	border-color:	 		#0063a4 /*{b-bhover-border}*/;
+	color: 					#fff /*{b-bhover-color}*/;
+	text-shadow: 0 /*{b-bhover-shadow-x}*/ 1px /*{b-bhover-shadow-y}*/ 0 /*{b-bhover-shadow-radius}*/ #111 /*{b-bhover-shadow-color}*/;
+}
+/* Button down */
+.ui-page-theme-m .ui-btn:active,
+html .ui-bar-m .ui-btn:active,
+html .ui-body-m .ui-btn:active,
+html body .ui-group-theme-m .ui-btn:active,
+html head + body .ui-btn.ui-btn-m:active {
+	background-color: 			#1b84c5 /*{b-bdown-background-color}*/;
+	border-color:	 		#0063a4 /*{b-bdown-border}*/;
+	color: 					#fff /*{b-bdown-color}*/;
+	text-shadow: 0 /*{b-bdown-shadow-x}*/ 1px /*{b-bdown-shadow-y}*/ 0 /*{b-bdown-shadow-radius}*/ #111 /*{b-bdown-shadow-color}*/;
+}
+/* Active button */
+.ui-page-theme-m .ui-btn.ui-btn-active,
+html .ui-bar-m .ui-btn.ui-btn-active,
+html .ui-body-m .ui-btn.ui-btn-active,
+html body .ui-group-theme-m .ui-btn.ui-btn-active,
+html head + body .ui-btn.ui-btn-m.ui-btn-active,
+/* Active checkbox icon */
+.ui-page-theme-m .ui-checkbox-on:after,
+html .ui-bar-m .ui-checkbox-on:after,
+html .ui-body-m .ui-checkbox-on:after,
+html body .ui-group-theme-m .ui-checkbox-on:after,
+.ui-btn.ui-checkbox-on.ui-btn-m:after,
+/* Active flipswitch background */
+.ui-page-theme-m .ui-flipswitch-active,
+html .ui-bar-m .ui-flipswitch-active,
+html .ui-body-m .ui-flipswitch-active,
+html body .ui-group-theme-m .ui-flipswitch-active,
+html body .ui-flipswitch.ui-bar-m.ui-flipswitch-active,
+/* Active slider track */
+.ui-page-theme-m .ui-slider-track .ui-btn-active,
+html .ui-bar-m .ui-slider-track .ui-btn-active,
+html .ui-body-m .ui-slider-track .ui-btn-active,
+html body .ui-group-theme-m .ui-slider-track .ui-btn-active,
+html body div.ui-slider-track.ui-body-m .ui-btn-active {
+	background-color: 		#22aadd /*{b-active-background-color}*/;
+	border-color:	 		#22aadd /*{b-active-border}*/;
+	color: 					#fff /*{b-active-color}*/;
+	text-shadow: 0 /*{b-active-shadow-x}*/ 1px /*{b-active-shadow-y}*/ 0 /*{b-active-shadow-radius}*/ #0088bb /*{b-active-shadow-color}*/;
+}
+/* Active radio button icon */
+.ui-page-theme-m .ui-radio-on:after,
+html .ui-bar-m .ui-radio-on:after,
+html .ui-body-m .ui-radio-on:after,
+html body .ui-group-theme-m .ui-radio-on:after,
+.ui-btn.ui-radio-on.ui-btn-m:after {
+	border-color:			#22aadd /*{b-active-background-color}*/;
+}
+/* Focus */
+.ui-page-theme-m .ui-btn:focus,
+html .ui-bar-m .ui-btn:focus,
+html .ui-body-m .ui-btn:focus,
+html body .ui-group-theme-m .ui-btn:focus,
+html head + body .ui-btn.ui-btn-m:focus,
+/* Focus buttons and text inputs with div wrap */
+.ui-page-theme-m .ui-focus,
+html .ui-bar-m .ui-focus,
+html .ui-body-m .ui-focus,
+html body .ui-group-theme-m .ui-focus,
+html head + body .ui-btn-m.ui-focus,
+html head + body .ui-body-m.ui-focus {
+	-webkit-box-shadow: 0 0 12px 	#22aadd /*{b-active-background-color}*/;
+	-moz-box-shadow: 0 0 12px 		#22aadd /*{b-active-background-color}*/;
+	box-shadow: 0 0 12px 			#22aadd /*{b-active-background-color}*/;
+}
+
+/* N - Header / Footer theme Epworth Colour
+-----------------------------------------------------------------------------------------------------------*/
+/* Bar: Toolbars, dividers, slider track */
+.ui-bar-n,
+.ui-page-theme-n .ui-bar-inherit,
+html .ui-bar-n .ui-bar-inherit,
+html .ui-body-n .ui-bar-inherit,
+html body .ui-group-theme-n .ui-bar-inherit {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    /* Make buttons non clear. */
+    /*background: rgba(0,0,0,0.25);*/
+    /*background: #034D74;*/
+    background: #0069aa;
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+
+    color: #fff; /*{b-bar-color}*/
+    text-shadow: 0 /*{b-bar-shadow-x}*/ 1px /*{b-bar-shadow-y}*/ 0 /*{b-bar-shadow-radius}*/ #111 /*{b-bar-shadow-color}*/;
+    font-weight: bold;
+
+}
+
+.ui-bar-n {
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* Page and overlay */
+.ui-overlay-n,
+.ui-page-theme-n,
+.ui-page-theme-n .ui-panel-wrapper {
+    background: #034D74 /*{b-page-background-color}*/;
+    border-color: #236D94 /*{b-page-border}*/;
+    color: #fff /*{b-page-color}*/;
+    text-shadow: 0 /*{b-page-shadow-x}*/ 1px /*{b-page-shadow-y}*/ 0 /*{b-page-shadow-radius}*/ #111 /*{b-page-shadow-color}*/;
+}
+
+/* Body: Read-only lists, text inputs, collapsible content */
+.ui-body-n,
+.ui-page-theme-n .ui-body-inherit,
+html .ui-bar-n .ui-body-inherit,
+html .ui-body-n .ui-body-inherit,
+html body .ui-group-theme-n .ui-body-inherit,
+html .ui-panel-page-container-n {
+    background: #085279 /*{b-body-background-color}*/;
+    border-color: #00406C /*{b-body-border}*/;
+    color: #fff /*{b-body-color}*/;
+    text-shadow: 0 /*{b-body-shadow-x}*/ 1px /*{b-body-shadow-y}*/ 0 /*{b-body-shadow-radius}*/ #111 /*{b-body-shadow-color}*/;
+}
+
+.ui-body-n {
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* Links */
+.ui-page-theme-n a,
+html .ui-bar-n a,
+html .ui-body-n a,
+html body .ui-group-theme-n a {
+    color: #22aadd /*{b-link-color}*/;
+    font-weight: bold;
+}
+
+.ui-page-theme-n a:visited,
+html .ui-bar-n a:visited,
+html .ui-body-n a:visited,
+html body .ui-group-theme-n a:visited {
+    color: #22aadd /*{b-link-visited}*/;
+}
+
+.ui-page-theme-n a:hover,
+html .ui-bar-n a:hover,
+html .ui-body-n a:hover,
+html body .ui-group-theme-n a:hover {
+    color: #0088bb /*{b-link-hover}*/;
+}
+
+.ui-page-theme-n a:active,
+html .ui-bar-n a:active,
+html .ui-body-n a:active,
+html body .ui-group-theme-n a:active {
+    color: #0088bb /*{b-link-active}*/;
+}
+
+/* Button up */
+.ui-page-theme-n .ui-btn,
+html .ui-bar-n .ui-btn,
+html .ui-body-n .ui-btn,
+html body .ui-group-theme-n .ui-btn,
+html head + body .ui-btn.ui-btn-n,
+    /* Button visited */
+.ui-page-theme-n .ui-btn:visited,
+html .ui-bar-n .ui-btn:visited,
+html .ui-body-n .ui-btn:visited,
+html body .ui-group-theme-n .ui-btn:visited,
+html head + body .ui-btn.ui-btn-n:visited {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff; /*{b-bup-color}*/
+    text-shadow: 0 /*{b-bup-shadow-x}*/ 1px /*{b-bup-shadow-y}*/ 0 /*{b-bup-shadow-radius}*/ #111 /*{b-bup-shadow-color}*/;
+}
+
+/* Button hover */
+.ui-page-theme-n .ui-btn:hover,
+html .ui-bar-n .ui-btn:hover,
+html .ui-body-n .ui-btn:hover,
+html body .ui-group-theme-n .ui-btn:hover,
+html head + body .ui-btn.ui-btn-n:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: #00476E /*{b-bhover-border}*/;
+    color: #fff /*{b-bhover-color}*/;
+    text-shadow: 0 /*{b-bhover-shadow-x}*/ 1px /*{b-bhover-shadow-y}*/ 0 /*{b-bhover-shadow-radius}*/ #111 /*{b-bhover-shadow-color}*/;
+}
+
+/* Button down */
+.ui-page-theme-n .ui-btn:active,
+html .ui-bar-n .ui-btn:active,
+html .ui-body-n .ui-btn:active,
+html body .ui-group-theme-n .ui-btn:active,
+html head + body .ui-btn.ui-btn-n:active {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff /*{b-bdown-color}*/;
+    text-shadow: 0 /*{b-bdown-shadow-x}*/ 1px /*{b-bdown-shadow-y}*/ 0 /*{b-bdown-shadow-radius}*/ #111 /*{b-bdown-shadow-color}*/;
+}
+
+/* Active button */
+.ui-page-theme-n .ui-btn.ui-btn-active,
+html .ui-bar-n .ui-btn.ui-btn-active,
+html .ui-body-n .ui-btn.ui-btn-active,
+html body .ui-group-theme-n .ui-btn.ui-btn-active,
+html head + body .ui-btn.ui-btn-n.ui-btn-active,
+    /* Active checkbox icon */
+.ui-page-theme-n .ui-checkbox-on:after,
+html .ui-bar-n .ui-checkbox-on:after,
+html .ui-body-n .ui-checkbox-on:after,
+html body .ui-group-theme-n .ui-checkbox-on:after,
+.ui-btn.ui-checkbox-on.ui-btn-n:after,
+    /* Active flipswitch background */
+.ui-page-theme-n .ui-glipswitch-active,
+html .ui-bar-n .ui-glipswitch-active,
+html .ui-body-n .ui-glipswitch-active,
+html body .ui-group-theme-n .ui-glipswitch-active,
+html body .ui-glipswitch.ui-bar-n.ui-glipswitch-active,
+    /* Active slider track */
+.ui-page-theme-n .ui-slider-track .ui-btn-active,
+html .ui-bar-n .ui-slider-track .ui-btn-active,
+html .ui-body-n .ui-slider-track .ui-btn-active,
+html body .ui-group-theme-n .ui-slider-track .ui-btn-active,
+html body div.ui-slider-track.ui-body-n .ui-btn-active {
+    /*background-color: 		#22aadd /*{b-active-background-color}*//*;*/
+    background: rgba(0, 0, 0, 0.25);
+    /*border-color:	 		#22aadd /*{b-active-border}*//*;*/
+    color: #fff /*{b-active-color}*/;
+}
+
+/* Active radio button icon */
+.ui-page-theme-n .ui-radio-on:after,
+html .ui-bar-n .ui-radio-on:after,
+html .ui-body-n .ui-radio-on:after,
+html body .ui-group-theme-n .ui-radio-on:after,
+.ui-btn.ui-radio-on.ui-btn-n:after {
+    border-color: #22aadd /*{b-active-background-color}*/;
+}
+
+/* Focus */
+.ui-page-theme-n .ui-btn:focus,
+html .ui-bar-n .ui-btn:focus,
+html .ui-body-n .ui-btn:focus,
+html body .ui-group-theme-n .ui-btn:focus,
+html head + body .ui-btn.ui-btn-n:focus,
+    /* Focus buttons and text inputs with div wrap */
+.ui-page-theme-n .ui-gocus,
+html .ui-bar-n .ui-gocus,
+html .ui-body-n .ui-gocus,
+html body .ui-group-theme-n .ui-gocus,
+html head + body .ui-btn-n.ui-gocus,
+html head + body .ui-body-n.ui-gocus {
+    /*-webkit-box-shadow: 0 0 12px 	#22aadd /*{b-active-background-color}*/;
+    /*-moz-box-shadow: 0 0 12px 		#22aadd /*{b-active-background-color}*/;
+    /*box-shadow: 0 0 12px 			#22aadd /*{b-active-background-color}*/;
+}

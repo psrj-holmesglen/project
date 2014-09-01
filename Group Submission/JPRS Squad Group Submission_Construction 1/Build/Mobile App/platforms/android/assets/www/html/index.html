@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<title>e-Conference</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../css/vendor/jquery.mobile.min.css" rel="stylesheet"/>
+<link href="../css/swatches.css" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+
+<!-- Header -->
+<div data-role="header" data-position="fixed" data-theme="n" id="header">
+
+  <a data-rel="back" id="header-back" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">Back</a>
+  <a href="#nav-panel" id="header-panel" class="ui-btn ui-btn-left ui-icon-bars ui-btn-icon-left">Nav</a>
+  <a href="settings.html" id="header-settings" class="ui-btn ui-btn-right ui-btn-icon-right ui-icon-gear">Prefs</a>
+
+  <h1><!--Conference Info--></h1>
+</div>
+
+<!-- Content: Empty, but still needs to be here -->
+<div data-role="page" id="index" data-btn-left="none">
+  <div data-role="content">
+  </div>
+</div>
+
+<!-- Navigation Panel -->
+<div data-role="panel" id="nav-panel" data-theme="m" data-display="push" data-position-fixed="true">
+  <ul class="ui-listview" data-divider-theme="m" id="panel-list">
+
+    <li data-role="list-divider">
+      Informational:
+    </li>
+
+    <li><a href="conference.html">
+      Conference Info
+    </a></li>
+
+    <li><a href="venue.html">
+      Venue Info
+    </a></li>
+
+    <li><a href="schedule.html">
+      Schedule
+    </a></li>
+
+    <li><a href="speaker-list.html">
+      Presenters
+    </a></li>
+
+    <li><a href="sponsor-list.html">
+      Sponsors
+    </a></li>
+
+    <li data-role="list-divider">
+      Interactive:
+    </li>
+
+    <li><a href="demographics.html">
+      Demographics
+    </a></li>
+
+    <li><a href="poll.html">
+      Polling
+    </a></li>
+
+    <li><a href="qa.html">
+      Question &amp; Answer
+    </a></li>
+
+    <li><a href="feedback-list.html">
+      Feedback
+    </a></li>
+
+  </ul>
+</div>
+
+<!-- Footer -->
+<div data-role="footer" data-position="fixed" data-theme="n" id="footer">
+  <div data-role="navbar">
+    <ul>
+      <li><a data-icon="calendar" href="schedule.html">
+        Schedule
+      </a></li>
+
+      <li><a data-icon="user" href="speaker-list.html">
+        Speakers
+      </a></li>
+
+      <li><a data-icon="comment" href="qa.html">
+        Submit Q&A
+      </a></li>
+
+      <li><a data-icon="check" href="poll.html">
+        Polling
+      </a></li>
+    </ul>
+  </div>
+</div>
+
+<!--suppress HtmlUnknownTarget -->
+<script src="../cordova.js"></script>
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/vendor/moment.min.js"></script>
+<script src="../js/jqm.defaults.js"></script>
+<script src="../js/vendor/jquery.mobile.min.js"></script>
+<script src="../js/vendor/pure.min.js"></script>
+<script src="../js/helper.js"></script>
+<script src="../js/vendor/fastclick.js"></script>
+<script src="../js/transfer.js"></script>
+<!--<script src="../js/events.js"></script>-->
+<script src="../js/main.js"></script>
+<script src="../specifics.js"></script>
