@@ -28,6 +28,15 @@
     }
 
     ?>
+
+    <!-- Back button -->
+    <div id='backButton' style='float: left;'>
+        <form action='index.php' method='get'>
+            <input type='hidden' name='page' value='venue'/>
+            <input type='submit' class='buttonStyle1' value='Go Back'/>
+        </form>
+    </div>
+
     <h1 style='; text-align:center;'>Delete the Venue</h1>
     <table width='100%' border='1' cellpadding='5' cellspacing='0' class='stdDataTable'>
         <thead>
