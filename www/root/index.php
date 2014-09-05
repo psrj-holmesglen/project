@@ -1,7 +1,7 @@
 <?PHP ob_start();
 //define dynamic image path
 $pathinfo = pathinfo($_SERVER['REQUEST_URI']);
-define('IMG_PATH', $pathinfo['dirname'] . 'ASSETS/IMG/');
+define('IMG_PATH', $pathinfo['dirname'] . '/ASSETS/IMG/');
 
 require 'HTML_INCLUDE/onLoad.php'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
