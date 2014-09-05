@@ -1,6 +1,7 @@
 <?php
 // Import libraries.
 require "PHP_DB/dbObject.php";
+require "PHP_PRES/helpers/dateTimepicker.php";
 //var_dump(require("PHP_DB/dbObject.php"));
 // Get a copy of the DAL object.
 $data = new Data();
@@ -63,7 +64,7 @@ $data = new Data();
     </div>
     <br/>
 
-    <p align='right' style='font-size:75%'> <?PHP echo "Returned: " . date("Y-m-d H:i:s"); ?></p>
+    <p align='right' style='font-size:75%'> <?PHP echo get_Datetime_Now(); ?></p>
     <br/>
     
     <!-- Add save pdf buttons -->
