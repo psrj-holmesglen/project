@@ -22,3 +22,4 @@ class ConDet
         return "mysql:host=" . self::$localhost . ";dbname=" . self::$db . ";";
     }
 }
+?>
