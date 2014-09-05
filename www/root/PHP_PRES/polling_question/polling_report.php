@@ -172,7 +172,7 @@ if ($ConId == NULL && $SecId == NULL && $SesId == NULL) {
     </table>
 </div>
 
-<img src="http://localhost/epworth/root/ASSETS/IMG/header.png" id="myimage" hidden="true" />
+<img src="<?=IMG_PATH?>header.png" id="myimage" hidden="true" />
 <canvas width="590" height="50" id="mycanvas" style="display: none;"></canvas>
 
 <script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/from-html.js"></script>
