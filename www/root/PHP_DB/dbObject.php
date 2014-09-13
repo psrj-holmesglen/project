@@ -486,6 +486,76 @@ class ConferenceSponsor extends Table
         $this->tableName = "conference_sponsor";
         $this->idName = "Conference";
     }
+	
+	//Get conference total count from conference_sponsor table for Edit Conference in Conference page
+    function getRowCount_cs($id)
+    {
+        $sql = "SELECT COUNT(*) FROM " . $this->tableName . " WHERE Conference = " . $id . ";";
+        //echo $sql;
+        $this->Connect();
+        // Execute our statement.
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->execute();
+			$query;
+            $result = $query->fetch();
+            unset($pdo);
+            unset($query);
+            return intval($result[0]);
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+    }
+	
+	//Before insert edited sponsor list to a conference_sponsor table, delete the existing sponsors list for the Conference
+    function deleteRow_cs($value)
+    {
+		
+        $sql = "DELETE FROM " . $this->tableName . " WHERE Conference = " .$value." ";
+        $this->Connect();
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+			unset($pdo);
+            unset($query);
+            return true;
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occurred: " . $error->getMessage();
+            return false;
+        }
+    }
+	//Get each record belongs to the conference from conference_sponsor table for Editing Sponsor details of Conference in Conference page
+    function getRowByMatch_cs($value)
+    {
+
+        $sql = "SELECT * FROM conference WHERE ID IN (SELECT Conference FROM conference_sponsor WHERE Sponsor = :value ) ORDER BY ID;";
+
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                //die("<br><br>Get Row for $this->tableName: No Results Found!<br><br>");
+                return NULL;
+            }
+            return $results;
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+    }
+	
 }
 
 class SessionQuestion extends Table

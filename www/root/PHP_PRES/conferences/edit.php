@@ -55,6 +55,7 @@ if (isset($_POST["clicked_submit"])) {
     $Venu = $_POST["selVenu"];
 	$Febk = $_POST["selFbform"];
 	//$CAdmi = $_POST["selCAdmi"];
+	$Spon = $_POST['txtSponNo'];
 	
 	if ($userid=='1'){
 		$CAdmi = $_POST["selCAdmi"];
@@ -62,6 +63,28 @@ if (isset($_POST["clicked_submit"])) {
 	else if($userid != '1'){
 		$CAdmi = $userid;
 	}
+		
+		
+	 //Store data of Sponsor
+    for ($i = 0; $i < $Spon; $i++) {
+        switch ($i) {
+            case 0:
+                $Sponsor1 = $_POST['txtSponsor1'];
+                break;
+            case 1:
+                $Sponsor2 = $_POST['txtSponsor2'];
+                break;
+            case 2:
+                $Sponsor3 = $_POST['txtSponsor3'];
+                break;
+            case 3:
+                $Sponsor4 = $_POST['txtSponsor4'];
+                break;
+            case 4:
+                $Sponsor5 = $_POST['txtSponsor5'];
+                break;
+        }
+    }
 		
 	
     // Grab our datetime date and convert it into a mySQL dateTime
@@ -124,6 +147,59 @@ if (isset($_POST["clicked_submit"])) {
     if (vIsBlank($Cont) || !vMaxChars($Cont, 25)) // not blank, max 25 chars.
         $ContErr = nv();
 
+
+	 for ($i = 0; $i < $Spon; $i++) {
+        $count = 0;
+
+        switch ($i) {
+            case 0:
+                $Sponsor = $Sponsor1;
+                break;
+            case 1:
+                $Sponsor = $Sponsor2;
+                break;
+            case 2:
+                $Sponsor = $Sponsor3;
+                break;
+            case 3:
+                $Sponsor = $Sponsor4;
+                break;
+            case 4:
+                $Sponsor = $Sponsor5;
+                break;
+        }
+
+        for ($j = 0; $j < $Spon; $j++) {
+            switch ($j) {
+                case 0:
+                    $SponTest = $Sponsor1;
+                    break;
+                case 1:
+                    $SponTest = $Sponsor2;
+                    break;
+                case 2:
+                    $SponTest = $Sponsor3;
+                    break;
+                case 3:
+                     $SponTest = $Sponsor4;
+                    break;
+                case 4:
+                     $SponTest = $Sponsor5;
+                    break;
+            }
+            if ($Sponsor == $SponTest) {
+				
+                $count++;
+            }
+
+        }
+        if ($count != 1) {
+            $validated = false;
+            $SponNoErr .= "Cannot assign same Sponsor";
+            break;
+        }
+    }
+	
     ////
     //// Validation Checking END.
     ////
@@ -147,10 +223,52 @@ if (isset($_POST["clicked_submit"])) {
 				"Conference_Admin_Id" => $CAdmi
         );
 
-        //var_dump($newData);
-      	if ($data->conference->updateRow($_GET["id"], $newData))
-           header("Location: index.php?page=conference");
+// if ($data->conference->updateRow($_GET["id"], $newData))
 
+        //var_dump($newData);
+      	if ($data->conference->updateRow($_GET["id"], $newData)){
+		
+		
+		 $ConferenceId = $_GET["id"];
+
+            if ($data->conferenceSponsor->deleteRow_cs($ConferenceId)) {
+			
+				if($Spon != 0){
+
+                for ($i = 0; $i < $Spon; $i++) {
+                    switch ($i) {
+                        case 0:
+                            $Sponsor = $Sponsor1;
+                            break;
+                        case 1:
+                            $Sponsor = $Sponsor2;
+                            break;
+                        case 2:
+                            $Sponsor = $Sponsor3;
+                            break;
+                        case 3:
+                            $Sponsor = $Sponsor4;
+                            break;
+                        case 4:
+                            $Sponsor = $Sponsor5;
+                            break;
+                    }
+
+                    $newDataSponsor = array(
+                            "Conference" => $ConferenceId,
+                            "Sponsor" => $Sponsor,
+                    );
+
+                    $data->conferenceSponsor->addRow($newDataSponsor);
+                }
+			}
+		
+		
+			}
+		
+		}
+           header("Location: index.php?page=conference");
+			
         ////
         //// Database Write END
         ////
@@ -176,6 +294,30 @@ if (isset($_POST["clicked_submit"])) {
     $Venu = $row["Venue"];
 	$Febk = $row["Feedback"];
 	$CAdmi = $row["Conference_Admin_Id"];
+ 
+ 	$Spon = $data->conferenceSponsor->getRowCount_cs($_GET["id"]);
+    $row = $data->conferenceSponsor->getRowByMatch_cs($_GET["id"]);
+
+    for ($i = 0; $i < $Spon; $i++) {
+        switch ($i) {
+            case 0:
+                $Sponsor1 = $row[$i]["ID"];
+                break;
+            case 1:
+                $Sposor2 = $row[$i]["ID"];
+                break;
+            case 2:
+                $Sponsor3 = $row[$i]["ID"];
+                break;
+            case 3:
+                $Sponsor4 = $row[$i]["ID"];
+                break;
+            case 4:
+                $Sponsor5 = $row[$i]["ID"];
+                break;
+        }
+    }
+   
 }
 ////
 //// Database Read END
@@ -384,6 +526,164 @@ if (isset($_POST["clicked_submit"])) {
                     <hr>
                 </td>
             </tr>
+            
+        <!-- Updated by Rudhra  -->
+        <!-- Edit Sponser -->
+        <tr>
+            <td class='label'>Sponsor:</td>
+            <td>
+                <select name="txtSponNo" id="SponsorNo" class='selectStyle2' onchange='editSpon();'>
+                    <?PHP
+                    // Create selectbox for number of option
+                    for ($q = 0; $q <= 5; $q++) {
+                        if ($q == $Spon) {
+                            echo "<option value='$q' selected='selected'>$q</option>";
+                        } else {
+                            echo "<option value='$q'>$q</option>";
+                        }
+                    }
+                    ?>
+                </select> sponsor&nbsp;
+            </td>
+            <td><span class='errorText'><?= $SponNoErr ?></span></td>
+        </tr>
+    </table>
+
+
+    <div style="margin-left:85px">
+        <table id='0' class='std_form'>
+
+            <div class='std_form'>
+             <!--   <tr id="1">
+                    <td align="right">&nbsp; 1.&nbsp;</td>
+                    <td>
+                        <select name='txtSponsor1' class='selectStyle1'>
+                            <?PHP
+                            $data->sponsor->printDropDownOptions($Sponsor1, "Name");
+                            ?>
+                        </select>
+                    </td>
+                    <td><span class='errorText'><?= $Op_TextErr1 ?></span></td>
+                </tr>
+                
+                -->
+                
+                
+                    <?php
+                // Reflect user's input in Type
+                if ($Spon >= 1) {
+                    echo "<tr id='1'>";
+                } else {
+                    echo "<tr id='1'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 1.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor1' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor1, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr1 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 2) {
+                    echo "<tr id='2'>";
+                } else {
+                    echo "<tr id='2'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 2.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor2' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor2, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr2 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 3) {
+                    echo "<tr id='3'>";
+                } else {
+                    echo "<tr id='3'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 3.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor3' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor3, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr3 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 4) {
+                    echo "<tr id='4'>";
+                } else {
+                    echo "<tr id='4'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 4.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor4' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor4, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr4 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 5) {
+                    echo "<tr id='5'>";
+                } else {
+                    echo "<tr id='5'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 5.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor5' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor5, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr5 ?></span></td>
+                </tr>
+                
+<script type="text/javascript">
+
+    // Add new text fields for Multiple Choice
+
+    function editSpon() {
+        //Set timeout to fix bug caused by calling the function from reset form button
+        setTimeout(function () {
+            var option = document.getElementById("SponsorNo");
+            var Op_no = option.options[option.selectedIndex].value;
+
+
+            for (var i = 1; i <= Op_no; i++) {
+                document.getElementById(i).style.display = "";
+            }
+
+            for (var j = 5; j > Op_no; j--) {
+                document.getElementById(j).style.display = "none";
+            }
+        }, 100);
+        return true;
+    }
+
+</script>
+            
         <tr>
             <td colspan='2'><span style='float: right;'>
                 	<br/>

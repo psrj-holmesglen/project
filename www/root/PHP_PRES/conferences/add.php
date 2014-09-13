@@ -11,7 +11,7 @@
  * File: add.php
  * Edit Presenter for the dstc e conference web application.
  * Written by TEAM SPARTA
- * Last updated: 25-03-14 by Andy
+ * Last updated: 12-09-14 by JPRS Squad
 */
 
 ////
@@ -62,8 +62,31 @@ if (isset($_POST["clicked_submit"])) {
     $Venu = $_POST["selVenu"]; // taking the venue id only, not full string.
 	$Febk = $_POST["selFbform"];
 	$CAdmi = $_POST["selCAdmi"];
+	$Spon = $_POST['txtSponNo'];
 	//echo $CAdmi;
 	
+
+	//Store data of Sponsor
+    for ($i = 0; $i < $Spon; $i++) {
+        switch ($i) {
+            case 0:
+                $Sponsor1 = $_POST['txtSponsor1'];
+                break;
+            case 1:
+                $Sponsor2 = $_POST['txtSponsor2'];
+                break;
+            case 2:
+                $Sponsor3 = $_POST['txtSponsor3'];
+                break;
+            case 3:
+                $Sponsor4 = $_POST['txtSponsor4'];
+                break;
+            case 4:
+                $Sponsor5 = $_POST['txtSponsor5'];
+                break;
+        }
+    }
+
 
     // Grab our datetime date and convert it into a mySQL dateTime
     $Star["year"] = $_POST["selStarYear"];
@@ -127,6 +150,59 @@ if (isset($_POST["clicked_submit"])) {
     if (fileUpload($page, $_files, $_post)) {
         $uploErr = nv();
     }
+	
+	//Validating duplicate entry in sponsor selection
+	 for ($i = 0; $i < $Spon; $i++) {
+        $count = 0;
+
+        switch ($i) {
+            case 0:
+                $Sponsor = $Sponsor1;
+                break;
+            case 1:
+                $Sponsor = $Sponsor2;
+                break;
+            case 2:
+                $Sponsor = $Sponsor3;
+                break;
+            case 3:
+                $Sponsor = $Sponsor4;
+                break;
+            case 4:
+                $Sponsor = $Sponsor5;
+                break;
+        }
+
+        for ($j = 0; $j < $Spon; $j++) {
+            switch ($j) {
+                case 0:
+                    $SponTest = $Sponsor1;
+                    break;
+                case 1:
+                    $SponTest = $Sponsor2;
+                    break;
+                case 2:
+                    $SponTest = $Sponsor3;
+                    break;
+                case 3:
+                     $SponTest = $Sponsor4;
+                    break;
+                case 4:
+                     $SponTest = $Sponsor5;
+                    break;
+            }
+            if ($Sponsor == $SponTest) {
+				
+                $count++;
+            }
+
+        }
+        if ($count != 1) {
+            $validated = false;
+            $SponNoErr .= "Cannot assign same Sponsor";
+            break;
+        }
+    }
     ////
     //// Validation Checking END.
     ////
@@ -156,8 +232,9 @@ if ($validated) {
             "Location" => $Loca,
             "Contact" => $Cont,
             "Venue" => $Venu,
+			"FilePath" => $PFil,
+//			"Token" => 
 			"Feedback" => $Febk,
-            "FilePath" => $PFil,
 			"Conference_Admin_Id" => $CAdmi
     );
 	/*
@@ -185,16 +262,53 @@ echo "<br/>";
 	echo "<br/>";
 	
 	*/
+	
     $newID = $data->conference->addRow($newData);
+	
+	//To add token to the last inserted conference
+	$tNum = 1200 + $newID; // Auto number for conference 1200 + current conference id
+	$tokenData = array("Token"=> $tNum);
+	$data->conference->updateRow($newID, $tokenData);
+	
     if ($newID) {
         if ($PFil != "No File Uploaded") {
             $fileData = explode(".", $_FILES['file']['name']);
             $target_file = $uploLoc . $newID . "." . $fileData[1];
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
+	}
+ if (($newID) && ($Spon!= 0)) {
 
-      //  header("Location: index.php?page=conference");
-//			       header('Location: index.php?page=presenter&action=view');
+        for ($i = 0; $i < $Spon; $i++) {
+            switch ($i) {
+                case 0:
+				      $Sponsor = $Sponsor1;
+				      break;
+                case 1:
+				     $Sponsor = $Sponsor2;
+					 break;
+                case 2:
+                    $Sponsor = $Sponsor3;
+                    break;
+                case 3:
+                    $Sponsor = $Sponsor4;
+                    break;
+                case 4:
+                    $Sponsor = $Sponsor5;
+                    break;
+            }
+
+            $sponsorData = array(
+                    "Conference" => $newID,
+                    "Sponsor" => $Sponsor,
+            );
+
+           $data->conferenceSponsor->addRow($sponsorData);
+        }
+		
+		
+        header("Location: index.php?page=conference");
+ 
     }
 
     //if($data->conference->addRow($newData))
@@ -398,16 +512,156 @@ echo "<br/>";
                     </select>
                 </td>
             </tr>
+             <tr>
+            <td colspan="2">
+                <hr>
+            </td>
+        </tr>
+<!-- Updated by Rudhra  -->
+        <!-- Add Sponser -->
+        <tr>
+            <td class='label'>Sponsor:</td>
+            <td>
+                <select name="txtSponNo" id="SponsorNo" class='selectStyle2' onchange='addSpon();'>
+                    <?PHP
+                    // Create selectbox for number of option
+                    for ($q = 0; $q <= 5; $q++) {
+                        if ($q == $Spon) {
+                            echo "<option value='$q' selected='selected'>$q</option>";
+                        } else {
+                            echo "<option value='$q'>$q</option>";
+                        }
+                    }
+                    ?>
+                </select> sponsor&nbsp;
+            </td>
+            <td><span class='errorText'><?= $SponNoErr ?></span></td>
+        </tr>
+    </table>
+
+
+    <div style="margin-left:85px">
+        <table id='0' class='std_form'>
+
+            <div class='std_form'>
+             <!--   <tr id="1">
+                    <td align="right">&nbsp; 1.&nbsp;</td>
+                    <td>
+                        <select name='txtSponsor1' class='selectStyle1'>
+                            <?PHP
+                            $data->sponsor->printDropDownOptions($Sponsor1, "Name");
+                            ?>
+                        </select>
+                    </td>
+                    <td><span class='errorText'><?= $Op_TextErr1 ?></span></td>
+                </tr>
+                
+                -->
+                
+                
+                    <?php
+                // Reflect user's input in Type
+                if ($Spon >= 1) {
+                    echo "<tr id='1'>";
+                } else {
+                    echo "<tr id='1'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 1.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor1' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor1, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr1 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 2) {
+                    echo "<tr id='2'>";
+                } else {
+                    echo "<tr id='2'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 2.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor2' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor2, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr2 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 3) {
+                    echo "<tr id='3'>";
+                } else {
+                    echo "<tr id='3'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 3.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor3' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor3, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr3 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 4) {
+                    echo "<tr id='4'>";
+                } else {
+                    echo "<tr id='4'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 4.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor4' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor4, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr4 ?></span></td>
+                </tr>
+                <?php
+                // Reflect user's input in Type
+                if ($Spon >= 5) {
+                    echo "<tr id='5'>";
+                } else {
+                    echo "<tr id='5'  style='display:none;'>";
+                }
+                ?>
+                <td align="right">&nbsp; 5.&nbsp;</td>
+                <td>
+                    <select name='txtSponsor5' class='selectStyle1'>
+                        <?PHP
+                        $data->sponsor->printDropDownOptions($Sponsor5, "Name");
+                        ?>
+                    </select>
+                </td>
+                <td><span class='errorText'><?= $Op_TextErr5 ?></span></td>
+                </tr>
+                
+                <!-- Upload Picture-->
+            
             <tr>
                 <td colspan="2">
                     <hr>
                 </td>
             </tr>
-            <tr>
+            <tr colspan='3'>
                 <td class='label'><label for="file" class='label'>Upload Picture:</label></td>
-                <td class="file_add"><input type="file" name="file" id="file" onchange="PreviewImage();"
+                <td class="file_add" ><input type="file" name="file" id="file" onchange="PreviewImage();"
                                             style="opacity:0;filter:alpha(opacity:0);z-index:9999;cursor:default;"></td>
-                <td><img id="uploadPreview" style="width: 100px; height: 100px;"/></td>
+                <td><img id="uploadPreview" style="width: 100px; height: 100px;" /></td>
                 <script type="text/javascript">
 
                     function PreviewImage() {
@@ -426,20 +680,54 @@ echo "<br/>";
             <tr>
                 <td colspan='2'><span style='float: right;'>
                 	<br/>
-                    <input type='submit' value='Reset' name='clicked_reset' class="buttonStyle1"/>
+                    <input type='submit' value='Reset' name='clicked_reset' class="buttonStyle1" onclick="addSpon();"/>
                     <input type='submit' value='Submit' name='clicked_submit' class='buttonStyle1'/>
                     </span>
                 </td>
             </tr>
-        </table>
-    </form>
+       
     <!-- Form End -->
+    
+    
+            </div>
+        </table>
+
+    </form>
 
 
-<?PHP
-}
-////
+<script type="text/javascript">
+
+    // Add new text fields for Multiple Choice
+
+    function addSpon() {
+        //Set timeout to fix bug caused by calling the function from reset form button
+        setTimeout(function () {
+            var option = document.getElementById("SponsorNo");
+            var Op_no = option.options[option.selectedIndex].value;
+
+
+            for (var i = 1; i <= Op_no; i++) {
+                document.getElementById(i).style.display = "";
+            }
+
+            for (var j = 5; j > Op_no; j--) {
+                document.getElementById(j).style.display = "none";
+            }
+        }, 100);
+        return true;
+    }
+
+</script>
+
+  <?PHP 
+  } 
+  
+  ////
 //// HTML Form END
 ////
-?>
-</div>
+  
+  
+  ?>
+</div>          
+
+

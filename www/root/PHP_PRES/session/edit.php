@@ -461,7 +461,7 @@ if (isset($_POST['clicked_submit'])) {
 
       <tr> <td colspan="2"> <hr> </td> </tr>
       <tr>
-    <td class='label'>Section Id:</td>
+    <td class='label'>Feedback Section Id:</td>
     <td><select name='txtSect' class='selectStyle1'>
             <option value="NULL">None</option>
             <?PHP
