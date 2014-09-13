@@ -1,0 +1,11 @@
+Mysql Database
+eConference
+user:eConference_user
+Password: UewSLJMV3r%m
+
+Ftp 
+host:holmesglenmobileapps.com
+user:econference@holmesglenmobileapps.com
+password: UewSLJMV3r%m
+
+main host:econference.holmesglenmobileapps.com

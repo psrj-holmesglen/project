@@ -107,9 +107,9 @@ if (isset($_POST['conference_selected'])) {
 <img src="<?=IMG_PATH?>header.png" id="myimage" hidden="true" />
 <canvas width="590" height="50" id="mycanvas" style="display: none;"></canvas>
 
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/from-html.js"></script>
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jspdf/jspdf.min.js"></script>
+<script type="text/javascript" src="<?=SCRIPT_PATH?>SCRIPTS_THIRD_PARTY/jspdf/from-html.js"></script>
+<script type="text/javascript" src="<?=SCRIPT_PATH?>SCRIPTS_THIRD_PARTY/jspdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="<?=SCRIPT_PATH?>SCRIPTS_THIRD_PARTY/jspdf/jspdf.min.js"></script>
 <script>
 
 function savePdf() {
