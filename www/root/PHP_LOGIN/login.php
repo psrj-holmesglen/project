@@ -27,7 +27,7 @@ if (isset($_POST["clicked_submit"])) {
         // Found username
         if ($userRow[0]["Password"] == $hashPassword) {
             // Found Password.
-            $_SESSION["userFirstName"] = $userRow[0]["First_Name"];
+        echo    $_SESSION["userFirstName"] = $userRow[0]["First_Name"];
             $_SESSION["userLastName"] = $userRow[0]["Last_Name"];
             $_SESSION["userEmail"] = $userRow[0]["Email"];
 			$_SESSION["userName"] = $userRow[0]["User_name"];
