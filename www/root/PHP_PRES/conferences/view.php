@@ -7,14 +7,14 @@
 
      * File: view.php
      * View Conferences for the dstc e conference web application.
-     * Written by TEAM  SPARTA
-     * Last updated: 25-03-14 by Andy
+     * Written by TEAM  SPARTA Modified by JPRS Squad
+     * Last updated: 15-09-14 by Rudhra
     */
 
 ////
 //// Setup START
 ////
-// Last Updated by Rudhra
+//
 // Import libraries.
 require "PHP_DB/dbObject.php";
 require "PHP_PRES/helpers/dateTimePicker.php";
@@ -82,7 +82,7 @@ $data = new Data();
     <p align='right' style='font-size:75%'> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
     <br/>
     <?php if($accesslevel == "1") { ?>
-    <!-- Add and clone buttons -->
+    <!-- show add and clone conference buttons -->
     <table width="100%">
         <tr>
             <td>
@@ -105,6 +105,6 @@ $data = new Data();
             </td>
         </tr>
     </table>
-    <!-- Add and clone buttons END -->
+    <!-- show add and clone conference buttons END -->
     <?php }?>
 </div>
