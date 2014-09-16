@@ -1,7 +1,7 @@
 <?
 // Import libraries.
 require "PHP_DB/dbObject.php";
-require "PHP_PRES/helpers/dateTimepicker.php";
+//require "PHP_PRES/helpers/dateTimepicker.php";
 // Get a copy of the DAL object.
 $data = new Data();
 
@@ -99,7 +99,7 @@ $CoId = "All";
         </table>
     </div>
 
-    <p align='right' style='font-size:75%'> <?PHP echo get_Datetime_Now(); ?></p>
+    <p align='right' style='font-size:75%'> <?PHP //echo get_Datetime_Now(); ?></p>
     <br/>
     
     <!-- Add save pdf buttons -->

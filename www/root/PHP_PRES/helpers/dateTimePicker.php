@@ -89,7 +89,7 @@ function printOptionMinutes($selected)
 //Function added by Rudhra
 function get_Datetime_Now()
 {
-		$tz_object = new DateTimeZone('Australia/Victoria');
+		$tz_object = new DateTimeZone('Australia/Melbourne');
 		
 		$datetime = new DateTime();
 		$datetime->setTimezone($tz_object);
