@@ -272,6 +272,11 @@ class Table
 		$sql = "SELECT DISTINCT conference.ID, conference.Title, conference.Description, conference.Start_Time, conference.End_Time, conference.Organiser, conference.Location, conference.Contact, conference.Venue, conference.Token,venue.Name FROM " . $this->tableName . ", venue WHERE " . $this->tableName . ".Venue = venue.ID AND " . $this->tableName . ".Conference_Admin_Id = '".$userid."' AND " . $this->tableName . "." . $this->idName . "=".$id." ORDER BY " . $this->tableName . ".ID";	
 		//echo $sql;
 		}
+		//conference delete row / user is 1(admin)  AND " . $this->tableName . ".Conference_Admin_Id = '".$userid."'
+		else if(($this->tableName == "conference") && ($userid = '1')){
+		$sql = "SELECT DISTINCT conference.ID, conference.Title, conference.Description, conference.Start_Time, conference.End_Time, conference.Organiser, conference.Location, conference.Contact, conference.Venue, conference.Token,venue.Name FROM " . $this->tableName . ", venue WHERE " . $this->tableName . ".Venue = venue.ID  AND " . $this->tableName . "." . $this->idName . "=".$id." ORDER BY " . $this->tableName . ".ID";	
+		//echo $sql;
+		}
 		//section view page all user and administrator
 		else if(($this->tableName == "conference_section") && ($userid != "1") && (isset($id) && ($id != "all"))){
 			  $sql = "SELECT DISTINCT conference.Conference_Admin_Id, conference_section.ID, conference_section.Section_Title, conference_section.Ordering, conference_section.Last_Updated, conference_section.Conference FROM conference_section, conference WHERE conference.ID = " . $this->tableName . ".Conference AND conference.Conference_Admin_Id = '".$userid."' AND  " . $this->tableName . "." . $this->idName . "=".$id." ORDER BY conference_section.ID "; 
@@ -284,7 +289,7 @@ class Table
 		else if(($this->tableName == "session") && ($userid != "1") && (isset($id)) && ($id != "all")){
 			//echo "To Do Code <br/>" .$userid."<br/>";
 			$sql = "SELECT * FROM session Where session.ID = ".$id."";		
-	//		echo $sql;
+		
 		}
 		//session normal user display all sessions for the logged users conference
 		else if(($this->tableName == "session") && ($userid != "1")){
@@ -294,7 +299,7 @@ class Table
 		}
         else if ($type == "all") {
 			 $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
-//			 echo $sql;
+
 		}
 		else {
 			$sql = "SELECT * FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
@@ -310,7 +315,7 @@ class Table
             $query = $this->pdo->prepare($sql);
             $query->bindParam(":id", $id);
             $query->execute();
-//		echo $query;
+
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $results[$i] = $row;
             }
@@ -327,7 +332,7 @@ class Table
         } catch (PDOException $error) {
             //Display error message if applicable
             echo "An error occurred: " . $error->getMessage();
-        }
+        } 
     }
 
     function updateRow($id, $data)
@@ -385,7 +390,7 @@ class Table
             }
             if ($query->execute()) {
                 //echo "<br/><br/>Record Added. <br/><br/>" . var_dump($data) . "<br/><br/>";
-//				echo $query;
+
                 $lastID = $this->pdo->lastInsertId();
                 unset($pdo);
                 unset($query);

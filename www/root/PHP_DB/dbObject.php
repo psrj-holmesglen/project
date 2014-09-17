@@ -16,17 +16,19 @@ class Conference extends Table
     {
 		global $userid;
         $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
-	   //echo $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID ORDER BY conference.Title ASC ";
+	   
 		
         if (isset($id))
         $sql = "SELECT conference.ID, Title, Description, Start_Time, End_Time, Organiser, Location, Token, Contact, Name FROM conference, venue WHERE Venue = venue.ID AND conference.ID = :id";
         $this->Connect();
         try {
 				$query = $this->pdo->prepare($sql);
-				$query->execute(["id" => $id]);
+				//$query -> execute(["id" => $id]);
+				$query->bindParam(":id", $id);
+           		$query->execute();
 				$results = $query->fetchAll();
 				if ($results == null) {
-                	echo $this->pdo->errorInfo()[2];
+                	echo $this->pdo->errorInfo();//[2];
             	}
            		unset($pdo);
             	unset($query);

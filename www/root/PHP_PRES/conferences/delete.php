@@ -1,17 +1,16 @@
-<div id='conference_delete'>
+<div id='section_delete'>
     <link rel='stylesheet' type='text/css' href='CSS/std_data_table.css'>
     <?PHP
-    /*
-     _____ _____ _____ _____    _____ _____ _____ _____ _____ _____
-    |_   _|   __|  _  |     |  |   __|  _  |  _  | __  |_   _|  _  |
-      | | |   __|     | | | |  |__   |   __|     |    -| | | |     |
-      |_| |_____|__|__|_|_|_|  |_____|__|  |__|__|__|__| |_| |__|__|
+    // _____ _____ _____ _____    _____ _____ _____ _____ _____ _____
+    //|_   _|   __|  _  |     |  |   __|  _  |  _  | __  |_   _|  _  |
+    //  | | |   __|     | | | |  |__   |   __|     |    -| | | |     |
+    //  |_| |_____|__|__|_|_|_|  |_____|__|  |__|__|__|__| |_| |__|__|
+    //
+    // * File: Delete.php
+    // * Delete Sections for the dstc e conference web application.
+    // * Written by TEAM SPARTA
+    // * Last updated: 17-09-14 by Rudhra -->
 
-     * File: delete.php
-     * Delete a conference confirmation for the dstc e conference web application.
-     * Written by TEAM SPARTA
-     * Last updated: 25-03-14 by Andy
-    */
 
     // Import libraries.
     require "PHP_DB/dbObject.php";
