@@ -84,28 +84,28 @@ class CacheMiddleware extends \Slim\Middleware
 
     public function getTagColumn($file)
     {
-        switch ($file) {
+        // switch ($file) {
 
-            case "conference":
-                return "Conference_Tag";
+        //     case "conference":
+        //         return "Conference_Tag";
 
-            case "schedule":
-                return "Schedule_Tag";
+        //     case "schedule":
+        //         return "Schedule_Tag";
 
-            case "speaker":
-                return "Speaker_Tag";
+        //     case "speaker":
+        //         return "Speaker_Tag";
 
-            case "sponsor":
-                return "Sponsor_Tag";
+        //     case "sponsor":
+        //         return "Sponsor_Tag";
 
-            case "conference-feedback":
-                return "C_Feedback_Tag";
+        //     case "conference-feedback":
+        //         return "C_Feedback_Tag";
 
-            case "session-feedback":
-                return "S_Feedback_Tag";
+        //     case "session-feedback":
+        //         return "S_Feedback_Tag";
 
-            default:
-                return "";
-        }
+        //     default:
+        //         return "";
+        // }
     }
 }

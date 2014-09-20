@@ -1,6 +1,6 @@
 Mysql Database
 eConference
-user:eConference_user
+user: eConference_user
 Password: UewSLJMV3r%m
 
 Ftp 

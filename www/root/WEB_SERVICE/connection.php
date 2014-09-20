@@ -10,9 +10,9 @@
 function getConnection()
 { // Connection details
 
-    $dbhost = "127.0.0.1";
+    $dbhost = "localhost";
     $dbUser = "root";
-    $dbpass = "root";
+    $dbpass = "";
  //   $dbName = "epworth_ec";
  $dbName = "holmesglen_project";
 
