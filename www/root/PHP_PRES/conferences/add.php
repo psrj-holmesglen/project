@@ -60,13 +60,13 @@ if (isset($_POST["clicked_submit"])) {
     $Loca = $_POST["txtLoca"];
     $Cont = $_POST["txtCont"];
     $Venu = $_POST["selVenu"]; // taking the venue id only, not full string.
-	$Febk = $_POST["selFbform"];
-	$CAdmi = $_POST["selCAdmi"];
-	$Spon = $_POST['txtSponNo'];
-	
-	
+    $Febk = $_POST["selFbform"];
+    $CAdmi = $_POST["selCAdmi"];
+    $Spon = $_POST['txtSponNo'];
+    
+    
 
-	//Store data of Sponsor
+    //Store data of Sponsor
     for ($i = 0; $i < $Spon; $i++) {
         switch ($i) {
             case 0:
@@ -96,7 +96,7 @@ if (isset($_POST["clicked_submit"])) {
     $Star["minute"] = $_POST["selStarMinute"];
     $Star["second"] = "00";
     //$Star["string"] = dtConvertToString($Star);
-	$StartDate = $Star["string"] = dtConvertToString($Star);
+    $StartDate = $Star["string"] = dtConvertToString($Star);
 
     $EndT["year"] = $_POST["selEndTYear"];
     $EndT["month"] = $_POST["selEndTMonth"];
@@ -105,7 +105,7 @@ if (isset($_POST["clicked_submit"])) {
     $EndT["minute"] = $_POST["selEndTMinute"];
     $EndT["second"] = "00";
     //$EndT["string"] = dtConvertToString($EndT);
-	$EndDate = $EndT["string"] = dtConvertToString($EndT);
+    $EndDate = $EndT["string"] = dtConvertToString($EndT);
 
     // A bool flag that determines validation success.
     $validated = true;
@@ -150,9 +150,9 @@ if (isset($_POST["clicked_submit"])) {
     if (fileUpload($page, $_files, $_post)) {
         $uploErr = nv();
     }
-	
-	//Validating duplicate entry in sponsor selection
-	 for ($i = 0; $i < $Spon; $i++) {
+    
+    //Validating duplicate entry in sponsor selection
+     for ($i = 0; $i < $Spon; $i++) {
         $count = 0;
 
         switch ($i) {
@@ -192,7 +192,7 @@ if (isset($_POST["clicked_submit"])) {
                     break;
             }
             if ($Sponsor == $SponTest) {
-				
+                
                 $count++;
             }
 
@@ -232,12 +232,11 @@ if ($validated) {
             "Location" => $Loca,
             "Contact" => $Cont,
             "Venue" => $Venu,
-			"FilePath" => $PFil,
-//			"Token" => 
-			"Feedback" => $Febk,
-			"Conference_Admin_Id" => $CAdmi
+            "FilePath" => $PFil, 
+            "Feedback" => $Febk,
+            "Conference_Admin_Id" => $CAdmi
     );
-	/*
+    
 echo "Title" . $Titl;
 echo "<br/>";
 echo "Description".  $Desc;
@@ -245,49 +244,49 @@ echo "<br/>";
 echo            "Start_Time" . dtConvertToString($Star);
 echo "<br/>";
     echo        "End_Time" . dtConvertToString($EndT);
-	echo "<br/>";
+    echo "<br/>";
         echo    "Organiser" . $Orga;
-		echo "<br/>";
+        echo "<br/>";
            echo "Location" . $Loca;
-		   echo "<br/>";
+           echo "<br/>";
 echo            "Contact" . $Cont;
 echo "<br/>";
     echo        "Venue" . $Venu;
-	echo "<br/>";
-		echo	"Feedback" . $Febk;
-		echo "<br/>";
+    echo "<br/>";
+        echo	"Feedback" . $Febk;
+        echo "<br/>";
 echo            "FilePath" . $PFil;
 echo "<br/>";
-	echo		"Conference_Admin_Id" . $CAdmi;
-	echo "<br/>";
-	
-	*/
-	
+    echo		"Conference_Admin_Id" . $CAdmi;
+    echo "<br/>";
+    
+    
+    
     $newID = $data->conference->addRow($newData);
-	
-	//To add token to the last inserted conference
-	$tNum = 1200 + $newID; // Auto number for conference 1200 + current conference id
-	$tokenData = array("Token"=> $tNum);
-	$data->conference->updateRow($newID, $tokenData);
-	
+    
+    //To add token to the last inserted conference
+    $tNum = 1200 + $newID; // Auto number for conference 1200 + current conference id
+    $tokenData = array("Token"=> $tNum);
+    $data->conference->updateRow($newID, $tokenData);
+    
     if ($newID) {
         if ($PFil != "No File Uploaded") {
             $fileData = explode(".", $_FILES['file']['name']);
             $target_file = $uploLoc . $newID . "." . $fileData[1];
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
-		header("Location: index.php?page=conference");
-	}
- 	if (($newID) && ($Spon!= 0)) {
+        header("Location: index.php?page=conference");
+    }
+    if (($newID) && ($Spon!= 0)) {
 
         for ($i = 0; $i < $Spon; $i++) {
             switch ($i) {
                 case 0:
-				      $Sponsor = $Sponsor1;
-				      break;
+                      $Sponsor = $Sponsor1;
+                      break;
                 case 1:
-				      $Sponsor = $Sponsor2;
-					  break;
+                      $Sponsor = $Sponsor2;
+                      break;
                 case 2:
                       $Sponsor = $Sponsor3;
                       break;
@@ -305,10 +304,9 @@ echo "<br/>";
             );
 
            $data->conferenceSponsor->addRow($sponsorData);
-		   
+           
         }
-		
-		
+                
         header("Location: index.php?page=conference");
  
     }

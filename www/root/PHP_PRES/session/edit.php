@@ -44,19 +44,19 @@ if (isset($_POST['clicked_submit'])) {
     $Room = $_POST['txtRoom'];
     $Chair = $_POST['txtChai'];
 //			$Feed = $_POST['txtFeed'];
-    $Sect = $_POST['txtSect'];
+    $FbFrm = $_POST['selFbform'];
     //$Last = $_POST['txtLast'];
 //			$Poll = $_POST['txtPoll'];
 //			$Open = $_POST['txtOpen'];
     $Pres = $_POST['txtPresNo'];
-	
+	/*
 	if($Sect != "NULL")
 	{
 		$row=$data->feedbackSection->getRow($Sect);
 		$fb=$row["Feedback"];
 		
 	}
-
+*/
     //Store data of presenter
     for ($i = 0; $i < $Pres; $i++) {
         switch ($i) {
@@ -213,12 +213,13 @@ if (isset($_POST['clicked_submit'])) {
                 "Conference_Section" => $CSId,
 //                    "Feedback"                  => $Feed,
 //					"Feedback_Section"			=> $Sect,
-				"Feedback"=> $fb,
+				"Feedback"=> $FbFrm,
         );
 
-        if ($Sect != "NULL") {
+        /*if ($Sect != "NULL") {
             $newData['Feedback_Section'] = $Sect;
         }
+		*/
         //var_dump($newData);
 
         if ($data->session->updateRow($_GET["id"], $newData)) {
@@ -461,15 +462,12 @@ if (isset($_POST['clicked_submit'])) {
 
       <tr> <td colspan="2"> <hr> </td> </tr>
       <tr>
-    <td class='label'>Feedback Section Id:</td>
-    <td><select name='txtSect' class='selectStyle1'>
-            <option value="NULL">None</option>
+    <td class='label'>Feedback Form:</td>
+        <td><select name='selFbform' class='selectStyle1'>
             <?PHP
-            $data->feedbackSection->printDropDownOptions($Sect, "ID", "Section_Title");
-            ?>
-
-
-        </select></td>
+                        $data->feedback->printDropDownOptions(NULL, "Feedback_Title");
+                        ?>
+          </select></td>
 </tr>
 
 <tr>

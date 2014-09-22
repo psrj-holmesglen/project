@@ -213,7 +213,96 @@ class Feedback extends Table
 	function Feedback()
 	{
 		parent::init();
-		$this->tableName="feedback";	
+		$this->tableName="feedback";
+        $this->idName = "ID";	
+	}
+	
+//Rudhra - Get feedback form that are associated to conference for the logged user	
+	
+	function getRowByMatch_fb_conference($id)
+    {
+		global $userid;
+		
+		// Determine query type.  all = full table array.
+       // $type = "single";
+        // Write our statement.
+        if ($id == "All") {
+            $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE conference.Conference_Admin_Id = ".$userid.") ORDER BY ID";
+			
+        } else if ($id != "All") {
+             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID = ".$id." and  conference.Conference_Admin_Id = ".$userid.") ORDER BY ID";
+			
+        }
+		
+		// Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                return NULL;
+            }
+			
+            return $results;
+			
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+	}
+	
+	//Rudhra - Get feedback form that are associated to Session for the logged user	
+	
+	function getRowByMatch_fb_session($id)
+    {
+		global $userid;
+			
+		// Determine query type.  all = full table array.
+       // $type = "single";
+        // Write our statement.
+        if ($id == "All") {
+          
+		 echo $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+JOIN conference ON conference.ID = conference_section.Conference 
+WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback";
+			
+        } else if ($id != "All") {
+          echo $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+JOIN conference ON conference.ID = conference_section.Conference 
+WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$id.";";
+			
+        }
+		// Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                return NULL;
+            }
+			
+            return $results;
+			
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
 	}
 	
 }
@@ -224,9 +313,41 @@ class FeedbackSection extends Table
     {
         parent::init();
         $this->tableName = "feedback_section";
+		$this->idName = "ID";
     }
-}
+	
+	 function getRowByMatch_fb($colName, $value)
+    {
 
+        echo $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = ".$value." ORDER BY " . $this->idName . ";";
+
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                //die("<br><br>Get Row for $this->tableName: No Results Found!<br><br>");
+				
+                return NULL;
+            }
+			
+            return $results;
+			
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+}
+}
 class FeedbackQuestion extends Table
 {
     function FeedbackQuestion()

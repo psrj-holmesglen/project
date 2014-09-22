@@ -46,6 +46,7 @@ if (isset($_POST["clicked_submit"])) {
     $Titl = $_POST["txtTitl"];
     $Desc = $_POST["txtDesc"];
     $Type = $_POST["txtType"];
+	$Fbid = $_POST["selFbId"];
 
     // A bool flag that determines validation success.
     $validated = true;
@@ -84,6 +85,7 @@ if ($validated) {
             "Section_Title" => $Titl,
             "Section_Desc" => $Desc,
             "Type" => $Type,
+			"Feedback" =>$Fbid,
     );
     if ($data->feedbackSection->addRow($newData))
         header("Location: index.php?page=feedback_form");
@@ -104,13 +106,13 @@ if ($validated) {
     </div>
 
     <!-- Heading -->
-    <h1 style='text-align:center'>Add a Feedback Form</h1>
+    <h1 style='text-align:center'>Add a Feedback Section for a Form</h1>
 
 
     <!-- Form START -->
     <form method='post' action='index.php?page=feedback_form&action=add_s'>
 
-        <h2 style='text-align:center'>Section </h2>
+        <h2 style='text-align:center'>&nbsp;</h2>
         <table class="std_form">
             <tr>
                 <td class='label'>Section Title:</td>
@@ -148,6 +150,27 @@ if ($validated) {
                 </td>
                 <td><span class='errorText'><?= $TypeErr ?></span></td>
             </tr>
+         <!--Rudhra - Adding feedback number to a section --> 
+          <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+          <tr>
+                <td class='label'>FeedBack:</td>
+                <td>
+                     <select name='selFbId' class='selectStyle1Dt'>
+						 <?PHP
+                            $data->feedback->printDropDownOptions($FbId, "ID", "Feedback_Title");
+                            ?>
+
+
+                        </select>
+                </td>
+                <td><span class='errorText'><?= $TypeErr ?></span></td>
+            </tr>
+            
+            
             <tr>
                 <td colspan='2'><span style='float: right;'>
                 	<br/>

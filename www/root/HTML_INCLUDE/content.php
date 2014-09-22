@@ -118,11 +118,20 @@ if ($page == "conference") {
         case "view":
             require 'PHP_PRES/feedback_form/view.php';
             break;
+		case "edit_fb":
+            require 'PHP_PRES/feedback_form/edit_fb.php';
+            break;
         case "edit_s":
             require 'PHP_PRES/feedback_form/edit_s.php';
             break;
+		case "add_fb":
+            require 'PHP_PRES/feedback_form/add_fb.php';
+            break;	
         case "add_s":
             require 'PHP_PRES/feedback_form/add_s.php';
+            break;
+		case "delete_fb":
+            require 'PHP_PRES/feedback_form/delete_fb.php';
             break;
         case "delete_s":
             require 'PHP_PRES/feedback_form/delete_s.php';

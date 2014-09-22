@@ -86,7 +86,7 @@ class CacheMiddleware extends \Slim\Middleware
     {
         switch ($file) {
 
-            case "conference":
+	    /*    case "conference":
                 return "Conference_Tag";
 
             case "schedule":
@@ -102,7 +102,7 @@ class CacheMiddleware extends \Slim\Middleware
                 return "C_Feedback_Tag";
 
             case "session-feedback":
-                return "S_Feedback_Tag";
+                return "S_Feedback_Tag";<?php */
 
             default:
                 return "";

@@ -5917,3 +5917,399 @@ Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
 140917 21:40:01  InnoDB: Shutdown completed; log sequence number 5827358
 140917 21:40:01 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
 
+140918 11:39:25 [Note] Plugin 'FEDERATED' is disabled.
+140918 11:39:26 InnoDB: The InnoDB memory heap is disabled
+140918 11:39:26 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 11:39:26 InnoDB: Compressed tables use zlib 1.2.3
+140918 11:39:26 InnoDB: Initializing buffer pool, size = 16.0M
+140918 11:39:26 InnoDB: Completed initialization of buffer pool
+140918 11:39:26 InnoDB: highest supported file format is Barracuda.
+140918 11:39:28  InnoDB: Waiting for the background threads to start
+140918 11:39:29 InnoDB: 5.5.36 started; log sequence number 5827358
+140918 11:39:29 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 11:39:29 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 11:39:29 [Note] Server socket created on IP: '127.0.0.1'.
+140918 11:39:30 [Note] Event Scheduler: Loaded 0 events
+140918 11:39:30 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140918 15:25:26 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140918 15:25:26 [Note] Event Scheduler: Purging the queue. 0 events
+140918 15:25:26  InnoDB: Starting shutdown...
+140918 15:25:27  InnoDB: Shutdown completed; log sequence number 5828112
+140918 15:25:27 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140918 15:27:16 [Note] Plugin 'FEDERATED' is disabled.
+140918 15:27:16 InnoDB: The InnoDB memory heap is disabled
+140918 15:27:16 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 15:27:16 InnoDB: Compressed tables use zlib 1.2.3
+140918 15:27:16 InnoDB: Initializing buffer pool, size = 16.0M
+140918 15:27:16 InnoDB: Completed initialization of buffer pool
+140918 15:27:16 InnoDB: highest supported file format is Barracuda.
+140918 15:27:17  InnoDB: Waiting for the background threads to start
+140918 15:27:18 InnoDB: 5.5.36 started; log sequence number 5828112
+140918 15:27:18 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 15:27:18 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 15:27:18 [Note] Server socket created on IP: '127.0.0.1'.
+140918 15:27:19 [Note] Event Scheduler: Loaded 0 events
+140918 15:27:19 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140918 17:39:31 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140918 17:39:31 [Note] Event Scheduler: Purging the queue. 0 events
+140918 17:39:31  InnoDB: Starting shutdown...
+140918 17:39:32  InnoDB: Shutdown completed; log sequence number 5828122
+140918 17:39:32 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140918 17:39:36 [Note] Plugin 'FEDERATED' is disabled.
+140918 17:39:36 InnoDB: The InnoDB memory heap is disabled
+140918 17:39:36 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 17:39:36 InnoDB: Compressed tables use zlib 1.2.3
+140918 17:39:36 InnoDB: Initializing buffer pool, size = 16.0M
+140918 17:39:36 InnoDB: Completed initialization of buffer pool
+140918 17:39:36 InnoDB: highest supported file format is Barracuda.
+140918 17:39:37  InnoDB: Waiting for the background threads to start
+140918 17:39:38 InnoDB: 5.5.36 started; log sequence number 5828122
+140918 17:39:38 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 17:39:38 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 17:39:38 [Note] Server socket created on IP: '127.0.0.1'.
+140918 17:39:38 [Note] Event Scheduler: Loaded 0 events
+140918 17:39:38 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140918 18:08:34 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140918 18:08:34 [Note] Event Scheduler: Purging the queue. 0 events
+140918 18:08:34  InnoDB: Starting shutdown...
+140918 18:08:35  InnoDB: Shutdown completed; log sequence number 5828132
+140918 18:08:35 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140918 18:08:55 [Note] Plugin 'FEDERATED' is disabled.
+140918 18:08:55 InnoDB: The InnoDB memory heap is disabled
+140918 18:08:55 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 18:08:55 InnoDB: Compressed tables use zlib 1.2.3
+140918 18:08:55 InnoDB: Initializing buffer pool, size = 16.0M
+140918 18:08:55 InnoDB: Completed initialization of buffer pool
+140918 18:08:55 InnoDB: highest supported file format is Barracuda.
+140918 18:08:56  InnoDB: Waiting for the background threads to start
+140918 18:08:57 InnoDB: 5.5.36 started; log sequence number 5828132
+140918 18:08:57 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 18:08:57 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 18:08:57 [Note] Server socket created on IP: '127.0.0.1'.
+140918 18:08:57 [Note] Event Scheduler: Loaded 0 events
+140918 18:08:57 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140918 18:12:12 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140918 18:12:12 [Note] Event Scheduler: Purging the queue. 0 events
+140918 18:12:12  InnoDB: Starting shutdown...
+140918 18:12:12  InnoDB: Shutdown completed; log sequence number 5828132
+140918 18:12:12 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140918 18:12:35 [Note] Plugin 'FEDERATED' is disabled.
+140918 18:12:35 InnoDB: The InnoDB memory heap is disabled
+140918 18:12:35 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 18:12:35 InnoDB: Compressed tables use zlib 1.2.3
+140918 18:12:35 InnoDB: Initializing buffer pool, size = 16.0M
+140918 18:12:35 InnoDB: Completed initialization of buffer pool
+140918 18:12:36 InnoDB: highest supported file format is Barracuda.
+140918 18:12:36  InnoDB: Waiting for the background threads to start
+140918 18:12:37 InnoDB: 5.5.36 started; log sequence number 5828132
+140918 18:12:37 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 18:12:37 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 18:12:37 [Note] Server socket created on IP: '127.0.0.1'.
+140918 18:12:37 [Note] Event Scheduler: Loaded 0 events
+140918 18:12:37 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140918 18:20:20 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140918 18:20:20 [Note] Event Scheduler: Purging the queue. 0 events
+140918 18:20:20  InnoDB: Starting shutdown...
+140918 18:20:21  InnoDB: Shutdown completed; log sequence number 5828132
+140918 18:20:21 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140918 18:24:11 [Note] Plugin 'FEDERATED' is disabled.
+140918 18:24:11 InnoDB: The InnoDB memory heap is disabled
+140918 18:24:11 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140918 18:24:11 InnoDB: Compressed tables use zlib 1.2.3
+140918 18:24:11 InnoDB: Initializing buffer pool, size = 16.0M
+140918 18:24:11 InnoDB: Completed initialization of buffer pool
+140918 18:24:11 InnoDB: highest supported file format is Barracuda.
+140918 18:24:12  InnoDB: Waiting for the background threads to start
+140918 18:24:13 InnoDB: 5.5.36 started; log sequence number 5828132
+140918 18:24:13 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140918 18:24:13 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140918 18:24:13 [Note] Server socket created on IP: '127.0.0.1'.
+140918 18:24:14 [Note] Event Scheduler: Loaded 0 events
+140918 18:24:14 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140919  8:47:47 [Note] Plugin 'FEDERATED' is disabled.
+140919  8:47:47 InnoDB: The InnoDB memory heap is disabled
+140919  8:47:47 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140919  8:47:47 InnoDB: Compressed tables use zlib 1.2.3
+140919  8:47:47 InnoDB: Initializing buffer pool, size = 16.0M
+140919  8:47:47 InnoDB: Completed initialization of buffer pool
+140919  8:47:47 InnoDB: highest supported file format is Barracuda.
+InnoDB: The log sequence number in ibdata files does not match
+InnoDB: the log sequence number in the ib_logfiles!
+140919  8:47:47  InnoDB: Database was not shut down normally!
+InnoDB: Starting crash recovery.
+InnoDB: Reading tablespace information from the .ibd files...
+InnoDB: Restoring possible half-written data pages from the doublewrite
+InnoDB: buffer...
+140919  8:47:50  InnoDB: Waiting for the background threads to start
+140919  8:47:51 InnoDB: 5.5.36 started; log sequence number 5829387
+140919  8:47:51 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140919  8:47:51 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140919  8:47:51 [Note] Server socket created on IP: '127.0.0.1'.
+140919  8:47:53 [Note] Event Scheduler: Loaded 0 events
+140919  8:47:53 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140919 11:48:27 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140919 11:48:27 [Note] Event Scheduler: Purging the queue. 0 events
+140919 11:48:27  InnoDB: Starting shutdown...
+140919 11:48:29  InnoDB: Shutdown completed; log sequence number 5910988
+140919 11:48:29 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140919 11:52:32 [Note] Plugin 'FEDERATED' is disabled.
+140919 11:52:32 InnoDB: The InnoDB memory heap is disabled
+140919 11:52:32 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140919 11:52:32 InnoDB: Compressed tables use zlib 1.2.3
+140919 11:52:32 InnoDB: Initializing buffer pool, size = 16.0M
+140919 11:52:32 InnoDB: Completed initialization of buffer pool
+140919 11:52:32 InnoDB: highest supported file format is Barracuda.
+140919 11:52:33  InnoDB: Waiting for the background threads to start
+140919 11:52:34 InnoDB: 5.5.36 started; log sequence number 5910988
+140919 11:52:34 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140919 11:52:34 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140919 11:52:34 [Note] Server socket created on IP: '127.0.0.1'.
+140919 11:52:36 [Note] Event Scheduler: Loaded 0 events
+140919 11:52:36 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140919 13:59:39 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140919 13:59:39 [Note] Event Scheduler: Purging the queue. 0 events
+140919 13:59:39  InnoDB: Starting shutdown...
+140919 13:59:41  InnoDB: Shutdown completed; log sequence number 5919416
+140919 13:59:41 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140919 14:01:08 [Note] Plugin 'FEDERATED' is disabled.
+140919 14:01:08 InnoDB: The InnoDB memory heap is disabled
+140919 14:01:08 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140919 14:01:08 InnoDB: Compressed tables use zlib 1.2.3
+140919 14:01:08 InnoDB: Initializing buffer pool, size = 16.0M
+140919 14:01:08 InnoDB: Completed initialization of buffer pool
+140919 14:01:08 InnoDB: highest supported file format is Barracuda.
+140919 14:01:09  InnoDB: Waiting for the background threads to start
+140919 14:01:10 InnoDB: 5.5.36 started; log sequence number 5919416
+140919 14:01:10 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140919 14:01:10 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140919 14:01:10 [Note] Server socket created on IP: '127.0.0.1'.
+140919 14:01:11 [Note] Event Scheduler: Loaded 0 events
+140919 14:01:11 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140919 21:37:54 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140919 21:37:54 [Note] Event Scheduler: Purging the queue. 0 events
+140919 21:37:54  InnoDB: Starting shutdown...
+140919 21:37:54  InnoDB: Shutdown completed; log sequence number 5919728
+140919 21:37:54 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140919 23:16:59 [Note] Plugin 'FEDERATED' is disabled.
+140919 23:16:59 InnoDB: The InnoDB memory heap is disabled
+140919 23:16:59 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140919 23:16:59 InnoDB: Compressed tables use zlib 1.2.3
+140919 23:16:59 InnoDB: Initializing buffer pool, size = 16.0M
+140919 23:16:59 InnoDB: Completed initialization of buffer pool
+140919 23:16:59 InnoDB: highest supported file format is Barracuda.
+140919 23:17:00  InnoDB: Waiting for the background threads to start
+140919 23:17:01 InnoDB: 5.5.36 started; log sequence number 5919728
+140919 23:17:01 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140919 23:17:01 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140919 23:17:01 [Note] Server socket created on IP: '127.0.0.1'.
+140919 23:17:02 [Note] Event Scheduler: Loaded 0 events
+140919 23:17:02 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140920  8:18:37 [Note] Plugin 'FEDERATED' is disabled.
+140920  8:18:37 InnoDB: The InnoDB memory heap is disabled
+140920  8:18:37 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140920  8:18:37 InnoDB: Compressed tables use zlib 1.2.3
+140920  8:18:37 InnoDB: Initializing buffer pool, size = 16.0M
+140920  8:18:37 InnoDB: Completed initialization of buffer pool
+140920  8:18:37 InnoDB: highest supported file format is Barracuda.
+InnoDB: The log sequence number in ibdata files does not match
+InnoDB: the log sequence number in the ib_logfiles!
+140920  8:18:37  InnoDB: Database was not shut down normally!
+InnoDB: Starting crash recovery.
+InnoDB: Reading tablespace information from the .ibd files...
+InnoDB: Restoring possible half-written data pages from the doublewrite
+InnoDB: buffer...
+140920  8:18:38  InnoDB: Waiting for the background threads to start
+140920  8:18:39 InnoDB: 5.5.36 started; log sequence number 5939480
+140920  8:18:39 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140920  8:18:39 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140920  8:18:39 [Note] Server socket created on IP: '127.0.0.1'.
+140920  8:18:40 [Note] Event Scheduler: Loaded 0 events
+140920  8:18:40 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140920 12:58:04 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140920 12:58:04 [Note] Event Scheduler: Purging the queue. 0 events
+140920 12:58:04  InnoDB: Starting shutdown...
+140920 12:58:06  InnoDB: Shutdown completed; log sequence number 5940753
+140920 12:58:06 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140920 12:58:45 [Note] Plugin 'FEDERATED' is disabled.
+140920 12:58:45 InnoDB: The InnoDB memory heap is disabled
+140920 12:58:45 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140920 12:58:45 InnoDB: Compressed tables use zlib 1.2.3
+140920 12:58:45 InnoDB: Initializing buffer pool, size = 16.0M
+140920 12:58:45 InnoDB: Completed initialization of buffer pool
+140920 12:58:45 InnoDB: highest supported file format is Barracuda.
+140920 12:58:46  InnoDB: Waiting for the background threads to start
+140920 12:58:47 InnoDB: 5.5.36 started; log sequence number 5940753
+140920 12:58:47 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140920 12:58:47 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140920 12:58:47 [Note] Server socket created on IP: '127.0.0.1'.
+140920 12:58:47 [Note] Event Scheduler: Loaded 0 events
+140920 12:58:47 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140920 13:19:23 [Note] Plugin 'FEDERATED' is disabled.
+140920 13:19:23 InnoDB: The InnoDB memory heap is disabled
+140920 13:19:23 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140920 13:19:23 InnoDB: Compressed tables use zlib 1.2.3
+140920 13:19:23 InnoDB: Initializing buffer pool, size = 16.0M
+140920 13:19:23 InnoDB: Completed initialization of buffer pool
+140920 13:19:23 InnoDB: highest supported file format is Barracuda.
+InnoDB: The log sequence number in ibdata files does not match
+InnoDB: the log sequence number in the ib_logfiles!
+140920 13:19:23  InnoDB: Database was not shut down normally!
+InnoDB: Starting crash recovery.
+InnoDB: Reading tablespace information from the .ibd files...
+InnoDB: Restoring possible half-written data pages from the doublewrite
+InnoDB: buffer...
+140920 13:19:25  InnoDB: Waiting for the background threads to start
+140920 13:19:26 InnoDB: 5.5.36 started; log sequence number 5940763
+140920 13:19:26 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140920 13:19:26 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140920 13:19:26 [Note] Server socket created on IP: '127.0.0.1'.
+140920 13:19:26 [Note] Event Scheduler: Loaded 0 events
+140920 13:19:26 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140920 19:31:53 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140920 19:31:53 [Note] Event Scheduler: Purging the queue. 0 events
+140920 19:31:53  InnoDB: Starting shutdown...
+140920 19:31:54  InnoDB: Shutdown completed; log sequence number 5943498
+140920 19:31:55 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140920 19:45:56 [Note] Plugin 'FEDERATED' is disabled.
+140920 19:45:56 InnoDB: The InnoDB memory heap is disabled
+140920 19:45:56 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140920 19:45:56 InnoDB: Compressed tables use zlib 1.2.3
+140920 19:45:56 InnoDB: Initializing buffer pool, size = 16.0M
+140920 19:45:56 InnoDB: Completed initialization of buffer pool
+140920 19:45:57 InnoDB: highest supported file format is Barracuda.
+140920 19:45:58  InnoDB: Waiting for the background threads to start
+140920 19:45:59 InnoDB: 5.5.36 started; log sequence number 5943498
+140920 19:45:59 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140920 19:45:59 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140920 19:45:59 [Note] Server socket created on IP: '127.0.0.1'.
+140920 19:46:00 [Note] Event Scheduler: Loaded 0 events
+140920 19:46:00 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140921  9:07:19 [Note] Plugin 'FEDERATED' is disabled.
+140921  9:07:19 InnoDB: The InnoDB memory heap is disabled
+140921  9:07:19 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140921  9:07:19 InnoDB: Compressed tables use zlib 1.2.3
+140921  9:07:19 InnoDB: Initializing buffer pool, size = 16.0M
+140921  9:07:19 InnoDB: Completed initialization of buffer pool
+140921  9:07:19 InnoDB: highest supported file format is Barracuda.
+InnoDB: The log sequence number in ibdata files does not match
+InnoDB: the log sequence number in the ib_logfiles!
+140921  9:07:19  InnoDB: Database was not shut down normally!
+InnoDB: Starting crash recovery.
+InnoDB: Reading tablespace information from the .ibd files...
+InnoDB: Restoring possible half-written data pages from the doublewrite
+InnoDB: buffer...
+140921  9:07:22  InnoDB: Waiting for the background threads to start
+140921  9:07:23 InnoDB: 5.5.36 started; log sequence number 5950426
+140921  9:07:23 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140921  9:07:23 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140921  9:07:23 [Note] Server socket created on IP: '127.0.0.1'.
+140921  9:07:25 [Note] Event Scheduler: Loaded 0 events
+140921  9:07:25 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140921 18:03:10 [Note] Plugin 'FEDERATED' is disabled.
+140921 18:03:10 InnoDB: The InnoDB memory heap is disabled
+140921 18:03:10 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140921 18:03:10 InnoDB: Compressed tables use zlib 1.2.3
+140921 18:03:10 InnoDB: Initializing buffer pool, size = 16.0M
+140921 18:03:10 InnoDB: Completed initialization of buffer pool
+140921 18:03:11 InnoDB: highest supported file format is Barracuda.
+InnoDB: The log sequence number in ibdata files does not match
+InnoDB: the log sequence number in the ib_logfiles!
+140921 18:03:11  InnoDB: Database was not shut down normally!
+InnoDB: Starting crash recovery.
+InnoDB: Reading tablespace information from the .ibd files...
+InnoDB: Restoring possible half-written data pages from the doublewrite
+InnoDB: buffer...
+140921 18:03:13  InnoDB: Waiting for the background threads to start
+140921 18:03:14 InnoDB: 5.5.36 started; log sequence number 5950769
+140921 18:03:14 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140921 18:03:14 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140921 18:03:14 [Note] Server socket created on IP: '127.0.0.1'.
+140921 18:03:15 [Note] Event Scheduler: Loaded 0 events
+140921 18:03:15 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140921 23:02:13 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140921 23:02:13 [Note] Event Scheduler: Purging the queue. 0 events
+140921 23:02:14  InnoDB: Starting shutdown...
+140921 23:02:15  InnoDB: Shutdown completed; log sequence number 5956123
+140921 23:02:15 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140921 23:02:16 [Note] Plugin 'FEDERATED' is disabled.
+140921 23:02:16 InnoDB: The InnoDB memory heap is disabled
+140921 23:02:16 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140921 23:02:16 InnoDB: Compressed tables use zlib 1.2.3
+140921 23:02:16 InnoDB: Initializing buffer pool, size = 16.0M
+140921 23:02:16 InnoDB: Completed initialization of buffer pool
+140921 23:02:16 InnoDB: highest supported file format is Barracuda.
+140921 23:02:17  InnoDB: Waiting for the background threads to start
+140921 23:02:18 InnoDB: 5.5.36 started; log sequence number 5956123
+140921 23:02:18 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140921 23:02:18 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140921 23:02:18 [Note] Server socket created on IP: '127.0.0.1'.
+140921 23:02:18 [Note] Event Scheduler: Loaded 0 events
+140921 23:02:18 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140921 23:03:38 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140921 23:03:38 [Note] Event Scheduler: Purging the queue. 0 events
+140921 23:03:38  InnoDB: Starting shutdown...
+140921 23:03:40  InnoDB: Shutdown completed; log sequence number 5956433
+140921 23:03:40 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+
+140922  9:41:05 [Note] Plugin 'FEDERATED' is disabled.
+140922  9:41:05 InnoDB: The InnoDB memory heap is disabled
+140922  9:41:05 InnoDB: Mutexes and rw_locks use Windows interlocked functions
+140922  9:41:05 InnoDB: Compressed tables use zlib 1.2.3
+140922  9:41:05 InnoDB: Initializing buffer pool, size = 16.0M
+140922  9:41:05 InnoDB: Completed initialization of buffer pool
+140922  9:41:06 InnoDB: highest supported file format is Barracuda.
+140922  9:41:09  InnoDB: Waiting for the background threads to start
+140922  9:41:10 InnoDB: 5.5.36 started; log sequence number 5956433
+140922  9:41:10 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
+140922  9:41:10 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
+140922  9:41:10 [Note] Server socket created on IP: '127.0.0.1'.
+140922  9:41:11 [Note] Event Scheduler: Loaded 0 events
+140922  9:41:11 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: ready for connections.
+Version: '5.5.36'  socket: ''  port: 3306  MySQL Community Server (GPL)
+140922 12:44:40 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Normal shutdown
+
+140922 12:44:40 [Note] Event Scheduler: Purging the queue. 0 events
+140922 12:44:40  InnoDB: Starting shutdown...
+140922 12:44:42  InnoDB: Shutdown completed; log sequence number 5956443
+140922 12:44:42 [Note] G:\RudhraTafe\Epworth\Git\core\mysql\bin\mysqld_z.exe: Shutdown complete
+

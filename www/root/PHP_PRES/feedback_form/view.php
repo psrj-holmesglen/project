@@ -1,7 +1,6 @@
 <div class="section_view">
-<link rel="stylesheet" type="text/css" href="CSS/std_data_table.css"/>
-
-<?php
+  <link rel="stylesheet" type="text/css" href="CSS/std_data_table.css"/>
+  <?php
 // _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ 
 //|_   _|   __|  _  |     |  |   __|  _  |  _  | __  |_   _|  _  |
 //  | | |   __|     | | | |  |__   |   __|     |    -| | | |     |
@@ -9,263 +8,249 @@
 //                                                                
 // * File: View.php
 // * View Feedback Question for the dstc e conference web application.
-// * Written by TEAM SPARTA 
-// * Last updated: 20-04-14 by Shohei Masuanga -->
+// * Written by JPRS SQUAD
+// * Last updated: 21-09-14 by Rudhra -->
 
 
 ////
 //// Setup START
 ////
 
-// Import libraries.
-require "PHP_DB/dbObject.php";
-require "PHP_PRES/helpers/dateTimePicker.php";
+  // Import libraries.
+    require "PHP_DB/dbObject.php";
+	require "PHP_PRES/helpers/dateTimePicker.php";
 
-// Get a copy of the DAL object.
-$data = new Data();
-
-
+    // Get a copy of the DAL object.
+    $data = new Data();
+	$dataFb = new Data();
+	
+  
 $CoId = "All";
 $SesId = "All";
-$SecId = "All";
+
+$IsConferenceSelected = true;
+$IsSessionSelected = false;
+
+//$SecId = "All";
+
+
 ////
 //// Setup END
 ////
 // If submit has been clicked:
-if (isset($_POST['conference_selected']) || $_REQUEST["con"] == "ConPost") {
+
+
+if (isset($_POST['radiobutton']) && $_POST['radiobutton'] == '1')
+{
+	
+	$CoId = $_POST["selCoId"];
+	// $table = $data->feedback->getRowByMatch_fb_conference($CoId);
+	$IsConferenceSelected = true;
+	$IsSessionSelected = false;
+
+}
+
+if (isset($_POST['radiobutton']) && $_POST['radiobutton'] == '2')
+{
+	
+    $SesId = $_POST["selSesId"];
+	
+	$IsConferenceSelected = false;
+	$IsSessionSelected = true;
+}
+if (isset($_POST['radConf']) ) {
 
     // Grab our data from the form.
 
     $CoId = $_POST["selCoId"];
 
-
+	$IsConferenceSelected = true;
+	$IsSessionSelected = false;
 }
-if (isset($_POST['session_selected']) || $_REQUEST["ses"] == "SesPost") {
+
+if (isset($_POST['radSess']) ) {
 
     // Grab our data from the form.
 
     $SesId = $_POST["selSesId"];
 
-
+	$IsConferenceSelected = false;
+	$IsSessionSelected = true;
 }
-if (isset($_POST['section_selected']) || $_REQUEST["sec"] == "SecPost") {
 
-    // Grab our data from the form.
-
-    $SecId = $_POST["selSecId"];
-}
 
 if ($CoId == "All" && $SesId == "All") {
     $Method = 0;
-} else {
+}
+else {
     $Method = $_REQUEST["radiobutton"];
 }
+
 ?>
-<script type="text/javascript">
+  <script type="text/javascript">
     function Conference() {
-        document.getElementById('conf').style.display = "";
-        document.getElementById('sect').style.display = "";
-        document.getElementById('sess').style.display = "none";
+        //document.getElementById('conf').style.display = "";
+        //document.getElementById('sess').style.display = "none";
+		//var type = document.getElementById('radConf').value;
+		<?php
+		$_REQUEST["con"] = "ConPost";
+		$_REQUEST["ses"] = "";
+		?>
+		document.forms["rdoForm"].submit();
+		
     }
 
     function Session() {
-        document.getElementById('sess').style.display = "";
-        document.getElementById('sect').style.display = "";
-        document.getElementById('conf').style.display = "none";
+       // document.getElementById('sess').style.display = "";
+        //document.getElementById('conf').style.display = "none";
+		<?php
+		$_REQUEST["con"] = "";
+		$_REQUEST["ses"] = "SesPost";
+		?>
+		document.forms["rdoForm"].submit();
     }
 
 </script>
-
-<h1>Feedback Form</h1>
-<table>
-    <tr>
-        <td>Select Method:</td>
-        <td colspan="2">
-            <input name='radiobutton' type='radio' value='1' onclick='Conference();' checked="checked">Conference-Feedback<br/>
-            <input name='radiobutton' type='radio' value='2' onclick='Session();'>Session-Feedback
-        </td>
-    </tr>
-    <tr id="conf">
-        <td class='label'>Select Conference:</td>
-        <td>
-            <form method="post" action="index.php?page=feedback_form&action=view">
-                <select name='selCoId' class='selectStyle1' onchange='this.form.submit()'>
-                    <option value="All">All Conferences</option>
-                    <?php
+  <form id="rdoForm" method="post" action="index.php?page=feedback_form&action=view">
+    <h1>Feedback Form</h1>
+    <br/>
+    <div>
+      <table>
+        <tr>
+          <td>Select Method:</td>
+          <td>&nbsp;</td>
+          <td><input name='radiobutton' type='radio' value='1' id="radConf" onclick='Conference();'  <?php if($IsConferenceSelected)  echo ' checked="checked"';?> >
+            Conference-Feedback<br/>
+            <input name='radiobutton' type='radio' value='2' id="radSess" onclick='Session();' <?php if($IsSessionSelected)  echo ' checked="checked"';?>>
+            Session-Feedback </td>
+        </tr>
+        <table>
+          <tr id="conf"  <?php if($IsConferenceSelected)  {echo ' style="display:block"' ;}
+	else {echo ' style="display:none"' ;} 	?> >
+            <td class='label'>Select Conference:</td>
+            <td>&nbsp;</td>
+            <td><select name='selCoId' class='selectStyle1' onchange='this.form.submit()'>
+                <option value="All">All Conferences</option>
+                <?php
                     // Create selectbox for sorting by conference
-
                     $data->conference->printDropDownOptions($CoId, "Title");
                     ?>
-
-                </select>
-        </td>
-        <td>
-
-
-            <input type='hidden' name='con' value='ConPost'></form>
-        </td>
-    </tr>
-    <tr id="sess" style="display:none">
-        <td class='label'>Select Session:</td>
-        <td>
-            <form method="post" action="index.php?page=feedback_form&action=view">
-                <select name='selSesId' class='selectStyle1' onchange='this.form.submit()'>
-                    <option value="All">All Sessions</option>
-                    <?php
+              </select></td>
+            <td><input type='hidden' name='con' value='ConPost'></td>
+          </tr>
+          <tr id="sess"  <?php if($IsSessionSelected)  {echo ' style="display:block"' ;} 
+	else {echo ' style="display:none"' ;}	?> >
+            <td class='label'>Select Session:</td>
+            <td>&nbsp;</td>
+            <td><select name='selSesId' class='selectStyle1' onchange='this.form.submit()'>
+                <option value="All">All Sessions</option>
+                <?php
                     // Create selectbox for sorting by conference
-
                     $data->session->printDropDownOptions($SesId, "Title");
                     ?>
-
-                </select>
-        </td>
-        <td>
-
-
-            <input type='hidden' name='ses' value='SesPost'></form>
-        </td>
-    </tr>
-    <tr id="sect">
-        <td class='label'>Select Section:</td>
-        <td>
-            <form method="post" action="index.php?page=feedback_form&action=view">
-                <select name='selSecId' class='selectStyle1' onchange='this.form.submit()'>
-                    <option value="All">All Sections</option>
-                    <?PHP
-                    // Create selectbox for section 
-                    if ($CoId != "All" || $SesId != "All") {
-                        if ($CoId != "All") {
-                            $Stmt = "SELECT ID, Section_Title FROM feedback_section WHERE Feedback IN (SELECT Feedback FROM conference WHERE ID = '$CoId') ORDER BY ID";
-                        }
-                        if ($SesId != "All") {
-                            $Stmt = "SELECT ID, Section_Title FROM feedback_section WHERE Feedback IN (SELECT Feedback FROM session WHERE ID = $SesId) ORDER BY ID";
-                        }
-                        $data->feedback->printDropDownOptions_fb($Stmt);
-                    } else {
-                        $data->feedbackSection->printDropDownOptions(NULL, "Section_Title");
-                    }
-                    ?>
-
-                </select>
-        </td>
-        <td>
-
-
-            <input type='hidden' name='sec' value='SecPost'></form>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <hr>
-        </td>
-    </tr>
-</table>
-
-<h2>Section</h2>
-
-<div class="scroll">
-    <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
-        <thead>
-        <tr style="background-color:#999" align="left" valign="middle">
-            <td>ID</td>
-            <td>Section Title</td>
-            <td>Section Description</td>
-            <td>Type</td>
-            <td>Action</td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        if ($CoId != "All" || $SesId != "All" || $SecId != "All") {
-
-            if ($SecId != "All") {
-                $table = $data->feedbackSection->getRowbyMatch("ID", $SecId);
-            } else {
-                if ($CoId != "All")
-                    $table = $data->feedbackSection->getRowByMatch_fb("feedback_section", "conference", "Feedback", "Feedback", $CoId);
-                if ($SesId != "All")
-                    $table = $data->feedbackSection->getRowByMatch_fb("feedback_section", "session", "Feedback", "Feedback", $SesId);
-
-            }
-        } else {
-            $table = $data->feedbackSection->getRow();
-        }
-
-
-        foreach ($table as $row) {
-            ?>
-            <tr style="font-size:86%;">
-                <td><?= $row["ID"] ?></td>
-                <td><?= $row["Section_Title"] ?></td>
-                <td><?= $row["Section_Desc"] ?></td>
-                <td><?= $row["Type"] ?></td>
-                <td align="center" valign="middle">
-                    <a href='index.php?page=feedback_form&action=edit_s&Sid=<?= $row["ID"] ?>'>Edit</a>
-                    <a href='index.php?page=feedback_form&action=delete_s&Sid=<?= $row["ID"] ?>'>Delete</a>
-                </td>
-
-            </tr>
-        <?php }; ?>
-        </tbody>
-    </table>
-</div>
-<p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
-<br/>
-    <span style="text-align:right;"><form method="get" action="index.php">
-            <input type="submit" value="Add Section" class="buttonStyle1"/>
-            <input type="hidden" name="page" value="feedback_form"/>
-            <input type="hidden" name="action" value="add_s"/>
-        </form></span>
+              </select></td>
+            <td><input type='hidden' name='ses' value='SesPost'></td>
+          </tr>
+        </table>
         <br/>
-<hr/>
-<h2> Questions</h2>
+        <div class="scroll"> <!--Add scroll bar to table -->
+          <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
+            <thead>
+              <tr style="background-color:#999" align="left" valign="middle">
+                <td>Title</td>
+                <td>Description</td>
+                <td>Actions</td>
+              </tr>
+            </thead>
+            <tbody>
+              <?PHP
+			  if($IsSessionSelected  )
+			  {
+				  //echo $SesId;
+				  $table = $data->feedback->getRowByMatch_fb_session($SesId);
 
-<div class="scroll">
-    <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
-        <thead>
-        <tr style="background-color:#999" align="left" valign="middle">
-            <td>ID</td>
-            <td>Question Text</td>
-            <td>Type</td>
-            <td>Section ID</td>
-        </tr>
-        </thead>
-        <tbody>
-        <?PHP
-        // Sort table by conference
-
-        if ($SecId == "All") {
-            if ($CoId != "All")
-                $table = $data->feedbackSection->getRowByMatch_fb2("conference", $CoId);
-            else if ($SesId != "All")
-                $table = $data->feedbackSection->getRowByMatch_fb2("session", $SesId);
-            else
-                $table = $data->feedbackQuestion->getRow("all");
-        } else
-            $table = $data->feedbackQuestion->getRowByMatch_ff($SecId);
-
-        // TODO: alert no entries.
-        foreach ($table as $row) {
+			  }
+			  else
+			  {
+				   $table = $data->feedback->getRowByMatch_fb_conference($CoId);	 
+				   
+			  }
+			  // if ($table= $data->feedback->getRowByMatch_fb_conference("conference", $CoId) || $CoId == "All") {
+            // TODO: alert no entries.
+			if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
+			
+            foreach ($table as $row) {
+                ?>
+              <tr style="font-size:86%;"> 
+                <!--<td align="left" valign="middle"><?= $row["ID"] ?></td>-->
+                <td align="left" valign="middle"><?= $row["Feedback_Title"]?></td>
+                <td align="left" valign="middle"><?= $row["Feedback_Desc"] ?></td>
+                <td align="center" valign="middle"><a href='index.php?page=feedback_form&action=edit_fb&id=<?= $row["ID"] ?>'>Edit</a> <a href='index.php?page=feedback_form&action=delete_fb&id=<?= $row["ID"] ?>'>Delete</a></td>
+              </tr>
+              <?PHP
+			}
+			 //  }
+			 
             ?>
-            <tr style="font-size:86%;">
-                <td align="left" valign="middle"><?= $row["ID"] ?></td>
-                <td align="left" valign="middle"><?= $row["Question_Text"] ?></td>
-                <td align="left" valign="middle"><?php if ($row["Type"] == 1) {
-                        echo "Multiple Choice";
-                    } else {
-                        echo "Text Response";
-                    } ?></td>
-                <td align="left" valign="middle">
-                    <?php
-                    //$sect = $row["Feedback_Section"];
-                    //$row2 = $data->feedbackSection->getRow($sect);
-                    echo $row["feedback_section"]; //$row2["Section_Title"];
-                    ?>
-                </td>
-            </tr>
-        <?PHP } ?>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+          </table>
+        </div>
+      </table>
+    </div>
+  </form>
+  <p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
+  <br/>
+  <span style="text-align:right;">
+  <form method="get" action="index.php">
+    <input type="submit" value="Add Feedback" class="buttonStyle1"/>
+    <input type="hidden" name="page" value="feedback_form"/>
+    <input type="hidden" name="action" value="add_fb"/>
+  </form>
+  </span> </div><!-- End of displaying feedback forms -->
 
+
+<!-- Start of displaying feedback Sections -->  
+<form>
+  <div> <br/>
+    <h2> Feedback Sections</h2>
+    <table width="100%" border="1" cellpadding="5" cellspacing="0" class="stdDataTable">
+      <thead>
+        <tr style="background-color:#999" align="left" valign="middle">
+          <td>Title</td>
+          <td>Description</td>
+          <td>Type</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        <?PHP
+			  if($IsSessionSelected  )
+			  {
+				$table = $data->feedbackSection->getRowbyMatch("ID", $SesId);
+			  }
+			  else
+			  {
+				  $table = $data->feedback->getRowbyMatch("ID", $CoId);
+			  }
+			  // if ($table= $data->feedback->getRowByMatch_fb_conference("conference", $CoId) || $CoId == "All") {
+            // TODO: alert no entries.
+			if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
+			
+            foreach ($table as $row) {
+                ?>
+        <tr style="font-size:86%;"> 
+          <!--<td align="left" valign="middle"><?= $row["ID"] ?></td>-->
+          <td align="left" valign="middle"><?= $row["Section_Title"]?></td>
+          <td align="left" valign="middle"><?= $row["Section_Desc"] ?></td>
+          <td align="left" valign="middle"><?= $row["Type"] ?></td>
+          <td align="center" valign="middle"><a href='index.php?page=feedback_form&action=edit_s&id=<?= $row["ID"] ?>'>Edit</a> <a href='index.php?page=feedback_form&action=delete_s&id=<?= $row["ID"] ?>'>Delete</a></td>
+        </tr>
+        <?PHP
+			}
+			 //  }
+            ?>
+      </tbody>
+    </table>
+  </div>
+</form>
 </div>

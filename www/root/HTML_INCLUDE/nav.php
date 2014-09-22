@@ -185,8 +185,11 @@
         <li>
             <a href='index.php?page=feedback_form&action=view'> View Forms</a>
             <ul>
-                <li>
-                    <a href='index.php?page=feedback_form&action=add_s'> Add Section Form</a>
+               <li>
+                    <a href='index.php?page=feedback_form&action=add_fb'> Add Feedback Form</a>
+                </li>
+                 <li>
+                    <a href='index.php?page=feedback_form&action=add_s'> Add Feedback Section</a>
                 </li>
             </ul>
         </li>

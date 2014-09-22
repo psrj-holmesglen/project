@@ -24,10 +24,11 @@ if (isset($_POST["clicked_submit"])) {
     $data = new Data();
 
     if ($userRow = $data->user->getRowByMatch("User_name", $_POST["txtUser"])) {
+		
         // Found username
         if ($userRow[0]["Password"] == $hashPassword) {
             // Found Password.
-        echo    $_SESSION["userFirstName"] = $userRow[0]["First_Name"];
+            $_SESSION["userFirstName"] = $userRow[0]["First_Name"];
             $_SESSION["userLastName"] = $userRow[0]["Last_Name"];
             $_SESSION["userEmail"] = $userRow[0]["Email"];
 			$_SESSION["userName"] = $userRow[0]["User_name"];

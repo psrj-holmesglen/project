@@ -88,7 +88,7 @@ if (isset($_POST['conference_selected'])) {
                 <tr align="left" valign="middle" style="font-size:86%;">
 
 
-                    <td><?= $row["Title"] ?></td>
+                    <td><?= $row["Title"].$row["Feedback"] ?></td>
                     <td><?= $row["Description"] ?></td>
                     <td><?= $row["Start_Time"] ?></td>
                     <td><?= $row["End_Time"] ?></td>

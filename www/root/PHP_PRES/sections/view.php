@@ -81,7 +81,7 @@
                 ?>
                 <tr style="font-size:86%;">
                 	<!--<td align="left" valign="middle"><?= $row["Conference_Admin_Id"].$row["ID"] ?></td>-->
-                    <td align="left" valign="middle"><?= $row["Ordering"].$row["ID"]?></td>
+                    <td align="left" valign="middle"><?= $row["Ordering"]?></td>
                     <td align="left" valign="middle"><?= $row["Section_Title"] ?></td>
                     <td align="center" valign="middle">
                         <a href='index.php?page=section&action=edit&id=<?= $row["ID"] ?>'>Edit</a>

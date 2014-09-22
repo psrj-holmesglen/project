@@ -3,6 +3,7 @@
 $app->post('/Polling/', 'postPolling');
 $app->post('/Feedback/', 'postFeedback');
 $app->post('/QA/', 'postQA');
+$app->post('/Qq/', 'postQq');
 
 /**
  * Accepts the polling data and inserts it into the database
@@ -105,4 +106,9 @@ function postQA()
     $stmt->bindParam("Session", $post['Session']);
     $stmt->bindParam("Profile", $post['Profile']);
     $stmt->execute();
+}
+
+function postQq()
+{
+	echo "Works";
 }
