@@ -77,7 +77,7 @@
         <tbody>
 
         <?PHP
-        $SecId = $_GET['Sid'];
+        $SecId = $_GET['id'];
         $row = $data->feedbackSection->getRow($SecId);
 
 
@@ -113,10 +113,9 @@
         <tr>
             <td>Are you sure you want to delete this Feedbackck Section?</td>
             <td style='text-align:right;'>
-                <form method='post' action='index.php?page=feedback_form&action=delete_s&id=<?= $_GET['Sid'] ?>'>
-                    <input type='submit' name='clicked_no' class='buttonStyle1' value='Cancel'/>
-                    <span style='padding-left:10px'><input type='submit' name='clicked_delete' class='buttonStyle1'
-                                                           value='DELETE'/></span>
+                <form method='post' action='index.php?page=feedback_form&action=delete_s&id=<?= $_GET['id'] ?>'>
+           <input type='submit' name='clicked_no' class='buttonStyle1' value='Cancel'/> <span style='padding-left:10px'>
+           <input type='submit' name='clicked_delete' class='buttonStyle1' value='DELETE'/></span>
 
                 </form>
             </td>

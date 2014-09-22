@@ -49,7 +49,7 @@ if (isset($_POST['session_selected'])) {
                         <option value="all">All Sessions</option>
                         <?php
                         //Populating the Session Drop Down
-                        $data->session->printDropDownOptions($SId, "Title");
+                        $data->session->printDropDownOptions_session($SId, "Title");
 
                         ?>
                     </select>

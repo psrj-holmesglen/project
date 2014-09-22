@@ -22,7 +22,7 @@
 
     // Get a copy of the DAL object.
     $data = new Data();
-	$dataFb = new Data();
+	
 	
   
 $CoId = "All";
@@ -146,7 +146,7 @@ else {
                 <option value="All">All Sessions</option>
                 <?php
                     // Create selectbox for sorting by conference
-                    $data->session->printDropDownOptions($SesId, "Title");
+                    $data->session->printDropDownOptions_session($SesId, "Title");
                     ?>
               </select></td>
             <td><input type='hidden' name='ses' value='SesPost'></td>
@@ -232,8 +232,7 @@ else {
 			  {
 				  $table = $data->feedback->getRowbyMatch("ID", $CoId);
 			  }
-			  // if ($table= $data->feedback->getRowByMatch_fb_conference("conference", $CoId) || $CoId == "All") {
-            // TODO: alert no entries.
+			 // TODO: alert no entries.
 			if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
 			
             foreach ($table as $row) {
@@ -253,4 +252,12 @@ else {
     </table>
   </div>
 </form>
+<p align="right" style="font-size:75%"> <?PHP echo "Returned: " . get_Datetime_Now() ?></p>
+<br/>
+    <span style="text-align:right;"><form method="get" action="index.php">
+            <input type="submit" value="Add Section" class="buttonStyle1"/>
+            <input type="hidden" name="page" value="feedback_form"/>
+            <input type="hidden" name="action" value="add_s"/>
+        </form></span>
+
 </div>

@@ -156,19 +156,14 @@ class Table
 		}
 			//To display feedback section's in feedback forms page  and logged user
 		else if(($this->tableName == "feedback_section") && ($value == 'All')){	
-		echo $value;		
-			 echo $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id =".$userid." AND feedback.ID = session.Feedback )";		
+			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id =".$userid." AND feedback.ID = session.Feedback )";		
 			//echo $sql;
 			
 		}
 		//To display feedback section's in feedback forms page for particular session and logged user
 		else if(($this->tableName == "feedback_section") && ($value != 'All')){			
-			 echo $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$value."; )";	
-			 
-			// session.ID = ".$id."	
-			//echo $sql;
+			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$value.")";	
 		}
-		
 	 	else{       
 			if($value != "1"){
 				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
@@ -327,8 +322,7 @@ class Table
 			$sql = "SELECT ". $this->tableName . ".ID, ". $this->tableName . ".Title, ". $this->tableName . ".Description, ". $this->tableName . ".Start_Time, ". $this->tableName . ".End_Time, Room_Location, Session_Chairperson FROM session,conference_section,conference Where ". $this->tableName . ".Conference_Section = conference_section.ID AND conference_section.Conference = conference.ID AND conference.Conference_Admin_Id = '".$userid."'ORDER BY ". $this->tableName . ".ID";		
 			//echo $sql;
 		}
-		
-        else if ($type == "all") {
+		else if ($type == "all") {
 			 $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
 
 		}
@@ -374,7 +368,7 @@ class Table
         }
         $sql = rtrim($sql, ",");
         $sql .= " WHERE " . $this->idName . " = :id;";
-      // echo $sql;
+       echo $sql;
 
         // Execute our statement.
         $this->Connect();
@@ -573,31 +567,20 @@ class Table
        if(($this->tableName == "conference") && ($userid != "1")){
 			$sql .= " FROM " . $this->tableName . " WHERE  " . $this->tableName . ".Conference_Admin_Id = '".$userid."' ORDER BY " . $this->idName . ";";
 			//echo $sql;
-			
 		}
 		else if(($this->tableName == "conference") && ($userid == "1")){
 			$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
 			//echo $sql;
-		}
-//		need to update by rudhra on 21st sep
-		else if(($this->tableName == "session") && ($userid != "1")){
-			$sql .= " FROM " . $this->tableName . " WHERE  " . $this->tableName . ".Conference_Admin_Id = '".$userid."' ORDER BY " . $this->idName . ";";
-			//echo $sql;
-			
-		}
-		else if(($this->tableName == "session") && ($userid == "1")){
-			$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
-			//echo $sql;
-		}
+		}		
 		else{
-        	$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";"; //echo $sql;
+        	$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";"; 				           
 		}
 
         // Execute our statement.
         $this->Connect();
         try {
             $query = $this->pdo->prepare($sql);
-            $query->execute();
+          	$query->execute();
 			//echo $query;
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $str = "";
@@ -631,7 +614,7 @@ class Table
         }
 
         // Make sql string.
-        $sql = "SELECT " . $this->idName;
+       $sql = "SELECT " . $this->idName;
         if (isset($extraColumns)) {
             foreach ($extraColumns as $value) {
                 $sql .= " , " . $value;

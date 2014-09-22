@@ -77,8 +77,8 @@ if (isset($_POST["clicked_submit"])) {
     // Grab our data from the form.
     $Ques = $_POST['txtQuestion'];
     $Session = $_POST['selectSession'];
-echo $Ques = $_POST['txtQuestion'];
-echo    $Session = $_POST['selectSession'];
+	$Ques = $_POST['txtQuestion'];
+   	$Session = $_POST['selectSession'];
 
     // Get number of optionstxtOptionNo
     $Options = $_POST[''];

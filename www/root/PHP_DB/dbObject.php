@@ -65,6 +65,7 @@ class Session extends Table
     {
         parent::init();
         $this->tableName = "session";
+		  $this->idName = "ID";
     }
 
     function getRow_MAX()
@@ -97,6 +98,53 @@ class Session extends Table
             echo "An error occurred: " . $error->getMessage();
         }
     }
+	
+	
+	  function printDropDownOptions_session()
+    {
+		global $userid;
+        // Get function arguments.
+        $selected = func_get_arg(0);
+        for ($i = 1; $i < func_num_args(); $i++) {
+            $extraColumns[$i - 1] = func_get_arg($i);
+        }
+
+        // Make sql string.
+        $sql = "SELECT " . $this->tableName . "." . $this->idName;
+        if (isset($extraColumns)) {
+            foreach ($extraColumns as $value) {
+                $sql .= " , ". $this->tableName . "." . $value;
+            }
+       
+        	$sql .= " FROM conference,conference_section JOIN session ON session.Conference_Section = conference_section.ID WHERE Conference_Admin_Id = ".$userid." AND conference_section.Conference = conference.ID"; 
+		}
+echo $sql;
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $query = $this->pdo->prepare($sql);
+          	$query->execute();
+			//echo $query;
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $str = "";
+                foreach ($row as $colName => $value) {
+                    if (!is_int($colName))
+                        $str .= $value . " ";
+                }
+                if ($row[$this->idName] == $selected) {
+                    echo "<option value='" . $row[$this->idName] . "' selected >$str</option>\n";
+                } else {
+                    echo "<option value='" . $row[$this->idName] . "'>$str</option>\n";
+                }
+            }
+            unset($pdo);
+            unset($query);
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occurred: " . $error->getMessage();
+        }
+    }
+
 }
 
 class Sponsor extends Table
@@ -269,13 +317,12 @@ class Feedback extends Table
        // $type = "single";
         // Write our statement.
         if ($id == "All") {
-          
-		 echo $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+           $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
 JOIN conference ON conference.ID = conference_section.Conference 
 WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback";
 			
         } else if ($id != "All") {
-          echo $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+           $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
 JOIN conference ON conference.ID = conference_section.Conference 
 WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$id.";";
 			
@@ -359,9 +406,15 @@ class FeedbackQuestion extends Table
 
     function getRowByMatch_fq($colName, $value)
     {
-
-        $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE " . $colName . " = :value )) ORDER BY " . $this->idName . ";";
-
+		global $userid;
+		
+		if($value != 'All')
+		{
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE " . $colName . " = ".$value." AND Conference_Admin_Id = ".$userid." )) ORDER BY " . $this->idName . ";";
+		}
+		else {
+		 $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE Conference_Admin_Id = ".$userid." )) ORDER BY " . $this->idName . ";";	
+		}
         // Execute our statement.
         $this->Connect();
         try {
@@ -688,7 +741,41 @@ class SessionQuestion extends Table
         parent::init();
         $this->tableName = "session_question";
     }
-
+	
+	
+    function getRowByMatch_sq($value)
+    {
+		global $userid;
+		
+		if($value != 'All')
+		{
+      $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE session.ID = ".$value." AND conference.Conference_Admin_Id = ".$userid.") ORDER BY " . $this->idName . ";";
+		}
+		else {
+		  $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id = ".$userid." ) ORDER BY " . $this->idName . ";";	
+		}
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                //die("<br><br>Get Row for $this->tableName: No Results Found!<br><br>");
+                return NULL;
+            }
+            return $results;
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+	}
 
     function fetchSelectedSessionQuestions($selectedQuestions)
     {

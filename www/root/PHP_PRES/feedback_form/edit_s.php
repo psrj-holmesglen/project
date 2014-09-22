@@ -82,21 +82,21 @@ if (isset($_POST["clicked_submit"])) {
         $TitlErr = nv();
 
     // Validate Description:
-    if (vIsBlank($Desc) || !vMaxChars($Desc, 400) || vRegexString($Desc)) // not blank, max 400 chars, no special character.
+    if (vIsBlank($Desc) || !vMaxChars($Desc, 400)) // not blank, max 400 chars, no special character.
         $DescErr = nv();
 
     // Validate Type
     if (vIsBlank($Type) || !vMaxChars($Type, 20)) // not blank, max 100 chars.
         $TypeErr = nv();
 
-    // Validate Start date:
+ /*   // Validate Start date:
     if (vIsBlank($Star["string"]) || !vIsDate($Star)) // not blank, is sql datetime.
         $StarErr = nv();
 
     // Validate End date:
     if (vIsBlank($EndT["string"]) || !vIsDate($EndT)) // not blank, is sql datetime.
         $EndTErr = nv();
-
+*/
 
     ////
     //// Validation Checking END.
@@ -109,28 +109,40 @@ if (isset($_POST["clicked_submit"])) {
         //// Database Write START
         ////
         $newData = array(
-                "Section_Start" => dtConvertToString($Star),
-                "Section_End" => dtConvertToString($EndT),
+               /* "Section_Start" => dtConvertToString($Star),
+                "Section_End" => dtConvertToString($EndT),*/
                 "Section_Title" => $Titl,
                 "Section_Desc" => $Desc,
                 "Type" => $Type,
                 "Feedback" => $Feedback,
         );
-        if ($data->feedbackSection->updateRow($_GET["Sid"], $newData))
-            header("Location: index.php?page=feedback_form");
+		
+	/*	echo "Section_Title: " .$Titl;
+		echo "<br/>";
+        echo  "Section_Desc: ". $Desc;
+		echo "<br/>";
+        echo   "Type: " . $Type;
+		echo "<br/>";
+        echo  "Feedback: " . $Feedback;
+		echo "<br/>";
+	*/
+					
+        if ($data->feedbackSection->updateRow($_GET["id"], $newData))
+           header("Location: index.php?page=feedback_form");
+		  
         ////
         //// Database Write END
         ////
     }
 } else {
-    $row = $data->feedbackSection->getRow($_GET["Sid"]);
+    $row = $data->feedbackSection->getRow($_GET["id"]);
 
     $Titl = $row["Section_Title"];
     $Desc = $row["Section_Desc"];
     $Type = $row["Type"];
     $Feedback = $row["Feedback"];
-    $Star = dtConvertToArray($row["Section_Start"]);
-    $EndT = dtConvertToArray($row["Section_End"]);
+   // $Star = dtConvertToArray($row["Section_Start"]);
+    //$EndT = dtConvertToArray($row["Section_End"]);
 }
 
 ////
@@ -150,7 +162,7 @@ if (isset($_POST["clicked_submit"])) {
 
 
 <!-- Form START -->
-<form method='post' action='index.php?page=feedback_form&action=edit_s&Sid=<?= $_GET["Sid"] ?>'>
+<form method='post' action='index.php?page=feedback_form&action=edit_s&id=<?= $_GET["id"] ?>'>
 
     <h2 style='text-align:center'>Section </h2>
     <table class="std_form">
@@ -204,6 +216,7 @@ if (isset($_POST["clicked_submit"])) {
             </td>
             <td><span class='errorText'><?= $Err ?></span></td>
         </tr>
+        <!-- Commented by Rudhra
         <tr>
             <td colspan="2">
                 <hr>
@@ -291,6 +304,7 @@ if (isset($_POST["clicked_submit"])) {
             </td>
             <td><span class='errorText'><?= $EndTErr ?></span></td>
         </tr>
+        -->
         <tr>
             <td colspan="2">
                 <hr>
