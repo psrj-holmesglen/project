@@ -115,8 +115,12 @@ class Session extends Table
             foreach ($extraColumns as $value) {
                 $sql .= " , ". $this->tableName . "." . $value;
             }
-       
+       		if($userid != 1){
         	$sql .= " FROM conference,conference_section JOIN session ON session.Conference_Section = conference_section.ID WHERE Conference_Admin_Id = ".$userid." AND conference_section.Conference = conference.ID"; 
+			}
+			if($userid == 1){
+        	$sql .= " FROM conference,conference_section JOIN session ON session.Conference_Section = conference_section.ID WHERE conference_section.Conference = conference.ID"; 
+			}
 		}
 echo $sql;
         // Execute our statement.
@@ -273,14 +277,22 @@ class Feedback extends Table
 		
 		// Determine query type.  all = full table array.
        // $type = "single";
-        // Write our statement.
-        if ($id == "All") {
+        // To display Feedback Form Normal User and All conference
+        if (($id == "All")&&($userid !=1)) {
             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE conference.Conference_Admin_Id = ".$userid.") ORDER BY ID";
-			
-        } else if ($id != "All") {
-             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID = ".$id." and  conference.Conference_Admin_Id = ".$userid.") ORDER BY ID";
-			
         }
+		// To display Feedback Form Normal User and seleted conference
+		else if (($id != "All")&&($userid != 1)) {
+             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID = ".$id." and  conference.Conference_Admin_Id = ".$userid.") ORDER BY ID";
+		}
+		// To display Feedback Form Admin User and All conference
+		else if (($id == "All")&&($userid ==1)) {
+             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference ) ORDER BY ID";
+        }
+		// To display Feedback Form Admin User and seleted conference
+		else if (($id != "All")&&($userid == 1)) {
+             $sql ="SELECT ID, Feedback_Title, Feedback_Desc FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID = ".$id.") ORDER BY ID";
+		}
 		
 		// Execute our statement.
         $this->Connect();
@@ -313,20 +325,29 @@ class Feedback extends Table
     {
 		global $userid;
 			
-		// Determine query type.  all = full table array.
-       // $type = "single";
-        // Write our statement.
-        if ($id == "All") {
+		// Normal user and all session
+        if (($id == "All")&&($userid != 1)) {
            $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
 JOIN conference ON conference.ID = conference_section.Conference 
-WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback";
-			
-        } else if ($id != "All") {
+WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback";			
+        }// Normal user and selected session
+		else if (($id != "All")&&($userid != 1)) {
            $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
 JOIN conference ON conference.ID = conference_section.Conference 
 WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$id.";";
-			
-        }
+		}
+		// Admin user and all session
+		else if(($id == "All")&&($userid == 1)){
+			$sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+JOIN conference ON conference.ID = conference_section.Conference 
+WHERE  feedback.ID = session.Feedback";;	
+		}
+		// Admin user and selected session
+		else if (($id != "All")&&($userid == 1)) {
+           $sql="SELECT DISTINCT feedback.ID, feedback.Feedback_Title, feedback.Feedback_Desc from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID
+JOIN conference ON conference.ID = conference_section.Conference 
+WHERE feedback.ID = session.Feedback AND session.ID = ".$id.";";
+		}
 		// Execute our statement.
         $this->Connect();
         try {
@@ -407,13 +428,27 @@ class FeedbackQuestion extends Table
     function getRowByMatch_fq($colName, $value)
     {
 		global $userid;
-		
-		if($value != 'All')
+		//Displays Feedback Question - Normal user - particular conference 
+		if(($userid != 1)&& ($value != 'All'))
 		{
         $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE " . $colName . " = ".$value." AND Conference_Admin_Id = ".$userid." )) ORDER BY " . $this->idName . ";";
+		//echo $sql;
 		}
-		else {
-		 $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE Conference_Admin_Id = ".$userid." )) ORDER BY " . $this->idName . ";";	
+		//Displays Feedback Question - Normal user - all conference 
+		else if(($userid != 1)&&($value == 'All')){
+		 $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE Conference_Admin_Id = ".$userid." )) ORDER BY " . $this->idName . ";";
+		// echo $sql;	
+		}
+		//Displays Feedback Question - Admin user - particular conference 
+		else if(($userid == 1) &&($value != 'All'))
+		{
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference WHERE " . $colName . " = ".$value.")) ORDER BY " . $this->idName . ";";
+		//echo $sql;
+		}
+		//Displays Feedback Question - Admin user - All conference 
+		else if(($userid == 1)&& ($value == 'All')){
+		 $sql = "SELECT * FROM " . $this->tableName . " WHERE Feedback_Section IN (SELECT ID FROM feedback_section WHERE Feedback IN (SELECT feedback FROM conference )) ORDER BY " . $this->idName . ";";
+		 //echo $sql;	
 		}
         // Execute our statement.
         $this->Connect();
@@ -747,12 +782,21 @@ class SessionQuestion extends Table
     {
 		global $userid;
 		
-		if($value != 'All')
+		if(($value != 'All')&&($userid != 1)) //To display feedback questions for normal user and selected session
 		{
-      $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE session.ID = ".$value." AND conference.Conference_Admin_Id = ".$userid.") ORDER BY " . $this->idName . ";";
+     	 $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE session.ID = ".$value." AND conference.Conference_Admin_Id = ".$userid.") ORDER BY " . $this->idName . ";";
 		}
-		else {
+		else if (($value == 'All')&&($userid != 1))  //To display feedback questions for normal user and all session
+		{
 		  $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id = ".$userid." ) ORDER BY " . $this->idName . ";";	
+		}
+		else if (($value != 'All')&&($userid == 1)) //To display feedback questions for admin user and selected session
+		{
+     	 $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE session.ID = ".$value." ) ORDER BY " . $this->idName . ";";
+		}
+		else if (($value == 'All')&&($userid == 1))  //To display feedback questions for admin user and all session
+		{
+		  $sql = "SELECT DISTINCT feedback_question.ID, Question_Number, Question_Text, Type FROM feedback_question WHERE Feedback_Section IN (select feedback_section.ID FROM feedback_section JOIN session ON session.Feedback = feedback_section.Feedback JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference ) ORDER BY " . $this->idName . ";";	
 		}
         // Execute our statement.
         $this->Connect();
@@ -926,6 +970,7 @@ class PollingOption extends Table
     {
         parent::init();
         $this->tableName = "polling_option";
+		$this->idName ="Polling";
     }
 }
 

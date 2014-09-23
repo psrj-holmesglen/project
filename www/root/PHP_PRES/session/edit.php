@@ -43,20 +43,13 @@ if (isset($_POST['clicked_submit'])) {
     $EndT = $_POST['txtEndT'];
     $Room = $_POST['txtRoom'];
     $Chair = $_POST['txtChai'];
-//			$Feed = $_POST['txtFeed'];
+	//$Feed = $_POST['txtFeed'];
     $FbFrm = $_POST['selFbform'];
     //$Last = $_POST['txtLast'];
-//			$Poll = $_POST['txtPoll'];
-//			$Open = $_POST['txtOpen'];
+	//$Poll = $_POST['txtPoll'];
+	//$Open = $_POST['txtOpen'];
     $Pres = $_POST['txtPresNo'];
-	/*
-	if($Sect != "NULL")
-	{
-		$row=$data->feedbackSection->getRow($Sect);
-		$fb=$row["Feedback"];
-		
-	}
-*/
+	
     //Store data of presenter
     for ($i = 0; $i < $Pres; $i++) {
         switch ($i) {
@@ -182,23 +175,6 @@ if (isset($_POST['clicked_submit'])) {
     // Once the data has been validated, let's insert the data.
     if ($validated) {
 
-//            $biPoll;
-//            $biOpen;
-
-//            if($Poll == 'Yes')
-//                $biPoll = 1;
-//            else
-//                $biPoll = 0;
-//
-//            if($Open == 'Yes')
-//                $biOpen = 1;
-//            else
-//                $biOpen = 0;
-
-
-        //echo $biOpen.$biPoll;
-        //die;
-
         $lastUpdatedInfo = 'now()';
 
         $newData = array(
@@ -208,11 +184,11 @@ if (isset($_POST['clicked_submit'])) {
                 "End_Time" => dtConvertToString($EndT),
                 "Room_Location" => $Room,
                 "Session_Chairperson" => $Chair,
-//                    "Polling_Available"         => $biPoll,
-//                    "Polling_Open"              => $biOpen,
+				//"Polling_Available"         => $biPoll,
+				//"Polling_Open"              => $biOpen,
                 "Conference_Section" => $CSId,
-//                    "Feedback"                  => $Feed,
-//					"Feedback_Section"			=> $Sect,
+				//"Feedback"                  => $Feed,
+				//"Feedback_Section"			=> $Sect,
 				"Feedback"=> $FbFrm,
         );
 

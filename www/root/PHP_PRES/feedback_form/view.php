@@ -163,7 +163,7 @@ else {
               </tr>
             </thead>
             <tbody>
-              <?PHP
+              <?PHP  //Display feedback forms
 			  if($IsSessionSelected  )
 			  {
 				  //echo $SesId;
@@ -175,8 +175,7 @@ else {
 				   $table = $data->feedback->getRowByMatch_fb_conference($CoId);	 
 				   
 			  }
-			  // if ($table= $data->feedback->getRowByMatch_fb_conference("conference", $CoId) || $CoId == "All") {
-            // TODO: alert no entries.
+			// TODO: alert no entries.
 			if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
 			
             foreach ($table as $row) {
@@ -223,7 +222,7 @@ else {
         </tr>
       </thead>
       <tbody>
-        <?PHP
+        <?PHP	//Display feedback sections
 			  if($IsSessionSelected  )
 			  {
 				$table = $data->feedbackSection->getRowbyMatch("ID", $SesId);

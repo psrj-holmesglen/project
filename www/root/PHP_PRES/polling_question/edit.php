@@ -75,11 +75,10 @@ if (isset($_POST["clicked_submit"])) {
     require "PHP_VALIDATION/validation.php";
 
     // Grab our data from the form.
-    $Ques = $_POST['txtQuestion'];
-    $Session = $_POST['selectSession'];
-	$Ques = $_POST['txtQuestion'];
-   	$Session = $_POST['selectSession'];
-
+  echo   $Ques = $_POST['txtQuestion'];
+  echo   $Session = $_POST['selectSession'];
+	
+	
     // Get number of optionstxtOptionNo
     $Options = $_POST[''];
 
@@ -108,7 +107,7 @@ if (isset($_POST["clicked_submit"])) {
 
 
     // Validate Question Text:
-    if (vIsBlank($Ques) || !vMaxChars($Ques, 200)) // not blank, max 200 chars.
+    if (!vMaxChars($Ques, 200)) // not blank, max 200 chars.
         $Q_TextErr = nv();
 
 
@@ -177,8 +176,6 @@ if (isset($_POST["clicked_submit"])) {
 
         );
 
-echo $Ques = $_POST['txtQuestion'];
-echo    $Session = $_POST['selectSession'];
         // Execute sql query to add new data to the Polling questions
         $insert = $data->pollingQuestion->updateRow($_GET["id"], $newData);
         //echo $newData["Polling_Question"]." ".$newData["session"];
@@ -418,7 +415,7 @@ echo    $Session = $_POST['selectSession'];
         </tr>
         <tr>
             <td>Question Text:</td>
-            <td><textarea name='txtQuestion' class='textAreaStyle1' rows='4' cols='40'><?= $Ques ?></textarea></td>
+            <td><input type='text' name='txtQuestion' value='<?=$Ques ?>' size='50' class='textBoxStyle1'/></td>
             <td><span class='errorText'><?= $Q_TextErr ?></span></td>
         </tr>
         <tr>

@@ -143,34 +143,56 @@ class Table
 		$sql = "SELECT DISTINCT conference.ID, conference.Title, conference.Description, conference.Start_Time, conference.End_Time, conference.Organiser, conference.Location, conference.Contact, conference.Venue, conference.Token, venue.Name FROM " . $this->tableName . ", venue WHERE " . $this->tableName . ".Venue = venue.ID ORDER BY " . $this->tableName . ".ID";	
 		//echo $sql;
 		}
-		//To display feedback section's in feedback forms page and logged user
-		else if(($this->tableName == "feedback") && ($value == 'All')){			
+		//To display feedback section's in feedback forms page all conference and normal user
+		else if(($this->tableName == "feedback") && ($value == 'All')&& ($userid != 1)){			
 			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE conference.Conference_Admin_Id =".$userid.") ORDER BY ID)";		
 			//echo $sql;
-			
 		}
-			//To display feedback section's in feedback forms page for particular conference  and logged user
-		else if(($this->tableName == "feedback") && ($value != 'All')){			
+			//To display feedback section's in feedback forms page for particular conference  and normal user
+		else if(($this->tableName == "feedback") && ($value != 'All')&& ($userid != 1)){			
 			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback  FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID =".$value." AND conference.Conference_Admin_Id =".$userid.") ORDER BY ID)";		
 			//echo $sql;
 		}
-			//To display feedback section's in feedback forms page  and logged user
-		else if(($this->tableName == "feedback_section") && ($value == 'All')){	
+		//To display feedback section's in feedback forms page all conference and Admin user
+		else if(($this->tableName == "feedback") && ($value == 'All')&& ($userid == 1)){			
+			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference ) ORDER BY ID)";		
+			$sql;
+		}
+			//To display feedback section's in feedback forms page for particular conference  and Admin user
+		else if(($this->tableName == "feedback") && ($value != 'All')&& ($userid == 1)){			
+			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback  FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID =".$value." ) ORDER BY ID)";		
+			 $sql;
+		}
+			//To display feedback section's in feedback forms page for all session and normal user
+		else if(($this->tableName == "feedback_section") && ($value == 'All')&& ($userid != 1)){	
 			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id =".$userid." AND feedback.ID = session.Feedback )";		
 			//echo $sql;
 			
 		}
-		//To display feedback section's in feedback forms page for particular session and logged user
-		else if(($this->tableName == "feedback_section") && ($value != 'All')){			
+		//To display feedback section's in feedback forms page for particular session and normal user
+		else if(($this->tableName == "feedback_section") && ($value != 'All')&& ($userid != 1)){			
 			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE conference.Conference_Admin_Id = ".$userid." AND feedback.ID = session.Feedback AND session.ID = ".$value.")";	
+		}
+			//To display feedback section's in feedback forms page for all session and Admin user
+		else if(($this->tableName == "feedback_section") && ($value == 'All')&& ($userid == 1)){	
+			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE  feedback.ID = session.Feedback )";		
+			//echo $sql;
+			
+		}
+		//To display feedback section's in feedback forms page for particular session and Admin user
+		else if(($this->tableName == "feedback_section") && ($value != 'All')&& ($userid == 1)){			
+			$sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT DISTINCT feedback.ID from feedback,session JOIN conference_section ON session.Conference_Section = conference_section.ID JOIN conference ON conference.ID = conference_section.Conference WHERE feedback.ID = session.Feedback AND session.ID = ".$value.")";	
+			//echo $sql;
 		}
 	 	else{       
 			if($value != "1"){
-				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
-				
+				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = ".$value." ORDER BY " . $this->idName . ";";
+				echo $sql;
+				echo "<br/>";
 			}
 			else {
 				$sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
+				//echo $sql;
 			}	
 	 }
         // Execute our statement.
@@ -361,6 +383,7 @@ class Table
 
     function updateRow($id, $data)
     {
+		
         $sql = "UPDATE " . $this->tableName . " SET ";
         foreach ($data as $colName => $value) {
             if (!is_int($colName))
@@ -369,7 +392,7 @@ class Table
         $sql = rtrim($sql, ",");
         $sql .= " WHERE " . $this->idName . " = :id;";
        echo $sql;
-
+	   echo "<br/>";
         // Execute our statement.
         $this->Connect();
         try {
@@ -380,7 +403,8 @@ class Table
                   $query->bindParam($colName, $value);
             }
             		$query->bindParam(":id", $id);
-
+			echo $id;
+			echo $value;
             $query->execute();
 			
             unset($pdo);
@@ -482,7 +506,7 @@ class Table
     function deleteRow($id)
     {
         if ($this->rowExistsById($id)) {
-            $sql = "DELETE FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
+           echo $sql = "DELETE FROM " . $this->tableName . " WHERE " . $this->idName . " = :id;";
             $this->Connect();
             try {
                 $query = $this->pdo->prepare($sql);
