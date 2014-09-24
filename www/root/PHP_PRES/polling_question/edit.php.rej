@@ -1,0 +1,9 @@
+diff a/www/root/PHP_PRES/polling_question/edit.php b/www/root/PHP_PRES/polling_question/edit.php	(rejected hunks)
+@@ -78,6 +78,7 @@
+     $Ques = $_POST['txtQuestion'];
+     $Session = $_POST['selectSession'];
+ 	$Ques = $_POST['txtQuestion'];
++   	$Session = $_POST['selectSession'];
+ 
+     // Get number of optionstxtOptionNo
+     $Options = $_POST[''];

@@ -32,7 +32,7 @@ class ConDet
 
     public static function dsn()
     {
-        return "mysql:host=" . self::$localhost . ";dbname=" . self::$db . ";";
+       return "mysql:host=" . self::$localhost . ";dbname=" . self::$db . ";";
     }
 }
 ?>

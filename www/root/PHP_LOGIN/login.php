@@ -24,7 +24,7 @@ if (isset($_POST["clicked_submit"])) {
     $data = new Data();
 
     if ($userRow = $data->user->getRowByMatch("User_name", $_POST["txtUser"])) {
-		
+		//echo $userRow;
         // Found username
         if ($userRow[0]["Password"] == $hashPassword) {
             // Found Password.

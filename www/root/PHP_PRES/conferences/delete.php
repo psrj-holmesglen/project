@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <?= $row = $data->conference->getRow($_GET["id"]); ?>
+        <?php $row = $data->conference->getRow($_GET["id"]); ?>
         <tr style="font-size:86%;">
             <td align='left' valign='middle'><?= $row["Title"] ?></td>
             <td align='left' valign='middle'><?= $row["Description"] ?></td>

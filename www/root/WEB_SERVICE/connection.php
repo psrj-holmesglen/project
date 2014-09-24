@@ -7,18 +7,16 @@
  */
 
 // encapsulate connection stuff in a function. // When called this function returns a reference // to a PDO Database connection object.
-function getConnection()
-{ // Connection details
+function getConnection(){ // Connection details
 
-    $dbhost = "localhost";
-    $dbUser = "root";
-    $dbpass = "";
- //   $dbName = "epworth_ec";
- $dbName = "holmesglen_project";
+    $dbhost="127.0.0.1";
+	$dbUser="root";
+	$dbpass="root";
+	$dbName="epworth_ec";
 
- //   $dbUser="robfaie_econ_2";
- //   $dbpass="ohmcMJH&VI!T";
- //   $dbName="robfaie_econ";
+//    $dbUser="robfaie_econ";
+//    $dbpass="ohmcMJH&VI!T";
+//    $dbName="robfaie_econ";
 
     //$dbh = new PDO("mysql:host=$dbhost;dbname=$dbName",$dbUser,$dbpass);
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

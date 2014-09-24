@@ -3,7 +3,6 @@
 $app->post('/Polling/', 'postPolling');
 $app->post('/Feedback/', 'postFeedback');
 $app->post('/QA/', 'postQA');
-$app->post('/Qq/', 'postQq');
 
 /**
  * Accepts the polling data and inserts it into the database
@@ -72,7 +71,7 @@ function postFeedback()
                 $sql = "INSERT INTO response_option(Feedback_Response, feedback_option, Profile_Id) "
                         . "VALUES (:Question, :Answer, :Profile);";
             } else if ($types[$question] == 2) { // Open Response
-                $sql = "INSERT INTO response_text(feedback_question, Question_Response, Profile_Id) "
+                $sql = "INSERT INTO reponse_text(feedback_question, Question_Reponse, Profile_Id) "
                         . "VALUES (:Question, :Answer, :Profile);";
             } else {
                 die('Unknown question type');
@@ -106,9 +105,4 @@ function postQA()
     $stmt->bindParam("Session", $post['Session']);
     $stmt->bindParam("Profile", $post['Profile']);
     $stmt->execute();
-}
-
-function postQq()
-{
-	echo "Works";
 }

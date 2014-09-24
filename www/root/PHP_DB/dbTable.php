@@ -186,9 +186,9 @@ class Table
 		}
 	 	else{       
 			if($value != "1"){
-				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = ".$value." ORDER BY " . $this->idName . ";";
-				echo $sql;
-				echo "<br/>";
+				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = '".$value."' ORDER BY " . $this->idName . ";";
+				 //echo $sql;
+				
 			}
 			else {
 				$sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
@@ -218,9 +218,7 @@ class Table
             echo "An error occured: " . $error->getMessage();
         }
     }
-    ////// *********************************************
-    //////// *******************************************
-    ///*************************************************
+   
     function getRowByMatch_rq($value)
     {
 
