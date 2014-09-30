@@ -9,10 +9,11 @@
 // encapsulate connection stuff in a function. // When called this function returns a reference // to a PDO Database connection object.
 function getConnection(){ // Connection details
 
-    $dbhost="127.0.0.1";
+   // $dbhost="127.0.0.1";
+    $dbhost="localhost";
 	$dbUser="root";
 	$dbpass="root";
-	$dbName="epworth_ec";
+	$dbName="holmesglen_project";
 
 //    $dbUser="robfaie_econ";
 //    $dbpass="ohmcMJH&VI!T";

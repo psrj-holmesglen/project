@@ -51,13 +51,33 @@ if (isset($_POST["clicked_clone"])) {
 
         $res = $data->conference->getRow($confID);
         unset($res["ID"]);
-        $res["Title"] = $_POST["txtNewTitle"];
-		$res["Conference_Admin_Id"] = $_POST["selCAdmi"];
+       // $res["Title"] = $_POST["txtNewTitle"];
+		//$res["Conference_Admin_Id"] = $_POST["selCAdmi"];
 		
-        $newConfID = $data->conference->addRow($res);
-
+		
+		$newData = array(
+            "Title" => $_POST["txtNewTitle"],
+            "Description" => $res["Description"],
+            "Start_Time" => $res["Start_Time"],
+            "End_Time" => $res["End_Time"],
+            "Organiser" => $res["Organiser"],
+            "Location" => $res["Location"],
+            "Contact" => $res["Contact"],
+            "Venue" => $res["Venue"],
+            "FilePath" => $res["FilePath"], 
+            "Feedback" => $res["Feedback"],
+            "Conference_Admin_Id" => $_POST["selCAdmi"]
+    );
+		
+        $newConfID = $data->conference->addRow($newData);
+		
+		//To add token to the last inserted conference
+		$tNum = 1200 + $newConfID; // Auto number for conference 1200 + current conference id
+		$tokenData = array("Token"=> $tNum);
+		$data->conference->updateRow($newConfID, $tokenData);
+		
         // copy map
-        $allMap = $data->map->getRowByMatch("Conference", $confID);
+       /* $allMap = $data->map->getRowByMatch("Conference", $confID);
         if ($allMap != null) {
             foreach ($allMap as $rowMap) {
                 $rowMap["Conference"] = $newConfID;
@@ -65,7 +85,7 @@ if (isset($_POST["clicked_clone"])) {
                 $data->map->addRow($rowMap);
             }
         }
-
+		
         // copy conference sponsor link
         $allConferenceSponsor = $data->conferenceSponsor->getRowByMatch("Conference", $confID);
         if ($allConferenceSponsor != null) {
@@ -118,7 +138,7 @@ if (isset($_POST["clicked_clone"])) {
                 }
             }
         }
-
+		
 //        // copy conference feedback
 //        if ($res["Feedback"] != null) {
 //            $feedback = $data->feedback->getRow(intval($res["Feedback"]));
@@ -163,7 +183,7 @@ if (isset($_POST["clicked_clone"])) {
 //                }
 //            }
 //        }
-
+*/
         ////
         //// Database Read/Write End.
         ////

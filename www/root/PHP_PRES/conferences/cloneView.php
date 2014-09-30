@@ -44,20 +44,23 @@ $data = new Data();
         <table width='100%' border='1' cellpadding='5' cellspacing='0' class='stdDataTable'>
             <thead>
             <tr style='background-color:#999'>
-                <td align='left' valign='middle'>Title</td>
-                <td align='left' valign='middle'>Description</td>
-                <td align='left' valign='middle'>Start Time</td>
-                <td align='left' valign='middle'>End Time</td>
-                <td align='left' valign='middle'>Organiser</td>
-                <td align='left' valign='middle'>Location</td>
-                <td align='left' valign='middle'>Venue</td>
-                <td align='left' valign='middle'>Contact</td>
-                <td align='middle' valign='middle'>Actions</td>
+                <th align='left' valign='middle'>Title</th>
+                <th align='left' valign='middle'>Description</th>
+                <th align='left' valign='middle'>Start Time</th>
+                <th align='left' valign='middle'>End Time</th>
+                <th align='left' valign='middle'>Organiser</th>
+                <th align='left' valign='middle'>Location</th>
+                <th align='left' valign='middle'>Venue</th>
+                <th align='left' valign='middle'>Token</th>
+                <th align='left' valign='middle'>Contact</th>
+                <th align='middle' valign='middle'>Actions</th>
             </tr>
             </thead>
             <tbody>
             <?PHP
-            $table = $data->conference->getRowWithVenueName(null);
+            //$table = $data->conference->getRowWithVenueName(null);
+			$table = $data->conference->getRowByMatch("Conference_Admin_Id", $userid);
+			
             if ($table == null) echo "<tr><td colspan='9'><strong><em>No Entries Found.</em></strong></td></tr>";
             foreach ($table as $row) {
                 ?>
@@ -69,6 +72,7 @@ $data = new Data();
                     <td align='left' valign='middle'><?= $row["Organiser"] ?></td>
                     <td align='left' valign='middle'><?= $row["Location"] ?></td>
                     <td align='left' valign='middle'><?= $row["Name"] ?></td>
+                    <td align='left' valign='middle'><?= $row["Token"] ?></td>
                     <td align='left' valign='middle'><?= $row["Contact"] ?></td>
                     <td align='center' valign='middle'>
                         <a href='index.php?page=conference&action=clone&id=<?= $row["ID"] ?>'>Clone</a>
