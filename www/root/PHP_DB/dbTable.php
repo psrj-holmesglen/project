@@ -186,7 +186,7 @@ class Table
 		}
 	 	else{       
 			if($value != "1"){
-				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = '".$value."' ORDER BY " . $this->idName . ";";
+				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
 				 //echo $sql;
 				
 			}
@@ -389,8 +389,8 @@ class Table
         }
         $sql = rtrim($sql, ",");
         $sql .= " WHERE " . $this->idName . " = :id;";
-       echo $sql;
-	   echo "<br/>";
+      // echo $sql;
+	  // echo "<br/>";
         // Execute our statement.
         $this->Connect();
         try {

@@ -9,7 +9,7 @@
     <tr>
         <td style="text-align: right; padding-right: 27px;">
             <div id="footerCredits">
-                <span>Crafted By Team SPARTA</span>
+                <span>Crafted By JPRS Squad</span>
             </div>
         </td>
     </tr>

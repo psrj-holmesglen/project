@@ -108,4 +108,5 @@ class CacheMiddleware extends \Slim\Middleware
                 return "";
         }
     }
+	
 }
