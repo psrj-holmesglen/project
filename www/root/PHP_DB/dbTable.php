@@ -117,12 +117,12 @@ class Table
         // Write our statement.
 		//To display session's for a selected conference section id to logged in user
 		if(($this->tableName == "session")&& ($userid != '1'))	{
-			$sql = "SELECT session.Feedback, conference.ID, conference_section.ID, conference.Conference_Admin_Id, conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, " . $this->tableName . ".Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section = conference_section.ID WHERE conference.ID = conference_section.Conference AND " . $colName . ".ID= '".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL AND conference.Conference_Admin_Id = '".$userid."' ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
+			$sql = "SELECT session.Feedback, conference.ID, conference_section.ID, conference.Conference_Admin_Id, conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, " . $this->tableName . ".Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section = conference_section.ID WHERE conference.ID = conference_section.Conference AND conference_section.ID= '".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL AND conference.Conference_Admin_Id = '".$userid."' ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
 			//echo $sql;
 		}
 		//To display session's for a selected conference section id to admin user
 		else if(($this->tableName == "session")&& ($userid == '1'))	{
-			$sql = "SELECT conference.ID, conference_section.ID, conference.Conference_Admin_Id, conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, " . $this->tableName . ".Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section = conference_section.ID WHERE conference.ID = conference_section.Conference AND " . $colName . ".ID= '".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
+			$sql = "SELECT conference.ID, conference_section.ID, conference.Conference_Admin_Id, conference.ID, conference.Title, conference_section.Conference, conference_section.Section_Title, " . $this->tableName . ".Conference_Section, " . $this->tableName . ".ID , " . $this->tableName . ".Title, " . $this->tableName . ".Description, " . $this->tableName . ".Start_Time, " . $this->tableName . ".End_Time, " . $this->tableName . ".Room_Location, " . $this->tableName . ".Session_Chairperson FROM conference,conference_section LEFT JOIN " . $this->tableName . " ON " . $this->tableName . ".Conference_Section = conference_section.ID WHERE conference.ID = conference_section.Conference AND conference_section.ID= '".$value."' AND " . $this->tableName . ".conference_section IS NOT NULL ORDER BY conference.ID, " . $this->tableName . ".Conference_Section";
 			//echo $sql;
 		}
 		//To display conference section 's for a selected conference id to logged in user
@@ -156,12 +156,12 @@ class Table
 		//To display feedback section's in feedback forms page all conference and Admin user
 		else if(($this->tableName == "feedback") && ($value == 'All')&& ($userid == 1)){			
 			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference ) ORDER BY ID)";		
-			$sql;
+			//$sql;
 		}
 			//To display feedback section's in feedback forms page for particular conference  and Admin user
 		else if(($this->tableName == "feedback") && ($value != 'All')&& ($userid == 1)){			
 			 $sql = "SELECT DISTINCT ID, Section_Title, Section_Desc, Type,Feedback  FROM feedback_section WHERE Feedback IN (SELECT ID FROM feedback WHERE ID IN (SELECT Feedback FROM conference WHERE ID =".$value." ) ORDER BY ID)";		
-			 $sql;
+			// $sql;
 		}
 			//To display feedback section's in feedback forms page for all session and normal user
 		else if(($this->tableName == "feedback_section") && ($value == 'All')&& ($userid != 1)){	
@@ -186,7 +186,7 @@ class Table
 		}
 	 	else{       
 			if($value != "1"){
-				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = :value ORDER BY " . $this->idName . ";";
+				 $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $colName . " = '".$value."' ORDER BY " . $this->idName . ";";
 				 //echo $sql;
 				
 			}
@@ -593,7 +593,15 @@ class Table
 		else if(($this->tableName == "conference") && ($userid == "1")){
 			$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
 			//echo $sql;
-		}		
+		}
+		else if(($this->tableName == "conference_section") && ($userid != "1")){
+			$sql .= " FROM " . $this->tableName . " WHERE Conference IN (SELECT ID FROM conference where Conference_Admin_Id = '".$userid."');";
+			//echo $sql;
+		}
+		else if(($this->tableName == "conference_section") && ($userid == "1")){
+			$sql .= " FROM " . $this->tableName . " WHERE Conference = conference_section.ID and Conference_Admin_Id = '".$userid."');";
+			//echo $sql;
+		}	
 		else{
         	$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";"; 				           
 		}

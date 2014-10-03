@@ -7,10 +7,9 @@
       | | |   __|     | | | |  |__   |   __|     |    -| | | |     |
       |_| |_____|__|__|_|_|_|  |_____|__|  |__|__|__|__| |_| |__|__|
 
-     * File: delete.php
+     * File: delete_fb.php
      * Delete a conference confirmation for the dstc e conference web application.
-     * Written by TEAM SPARTA
-     * Last updated: 01-04-14 by Shohei Masunaga
+     *
     */
 
     // Import libraries.

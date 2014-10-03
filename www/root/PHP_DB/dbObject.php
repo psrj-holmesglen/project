@@ -11,7 +11,45 @@ class Conference extends Table
         $this->tableName = "conference";
         $this->idName = "ID";
     }
+	
+	function printDropDownOptions_conferenceSection()
+    {
+		global $grpName;
 
+        // Get function arguments.
+        $selected = func_get_arg(0);
+        for ($i = 1; $i < func_num_args(); $i++) {
+            $extraColumns[$i - 1] = func_get_arg($i);
+        }
+		
+		$sql = "SELECT conference.ID, Title  FROM conference, venue, conference_admin WHERE Venue = venue.ID and conference.ID = conference_admin.Conference_ID and Group_Name='".$grpName."'";
+echo $sql;
+
+// Execute our statement.
+        $this->Connect();
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->execute();
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $str = "";
+                foreach ($row as $colName => $value) {
+                    if (!is_int($colName))
+                        $str .= $value . " ";
+                }
+                if ($row[$this->idName] == $selected) {
+                    echo "<option value='" . $row[$this->idName] . "' selected >$str</option>\n";
+                } else {
+                    echo "<option value='" . $row[$this->idName] . "'>$str</option>\n";
+                }
+            }
+            unset($pdo);
+            unset($query);
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occurred: " . $error->getMessage();
+        }
+	}
+	
     function getRowWithVenueName($id)
     {
 		global $userid;
