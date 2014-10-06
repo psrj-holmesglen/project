@@ -1,13 +1,23 @@
-<?PHP ob_start(); require 'HTML_INCLUDE/onLoad.php'; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<?PHP ob_start();
+//define dynamic image path
+$pathinfo = pathinfo($_SERVER['REQUEST_URI']);
+define('IMG_PATH', $pathinfo['dirname'] . '/ASSETS/IMG/');
+define('SCRIPT_PATH', $pathinfo['dirname'] . '/SCRIPTS_THIRD_PARTY/');
+
+require 'HTML_INCLUDE/onLoad.php'; ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-	<title>eConference</title>
-	<link rel="stylesheet" type="text/css" href="CSS/menu.css" />
-	<link rel="stylesheet" type="text/css" href="CSS/site_wide.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>eConference</title>
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="CSS/site_wide.css"/>
     <script type="text/javascript" src="SCRIPTS_THIRD_PARTY/jquery/jquery-1.11.0.min.js"></script>
-</head>         
+    <link rel="shortcut icon" href="ASSETS/IMG/favicon.ico" >
+</head>
+        
 <body>
     <div class="wrapper">
         <div id="top-head">

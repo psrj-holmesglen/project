@@ -20,7 +20,7 @@ $app->post('/Login', function () {
     $post = $app->request()->post();
 
    // $sql = "SELECT ID, DATE_ADD(End_Time, INTERVAL 2 DAY) 'Exp' FROM conference WHERE Token=:token AND Download_Avail=1;";
-	 $sql = "SELECT ID, DATE_ADD(End_Time, INTERVAL 2 DAY) 'Exp' FROM conference WHERE Token=:token ;";
+	$sql = "SELECT ID, DATE_ADD(End_Time, INTERVAL 2 DAY) 'Exp' FROM conference WHERE Token=:token ;";
     $stmt = $db->prepare($sql);
     $stmt->bindParam("token", $post['Token']);
     $stmt->execute();

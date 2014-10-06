@@ -9,7 +9,18 @@
 // encapsulate connection stuff in a function. // When called this function returns a reference // to a PDO Database connection object.
 function getConnection(){ // Connection details
 
-   // $dbhost="127.0.0.1";
+
+	/**
+        PLEASE DONT CHANGE THIS VALUES, THEY SHOULD BE COMMENTED, NOT CHANGED.
+    
+    //SERVER HOST
+	$dbhost = "localhost";
+    $dbName = "eConference";
+    $dbUser = "eConference_user";
+    $dbpass = "UewSLJMV3r%m";
+	*/
+	// LOCALHOST
+    //$dbhost="127.0.0.1";
     $dbhost="localhost";
 	$dbUser="root";
 	$dbpass="root";

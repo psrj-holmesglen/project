@@ -599,8 +599,8 @@ class Table
 			//echo $sql;
 		}
 		else if(($this->tableName == "conference_section") && ($userid == "1")){
-			$sql .= " FROM " . $this->tableName . " WHERE Conference = conference_section.ID and Conference_Admin_Id = '".$userid."');";
-			//echo $sql;
+			$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";";
+			echo $sql;
 		}	
 		else{
         	$sql .= " FROM " . $this->tableName . " ORDER BY " . $this->idName . ";"; 				           

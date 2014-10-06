@@ -44,7 +44,7 @@ if (isset($_POST['conference_selected'])) {
                     <select name='selCSId' class='selectStyle1' style="width:auto">
                         <option value="All">All Sections</option>
                         <?php
-                        $data->section->printDropDownOptions($CSId, "Section_Title");
+                      $data->section->printDropDownOptions($CSId, "Section_Title");
                         ?>
                     </select>
                 </td>
