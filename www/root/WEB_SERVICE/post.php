@@ -20,14 +20,16 @@ function postPolling()
         if (preg_match("/\d+/", $question)) { // Valid question ID TODO: make more robust
 
             //Prepare query for database
-            $sql = "SELECT P.Open FROM polling P WHERE P.ID=:id";
+            //$sql = "SELECT P.Open FROM polling P WHERE P.ID=:id";
+            //Table polling doesnt have Open column
+            $sql = "SELECT * FROM polling P WHERE P.ID=:id";
 
             $stmt = $db->prepare($sql);
             $stmt->bindParam("id", $question);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_OBJ);
 
-            if ($row->Open == 1) {
+            //if ($row->Open == 1) {
 
                 $sql = "INSERT INTO polling_response(Polling_Option, Profile_Id) VALUES (:Answer, :Profile)";
                 $stmt = $db->prepare($sql);
@@ -35,7 +37,7 @@ function postPolling()
                 $stmt->bindParam("Profile", $profile);
                 $stmt->execute();
 
-            }
+            //}
         }
 
     }
