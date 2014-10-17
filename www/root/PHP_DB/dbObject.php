@@ -421,7 +421,48 @@ class FeedbackSection extends Table
         $this->tableName = "feedback_section";
 		$this->idName = "ID";
     }
-	
+	 //To display demography in mobile app
+	 function getRowByMatch_fb_section_confID($colName, $value)
+    { 
+		if($colName == "Feedback"){
+        $sql = "SELECT conference.ID FROM " . $this->tableName . ", conference WHERE conference." . $colName . " = ".$value.";";
+		//echo $sql;
+				 
+		}
+		else if($colName == "ID"){		
+		$sql = "SELECT Conference from " . $this->tableName . ", session
+JOIN conference_section ON session.Conference_Section = conference_section.ID 
+WHERE " . $this->tableName . ".Feedback = session.Feedback and " . $this->tableName . "." . $colName . " = ".$value.";";
+		//echo $sql;
+				 
+		}
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $results = array();
+            $query = $this->pdo->prepare($sql);
+            $query->bindParam(":value", $value);
+            $query->execute();
+
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $results[$i] = $row;
+            }
+            unset($pdo);
+            unset($query);
+            if (!isset($results[0])) {
+                //die("<br><br>Get Row for $this->tableName: No Results Found!<br><br>");
+				
+                return NULL;
+            }
+			
+            return $results[0];
+			
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occured: " . $error->getMessage();
+        }
+}
+
 	 function getRowByMatch_fb($colName, $value)
     {
 
@@ -454,6 +495,55 @@ class FeedbackSection extends Table
         }
 }
 }
+//ConferenceFbSection	 to display demography
+class ConferenceFbSection extends Table
+{
+    function ConferenceFbSection()
+    {
+        parent::init();
+        $this->tableName = "conference_fb_section";
+		 $this->idName = "Feedback_Section";
+    }
+	
+	 function updateRow($id, $data)
+    {
+		
+        $sql = "UPDATE " . $this->tableName . " SET ";
+        foreach ($data as $colName => $value) {
+            if (!is_int($colName))
+                $sql .= " " . $colName . " = " . $value . ",";
+        }
+        $sql = rtrim($sql, ",");
+        $sql .= " WHERE " . $this->idName . " = ".$id.";";
+      //echo $sql;
+	  // echo "<br/>";
+        // Execute our statement.
+        $this->Connect();
+        try {
+            $query = $this->pdo->prepare($sql);
+
+            foreach ($data as $colName => &$value) {
+                if (!is_int($colName))
+                  $query->bindParam($colName, $value);
+            }
+            		$query->bindParam(":id", $id);
+			echo $id;
+			echo $value;
+            $query->execute();
+			
+            unset($pdo);
+            unset($query);
+            return true;
+        } catch (PDOException $error) {
+            //Display error message if applicable
+            echo "An error occurred: " . $error->getMessage();
+            return false;
+        }
+    }
+
+}
+
+
 class FeedbackQuestion extends Table
 {
     function FeedbackQuestion()
@@ -1143,6 +1233,8 @@ class Data
         $this->equipment = new Equipment();
         $this->reviewQuestion = new ReviewQuestion();
 		$this->feedback = new Feedback();
+		//Rudhra- Table conference_fb_section
+		$this->conferenceFbSection = new ConferenceFbSection();
     }
 }
 

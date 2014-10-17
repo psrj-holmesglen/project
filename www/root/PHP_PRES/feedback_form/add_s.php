@@ -87,8 +87,35 @@ if ($validated) {
             "Type" => $Type,
 			"Feedback" =>$Fbid,
     );
-    if ($data->feedbackSection->addRow($newData))
+	//get last inserted record ID and update conference_fb_section table
+     $newID =$data->feedbackSection->addRow($newData);
+	
+	 $table_conference = $data->feedbackSection->getRowByMatch_fb_section_confID("Feedback", $Fbid);
+	 $Conf = $table_conference[ID];
+	 $table_session = $data->feedbackSection->getRowByMatch_fb_section_confID("ID", $newID);
+	 $Conf_Sec = $table_session[Conference];
+	if($Conf != NULL)
+	{
+		$newData_Conf_fb_secID = array(
+				"Conference" => $Conf,
+				"Feedback_Section" =>$newID,
+		);
+		$data->conferenceFbSection->addRow($newData_Conf_fb_secID);
+	}
+	else if($Conf_Sec != NULL)
+	{
+		$newData_Conf_fb_secID = array(
+				"Conference" => $Conf_Sec,
+				"Feedback_Section" =>$newID,
+		);
+		$data->conferenceFbSection->addRow($newData_Conf_fb_secID);
+	
+	}
+	
         header("Location: index.php?page=feedback_form");
+		
+		
+		
     ////
     //// Database Write END
     ////

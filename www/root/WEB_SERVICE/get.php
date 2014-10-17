@@ -467,7 +467,7 @@ function getQASessions($id)
     $sql = "SELECT S.ID, S.Title\n"
             . "FROM session S, conference_section CS\n"
             . "WHERE CS.ID = S.conference_section\n"
-            . "AND S.QA_Open = 1\n"
+           // . "AND S.QA_Open = 1\n"
             . "AND CS.Conference = :id;";
 
     $stmt = $db->prepare($sql);

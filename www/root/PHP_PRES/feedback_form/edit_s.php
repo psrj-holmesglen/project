@@ -116,19 +116,34 @@ if (isset($_POST["clicked_submit"])) {
                 "Type" => $Type,
                 "Feedback" => $Feedback,
         );
+		//To update conference_fb_section table
+		$data->feedbackSection->updateRow($_GET["id"], $newData);
+				
+	     $FbSecID = $_GET["id"];
+	     
+		 $table_conference = $data->feedbackSection->getRowByMatch_fb_section_confID("Feedback", $Feedback);
+		 $Conf = $table_conference[ID];
+		 
+		 $table_session = $data->feedbackSection->getRowByMatch_fb_section_confID("ID", $FbSecID);
+		 $Conf_Sec = $table_session[Conference];
 		
-	/*	echo "Section_Title: " .$Titl;
-		echo "<br/>";
-        echo  "Section_Desc: ". $Desc;
-		echo "<br/>";
-        echo   "Type: " . $Type;
-		echo "<br/>";
-        echo  "Feedback: " . $Feedback;
-		echo "<br/>";
-	*/
-					
-        if ($data->feedbackSection->updateRow($_GET["id"], $newData))
-           header("Location: index.php?page=feedback_form");
+		if($Conf != NULL)
+		{
+			$newData_Conf_fb_secID = array(
+					"Conference" => $Conf,
+					"Feedback_Section" => $FbSecID,
+			);
+			$data->conferenceFbSection->updateRow($FbSecID, $newData_Conf_fb_secID);
+		}
+		else if($Conf_Sec != NULL)
+		{
+			$newData_Conf_fb_secID = array(
+					"Conference" => $Conf_Sec,
+					"Feedback_Section" => $FbSecID,
+			);			
+			$data->conferenceFbSection->updateRow( $FbSecID, $newData_Conf_fb_secID);
+		}
+	      header("Location: index.php?page=feedback_form");
 		  
         ////
         //// Database Write END
