@@ -418,7 +418,7 @@ function getPolling($id)
             . "FROM polling P, session S, conference_section CS\n"
             . "WHERE P.session = S.ID\n"
             . "AND CS.ID = S.conference_section\n"
-            . "AND P.Open = 1\n"
+            //. "AND P.Open = 1\n"
             . "AND CS.Conference = :id;";
 
     $stmt = $db->prepare($sql);
