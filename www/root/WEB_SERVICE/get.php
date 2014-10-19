@@ -16,6 +16,8 @@ $app->get('/:id/qa', 'getQASessions');
 
 // Pages
 $app->get('/view/polling/:id', 'showPolling');
+$app->get('/data/polling/:id', 'getPollingResults')->name('polling-results');
+$app->get('/view/qa/:id', 'showQA');
 
 function getConference($id)
 {
@@ -120,7 +122,7 @@ function getSchedule($id)
     // Avoid unneeded queries
     if ($data) {
 
-        $sql = "SELECT DISTINCT S.ID, S.Title 'Name', S.Description 'Desc', S.Room_Location 'Room', S.Start_Time 'Start', S.End_Time 'End', S.Feedback, S.Conference_Section\n"
+        $sql = "SELECT DISTINCT S.ID, S.Title 'Name', S.Description 'Desc', S.Room_Location 'Room', S.Start_Time 'Start', S.End_Time 'End', S.Conference_Section\n"
                 . "FROM session S, conference_section CS\n"
                 . "WHERE S.Conference_Section = CS.ID\n"
                 . "AND CS.Conference = :id";
@@ -402,6 +404,7 @@ function getQA($id)
 
     //Prepare query for database
     $sql = "SELECT Question FROM session_question WHERE session = :id AND Accepted = 1;";
+    //$sql = "SELECT Question FROM session_question WHERE session = :id;";
     $stmt = $db->prepare($sql);
     $stmt->bindParam("id", $id);
     $stmt->execute();
@@ -467,7 +470,7 @@ function getQASessions($id)
     $sql = "SELECT S.ID, S.Title\n"
             . "FROM session S, conference_section CS\n"
             . "WHERE CS.ID = S.conference_section\n"
-           // . "AND S.QA_Open = 1\n"
+            //. "AND S.QA_Open = 1\n"
             . "AND CS.Conference = :id;";
 
     $stmt = $db->prepare($sql);
@@ -483,6 +486,22 @@ function showPolling($id)
 {
     global $app, $db;
 
+    $sql = "SELECT P.Polling_Question 'Question'\n"
+            . "FROM polling P\n"
+            . "WHERE P.ID = :id;";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+
+    $app->render('polling.php', Array('Question' => $stmt->fetch(PDO::FETCH_ASSOC)['Question'],
+            'URL' => $app->urlFor('polling-results', array('id' => $id))));
+}
+
+function getPollingResults($id)
+{
+    global $app, $db;
+
     $sql = "SELECT P.Polling_Question 'Question', COUNT(*) 'Count', PO.Option_Text 'Label'\n"
             . "FROM polling_response PR, polling_option PO, polling P\n"
             . "WHERE PO.ID = PR.polling_option\n"
@@ -494,5 +513,20 @@ function showPolling($id)
     $stmt->bindParam("id", $id);
     $stmt->execute();
 
-    $app->render('polling-js.php', Array('Poll' => $stmt->fetchAll(PDO::FETCH_ASSOC)));
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+}
+
+function showQA($id)
+{
+    global $app, $db;
+
+    //Prepare query for database
+    $sql = "SELECT Question FROM session_question WHERE session = :id AND Accepted = 1;";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
+
+//    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+    $app->render('qa.php', Array('QA' => $stmt->fetchAll(PDO::FETCH_ASSOC)));
 }
