@@ -1,0 +1,286 @@
+<script type="text/javascript">
+        $(function() {
+			$('li').has('ul').mouseover(function(){
+				$(this).children('ul').show();
+				}).mouseout(function(){
+				$(this).children('ul').hide();
+				})
+        });        
+</script>
+<ul id="menu">
+    <li style="padding-left:20px" > 
+        <img src="ASSETS/TMPIMG/banner_eConference.png" height="50px"/>
+    </li>
+
+    <li style="padding-left:15px" >
+    	<?PHP    
+            if($page == "home") {
+                echo "<a href='#'><span class='nav_selected_item'>Home</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=home' title='Home'>Home</a>";
+            }
+        ?>
+    </li>
+    
+    <li >
+		<?PHP    
+            if($page == "conference") {
+                echo "<a href='#'><span class='nav_selected_item'>Conference</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=conference' title='Conference'>Conference</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=conference&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=conference&action=add'> Add New</a>
+                    </li>
+                    <li>
+                        <a href='index.php?page=conference&action=cloneView'> Clone</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li >
+		<?PHP    
+            if($page == "section") {
+                echo "<a href='#'><span class='nav_selected_item'>Section</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=section' title='Section'>Section</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=section&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=section&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li >
+		<?PHP    
+            if($page == "session") {
+                echo "<a href='#'><span class='nav_selected_item'>Session</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=session' title='Session'>Session</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=session&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=session&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li >
+        <?PHP    
+            if($page == "presenter") {
+                echo "<a href='#'><span class='nav_selected_item'>Presenter</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=presenter' title='Presenter'>Presenter</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=presenter&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=presenter&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li >
+        <?PHP    
+            if($page == "user") {
+                echo "<a href='#'><span class='nav_selected_item'>User</span></a>";
+            }
+            else {
+                echo "<a href='index.php?page=user' title='User'>User</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=user&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=user&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li >
+        <?PHP
+        if($page == "feedback_form") {
+            echo "<a href='#'><span class='nav_selected_item'>Forms</span></a>";
+        }
+        else {
+            echo"<a href='index.php?page=feedback_form' title='Feedback Form'>Forms</a>";
+        }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=feedback_form&action=view'> View Forms</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=feedback_form&action=add_f'> Add FB Form</a>
+                    </li>
+                    <li>
+                        <a href='index.php?page=feedback_form&action=add_s'> Add Section Form</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li >
+    	<?PHP
+			if($page == "feedback_question") {
+				echo "<a href='#'><span class='nav_selected_item'>Feedback</span></a>";
+			}
+			else {
+				echo"<a href='index.php?page=feedback_question' title='Feedback Question'>Feedback</a>";
+			}
+		?>
+        <ul>
+            <li>
+            	<a href='index.php?page=feedback_question&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=feedback_question&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li style="padding-left:5px" >
+        <?PHP
+        if($page == "polling_question")
+        {
+            echo "<a href='#'><span class='nav_selected_item'>Polling</span></a>";
+        }
+        else
+        {
+            echo"<a href='index.php?page=polling_question' title='Polling'>Polling</a>";
+        }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=polling_question&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=polling_question&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <?PHP
+            if($page == "review_question") {
+                echo "<a href='#'><span class='nav_selected_item'>Questions</span></a>";
+            }
+            else {
+                echo"<a href='index.php?page=review_question' title='Feedback Question'>Questions</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=review_question&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=review_question&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li >
+
+        <?PHP
+            if($page == "sponsor") {
+                echo "<a href='#'><span class='nav_selected_item'>Sponsors</span></a>";
+            }
+            else {
+                echo"<a href='index.php?page=sponsor' title='Sponsor'>Sponsors</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=sponsor&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='index.php?page=sponsor&action=add'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+
+        <?PHP
+            if($page == "map") {
+                echo "<a href='#'><span class='nav_selected_item'>Maps</span></a>";
+            }
+            else {
+                echo"<a href='index.php?page=map' title='Maps'>Maps</a>";
+            }
+        ?>
+        <ul>
+            <li>
+            	<a href='index.php?page=map&action=view'> View All</a>
+            	<ul>
+                    <li>
+                        <a href='#'> Add New</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href=""><span class="textUser" style="
+    font-size:9px;"><b><sulong><em><?=$headerUserName?></em></sulong></b></span>
+        <img src="ASSETS/TMPIMG/user.ico" height="20"/></a>
+        <ul>
+            <a href="PHP_LOGIN/logout.php" style="">
+                <img src="ASSETS/TMPIMG/logout.png" height="30"/>
+                Log out
+            </a>
+        <ul>
+    </li>    
+</ul>
+
+<!--<script>
+    $(function() {
+        $("#divUserInfo").hide();
+        $("#navUserIcon").mouseenter(function(event) {
+            $( "#divUserInfo" ).fadeIn( "fast", null);
+        })
+        $("#divUserInfo").mouseleave(function(event) {
+            $( "#divUserInfo" ).fadeOut( "fast", null);
+        })
+//        $( window ).resize(function() {
+//
+//        });
+    })
+</script>-->
