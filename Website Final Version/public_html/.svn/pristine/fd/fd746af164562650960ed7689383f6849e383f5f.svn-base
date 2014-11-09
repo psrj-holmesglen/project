@@ -1,0 +1,93 @@
+<?php
+
+class CacheMiddleware extends \Slim\Middleware
+{
+    protected $db;
+
+    public function __construct(PDO $db)
+    {
+        $this->db = $db;
+    }
+
+    public function call()
+    {
+        $request = $this->app->request;
+        $response = $this->app->response;
+        $uri = $request->getResourceUri();
+
+        if ($request->isGet() && preg_match("/^\/\d+\//", $uri)) {
+
+            $id = substr($uri, 1, strrpos($uri, "/") - 1);
+            $file = substr($uri, strrpos($uri, "/") + 1, -5);
+            $column = $this->getTagColumn($file);
+
+            // In case of etag fixing
+//            $requestTag = $app->request->headers->get('If-None-Match');
+//            $app->request->headers->set('If-None-Match', str_replace("-gzip", "", $requestTag));
+
+            $sql = "SELECT $column 'Tag' FROM conference WHERE ID=:id;";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam("id", $id);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->app->etag($row['Tag']);
+
+            // Run next middleware
+            $this->next->call();
+
+            $response->headers->set('Content-Type', 'application/json');
+
+            // Create cache folder if it doesn't exist
+            if (!file_exists("cache/")) {
+                mkdir("cache/");
+            }
+            // Create conference folder is it doesn't exist
+            if (!file_exists("cache/$id/")) {
+                mkdir("cache/$id/");
+            }
+            // Cache response
+            file_put_contents("cache/$id/$file", $response->getBody());
+            // Record cache
+
+//            $sql = "INSERT INTO cache "
+//                    ."VALUES (:conference, :file, :tag, DATE_ADD(NOW(), INTERVAL 1 DAY)) "
+//                    ."ON DUPLICATE KEY UPDATE Exp=DATE_ADD(NOW(), INTERVAL 1 DAY);";
+//            $stmt = $this->db->prepare($sql);
+//            $stmt->bindParam("conference", $id);
+//            $stmt->bindParam("file", $file);
+//            $stmt->bindParam("tag", $row['Tag']);
+//            $stmt->execute();
+
+        } else {
+            $this->next->call();
+        }
+    }
+
+    public function getTagColumn($file)
+    {
+        switch ($file) {
+
+            case "conference":
+                return "Conference_Tag";
+
+            case "schedule":
+                return "Schedule_Tag";
+
+            case "speaker":
+                return "Speaker_Tag";
+
+            case "sponsor":
+                return "Sponsor_Tag";
+
+            case "conference-feedback":
+                return "C_Feedback_Tag";
+
+            case "session-feedback":
+                return "S_Feedback_Tag";
+
+            default:
+                return "";
+        }
+    }
+}

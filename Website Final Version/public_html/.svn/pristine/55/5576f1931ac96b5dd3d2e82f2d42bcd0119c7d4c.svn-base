@@ -1,0 +1,261 @@
+/*                                                             
+ _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ 
+|_   _|   __|  _  |     |  |   __|  _  |  _  | __  |_   _|  _  |
+  | | |   __|     | | | |  |__   |   __|     |    -| | | |     |
+  |_| |_____|__|__|_|_|_|  |_____|__|  |__|__|__|__| |_| |__|__|
+                                                                
+ * File: menu.css
+ * Site wide CSS styling for the dstc e conference web application.
+ * Written by TEAM SPARTA 
+ * Last updated: 21-05-14 by Caue Motta.
+
+   Color theme guide:
+	
+	mid      --- #034C75 = rgb(3,77,117)  (logo background color)
+   
+	darker   --- #184158 = rgb(24,65,88)
+
+	darkest  --- #01324C = rgb(1,50,76)
+	
+	lighter  --- #328ABA = rgb(50,138,186)
+	
+	lightest --- #5697BA = rgb(86,151,186)
+*/
+
+/* Main menu */
+
+#menu
+{
+	width: 97%;
+	margin: 0 40px 0 20px;
+	padding: 15px 0 0 0;
+	list-style: none;  
+	background: #034C75;
+	background: -moz-linear-gradient(#184158, #034C75); 
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #034C75),color-stop(1, #184158));	
+	background: -webkit-linear-gradient(#184158, #034C75);	
+	background: -o-linear-gradient(#184158, #034C75);
+	background: -ms-linear-gradient(#184158, #034C75);
+	background: linear-gradient(#184158, #034C75);
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	-moz-box-shadow: 0 2px 1px #FFF;
+	-webkit-box-shadow: 0 2px 1px #FFF;
+	box-shadow: 0 2px 1px #FFF;
+}
+
+#menu li
+{
+	float: left;
+	padding: 0 0 0 0;
+	position: relative;
+	line-height: 0;
+}
+
+#menu > li:last-child
+{
+    float:right;
+	min-width:inherit;
+	margin-right:2%;
+	padding:10px 15px;
+	padding-bottom: 20px;
+  	white-space: nowrap;
+	font-size:small;
+	text-shadow: none;
+}
+
+#menu > li:first-child
+{
+    float:left;
+	min-width:inherit;
+	margin-left:2%;
+	padding: 10 10;
+  	white-space: nowrap;
+}
+
+#menu a 
+{
+	float: left;
+	height: 50px;
+	padding: -5px 5px;
+	color: #999;
+	text-transform: uppercase;
+	font: bold 12px/25px Arial, Helvetica;
+	text-decoration: none;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+#menu li:hover > a
+{
+	color: #FFF;
+}
+
+*html #menu li a:hover /* IE6 */
+{
+	color: #FFF;
+}
+
+#menu li:hover > ul
+{
+	display: block;
+}
+
+/* Sub-menu */
+
+#menu ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;    
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 99999;    
+    background: #184158;
+    background: -moz-linear-gradient(#184158, #034C75);
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #034C75),color-stop(1, #184158));
+    background: -webkit-linear-gradient(#184158, #034C75);    
+    background: -o-linear-gradient(#184158, #034C75);	
+    background: -ms-linear-gradient(#184158, #034C75);	
+    background: linear-gradient(#184158, #034C75);
+    -moz-box-shadow: 0 0 2px rgba(255,255,255,.5);
+    -webkit-box-shadow: 0 0 2px rgba(255,255,255,.5);
+    box-shadow: 0 0 2px rgba(255,255,255,.5);	
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul ul
+{
+  top: 0;
+  left: 150px;
+}
+
+#menu ul li
+{
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;  
+    -moz-box-shadow: 0 1px 0 #034C75, 0 2px 0 #328ABA;
+    -webkit-box-shadow: 0 1px 0 #034C75, 0 2px 0 #328ABA;
+    box-shadow: 0 1px 0 #034C75, 0 2px 0 #328ABA;
+}
+
+#menu ul li:last-child
+{   
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;    
+}
+
+#menu ul a
+{    
+    padding: 10px;
+	height: 10px;
+	min-width: 130px;
+	height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+	text-transform: none;
+}
+
+*html #menu ul a /* IE6 */
+{    
+	height: 10px;
+}
+
+*:first-child+html #menu ul a /* IE7 */
+{    
+	height: 10px;
+}
+
+#menu ul a:hover
+{
+    background: #034C75;
+	background: -moz-linear-gradient(#04acec,  #0186ba);	
+	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+	background: -webkit-linear-gradient(#04acec,  #0186ba);
+	background: -o-linear-gradient(#04acec,  #0186ba);
+	background: -ms-linear-gradient(#04acec,  #0186ba);
+	background: linear-gradient(#04acec,  #0186ba);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul li:first-child > a
+{
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child > a:after
+{
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #184158;
+}
+
+#menu ul ul li:first-child a:after
+{
+    left: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-left: 0;	
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 8px solid #184158;
+}
+
+#menu ul li:first-child a:hover:after
+{
+    border-bottom-color: #04acec; 
+}
+
+#menu ul ul li:first-child a:hover:after
+{
+    border-right-color: #04acec; 
+    border-bottom-color: transparent; 	
+}
+
+
+#menu ul li:last-child > a
+{
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Clear floated elements */
+#menu:after 
+{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+* html #menu             { zoom: 1; } /* IE6 */
+*:first-child+html #menu { zoom: 1; } /* IE7 */
+
+@media screen and (max-width:730px) {
+    #menu {
+        min-width: 1px;
+        width: 35%;
+    }
+}

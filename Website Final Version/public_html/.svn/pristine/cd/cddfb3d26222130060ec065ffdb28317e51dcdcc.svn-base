@@ -1,0 +1,107 @@
+<?php
+
+$app->post('/Polling/', 'postPolling');
+$app->post('/Feedback/', 'postFeedback');
+$app->post('/QA/', 'postQA');
+
+/**
+ * Accepts the polling data and inserts it into the database
+ *    This includes Polling_Option, Medical_Profession and Attendee_Profile
+ */
+function postPolling()
+{
+
+    global $app, $db;
+    $post = $app->request()->post();
+    $profile = $post['Profile'];
+//    $session = $post['Session'];
+
+    foreach ($post as $question => $answer) {
+        if (preg_match("/\d+/", $question)) { // Valid question ID TODO: make more robust
+
+            //Prepare query for database
+            $sql = "SELECT P.Open FROM polling P WHERE P.ID=:id";
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("id", $question);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+
+            if ($row->Open == 1) {
+
+                $sql = "INSERT INTO polling_response(Polling_Option, Profile_Id) VALUES (:Answer, :Profile)";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam("Answer", $answer);
+                $stmt->bindParam("Profile", $profile);
+                $stmt->execute();
+
+            }
+        }
+
+    }
+}
+
+function postFeedback()
+{
+
+    global $app, $db;
+    $post = $app->request()->post();
+    // Allow for access while looping the post array
+    $profile = $post['Profile'];
+
+    // Get Types
+    $sql = "SELECT FQ.ID, FQ.Type\n"
+            . "FROM feedback_question FQ\n"
+            . "WHERE FQ.feedback_section = :id;";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("id", $post['Section']);
+    $stmt->execute();
+
+    // Precompile type array
+    $types = array();
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $item) {
+        $types[$item['ID']] = $item['Type'];
+    }
+
+    // Insert each answer into database TODO: convert to transaction
+    foreach ($post as $question => $answer) {
+        if (preg_match("/\d+/", $question)) { // Valid question ID TODO: make more robust
+
+            if ($types[$question] == 1) { // Multiple Choice
+                $sql = "INSERT INTO response_option(Feedback_Response, feedback_option, Profile_Id) VALUES (:Question, :Answer, :Profile);";
+            } else if ($types[$question] == 2) { // Open Response
+                $sql = "INSERT INTO response_text(feedback_question, Feedback_Response, Profile_Id) VALUES (:Question, :Answer, :Profile);";
+            } else {
+                die('Unknown question type');
+            }
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("Question", $question);
+            $stmt->bindParam("Answer", $answer);
+            $stmt->bindParam("Profile", $profile);
+            $stmt->execute();
+
+        }
+    }
+}
+
+/**
+ * This accepts the a session_question and inserts it into the database.
+ *    This includes the Question, Session and Profile
+ */
+function postQA()
+{
+
+    global $app, $db;
+    $post = $app->request()->post();
+
+    //Prepare query for database
+    $sql = "INSERT INTO session_question(Question, Session, Accepted, Profile_Id)"
+            . " VALUES (:Question,:Session, 0, :Profile)";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("Question", $post->Question);
+    $stmt->bindParam("Session", $post->Session);
+    $stmt->bindParam("Profile", $post->Profile);
+    $stmt->execute();
+}

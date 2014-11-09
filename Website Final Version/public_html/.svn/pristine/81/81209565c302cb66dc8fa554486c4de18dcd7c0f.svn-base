@@ -1,0 +1,43 @@
+<?php
+
+require 'connection.php';
+require 'Slim/Slim.php';
+
+\Slim\Slim::registerAutoloader();
+$app = new \Slim\Slim();
+$db = getConnection();
+
+$app->add(new CacheMiddleware($db));
+
+require 'get.php';
+require 'post.php';
+
+$app->post('/Login', function () {
+
+    global $app, $db;
+
+    $app->response->headers->set('Content-Type', 'application/json');
+    $post = $app->request()->post();
+
+    $sql = "SELECT ID, DATE_ADD(End_Time, INTERVAL 2 DAY) 'Exp' FROM conference WHERE Token=:token AND Download_Avail=1;";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam("token", $post['Token']);
+    $stmt->execute();
+
+    echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+});
+
+//GET route
+//$app->get('/', function () use ($app) {
+//    $template = <<<EOT
+//<!DOCTYPE html>
+//<html><head>
+//<title>404 Page Not Found</title>
+//<body><h1>404 Page Not Found</h1>
+//<p>The page you are looking for could not be found</p>
+//</body></html>
+//EOT;
+//    echo $template;
+//});
+
+$app->run();

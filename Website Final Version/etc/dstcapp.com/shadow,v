@@ -1,0 +1,39 @@
+head	1.2;
+access;
+symbols;
+locks
+	dstcapp:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2014.10.24.02.12.50;	author dstcapp;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2014.10.24.02.12.50;	author dstcapp;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@"Modified by /usr/local/cpanel/cpanel "
+@
+text
+@admin:$1$cnjH7AHg$VS9aJl2qWsYro/RwB3XYn1:16367::::::
+@
+
+
+1.1
+log
+@"Modified by /usr/local/cpanel/cpanel "
+@
+text
+@d1 1
+@

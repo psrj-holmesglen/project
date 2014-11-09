@@ -1,0 +1,421 @@
+AWSTATS DATA FILE 7.0 (build 1.971)
+# If you remove this file, all statistics for date 201410 will be lost/reset.
+# Last config file used to build this data file was /home/dstcapp/tmp/awstats/awstats.dstcapp.com.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 2004                
+POS_TIME 2680                
+POS_VISITOR 7893                
+POS_DAY 9084                
+POS_DOMAIN 3474                
+POS_LOGIN 3795                
+POS_ROBOT 3950                
+POS_WORMS 4201                
+POS_EMAILSENDER 4332                
+POS_EMAILRECEIVER 4475                
+POS_SESSION 9349                
+POS_SIDER 9546                
+POS_FILETYPES 4610                
+POS_DOWNLOADS 4868                
+POS_OS 4916                
+POS_BROWSER 5052                
+POS_SCREENSIZE 5484                
+POS_UNKNOWNREFERER 5558                
+POS_UNKNOWNREFERERBROWSER 5887                
+POS_ORIGIN 6049                
+POS_SEREFERRALS 6189                
+POS_PAGEREFS 6333                
+POS_SEARCHWORDS 6525                
+POS_KEYWORDS 6677                
+POS_MISC 2343                
+POS_ERRORS 6736                
+POS_CLUSTER 3651                
+POS_SIDER_404 6869                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20141101013047 8 1153 12551212653539
+FirstTime 20141024212616
+LastTime 20141031210416
+LastUpdate 20141101203954 8 0 7 0 0
+TotalVisits 61                  
+TotalUnique 27                  
+MonthHostsKnown 0                   
+MonthHostsUnknown 29                  
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 30 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 61 137 2016079 9 10 49635
+1 99 118 1527383 30 33 147092
+2 125 163 2829354 25 30 282459
+3 153 161 664449 44 46 206415
+4 44 59 490037 15 18 135513
+5 147 150 778634 56 57 257087
+6 54 127 1210729 8 11 80971
+7 17 28 264974 6 7 87341
+8 1 2 272177 1 1 9735
+9 5 7 15742 9 12 82828
+10 1 1 1779 2 2 19470
+11 1 3 116170 1 1 1699
+12 0 1 58085 0 1 639
+13 0 1 50447 2 3 13213
+14 41 70 1167723 21 22 189125
+15 113 136 2433424 43 49 502737
+16 95 117 1340321 20 20 64692
+17 283 359 6137823 51 55 491676
+18 241 268 3520894 33 35 338868
+19 261 288 3261635 43 48 385422
+20 85 107 2123175 25 29 226115
+21 27 36 497877 10 17 189328
+22 73 165 3477765 19 30 133310
+23 9 13 29604 3 6 56892
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 25 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 7
+au 983 1415 18600685
+jp 884 998 13896763
+us 42 46 90682
+ca 19 48 1678850
+fi 6 8 15742
+gb 1 1 1779
+ru 1 1 1779
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 25 first Hits must be first (order not required for others)
+BEGIN_ROBOT 3
+googlebot 12 27415 20141031014628 0
+no_user_agent 1 2171 20141024204221 0
+bot[\s_+:,\.\;\/\\-] 1 1779 20141027043814 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 10
+css 240 317316 0 0
+png 142 4401771 0 0
+ico 66 7571144 0 0
+json 232 48370 0 0
+php 1254 16236167 0 0
+html 44 95721 0 0
+js 62 2216763 0 0
+jpg 68 2184660 0 0
+Unknown 406 1210826 0 0
+gif 3 3542 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 0
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS 9
+linuxandroid 609
+winlong 15
+winxp 31
+winnt 2
+winvista 1520
+linux 7
+win7 44
+macosx 262
+Unknown 27
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 27
+msie6.0 9
+firefox28.0 1
+firefox5.0 1
+chrome38.0.2125.104 1405
+android 73
+samsung 339
+chrome38.0.2125.111 350
+curl 1
+msie5.5 2
+iphone 5
+chrome33.0.0.0 197
+msie8.0 18
+firefox25.0 1
+mozilla 6
+netscape5.0 1
+msie7.0 1
+firefox14.0.1 1
+chrome27.0.1453 3
+firefox6.0 14
+safari8.0 42
+msie9.0 1
+chrome31.0.1650.16 5
+firefox19.0 14
+chrome11.0.696.71 2
+Unknown 23
+firefox11.0 1
+firefox3.6.13 1
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 5
+Python-urllib/1.17 20141029180538
+Ruby 20141025112259
+Curl/PHP_5.4.32_(http://github.com/shuber/curl) 20141030011511
+Browserlet 20141026174050
+Mozilla/4.0_(compatible;_http://search.thunderstone.com/texis/websearch/about.html) 20141028042844
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 3
+Python-urllib/1.17 20141029180538
+Ruby 20141025112259
+Browserlet 20141026174050
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 752 770
+From1 3 9
+From2 0 0
+From3 2 2
+From4 1179 1736
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 0
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 25 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 1
+http://www.domaintuno.com/d/dstcapp.com 2 2
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 25 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 4
+302 312 3314660
+206 13 221427
+500 44 109803
+404 118 73099
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 27
+/logout 1 -
+/root/WEB_SERVICE/72/conference.json 1 -
+/robots.txt 9 -
+/cpnel 1 -
+/admin.php 2 -
+/WEB_SERVICE/image/conference/71 18 -
+/cp 1 -
+/WEB_SERVICE/QA/71 2 -
+/php_login/login.php 4 -
+/administrator/index.php 1 -
+/domainsigma_removal_c930f89d01b8e352cc400bc4701a23a5b97c40b1.html 1 -
+/root/WEB_SERVICE/QA/ 1 -
+/feed/ 1 -
+/root/WEB_SERVICE/Login 10 -
+/root/index.php 1 -
+/WEB_SERVICE/undefined 1 -
+/login.php 1 -
+/WEB_SERVICE/QA/ 1 -
+/WEB_SERVICE/image/venue/ 1 -
+/administrator/ 1 -
+/WEB_SERVICE/null/login.json 1 -
+/WEB_SERVICE/question-answer/ 7 -
+/WEB_SERVICE/image/venue/9 3 -
+/WEB_SERVICE/image/venue/71 2 -
+/WEB_SERVICE/image/conference/72 43 -
+/wp-login.php 2 -
+/root/WEB_SERVICE/9/conference.json 1 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 25 first Hits must be first (order not required for others)
+BEGIN_VISITOR 29
+103.20.22.135 882 996 13886027 20141030205321
+58.110.109.95 607 902 12924358 20141030053914
+115.64.155.14 315 354 2686090 20141030050349
+110.32.73.149 46 131 2196385 20141025170801
+49.3.12.38 15 28 793852 20141030020721
+50.117.87.207 14 14 3950 20141025224203
+66.249.84.45 13 13 50060 20141031210416
+204.101.161.181 12 35 1649414 20141029150511
+192.99.40.137 6 8 15742 20141030145155
+207.102.138.3 4 10 27657 20141027223531
+206.183.1.74 3 3 4826 20141028042844
+64.202.160.88 2 4 10767 20141024212617
+166.78.181.113 2 2 3558 20141027024138
+198.100.153.93 2 2 1779 20141031193358
+150.70.173.52 1 1 1779 20141029140311
+89.145.108.203 1 1 1779 20141027164806
+208.43.251.182 1 1 1779 20141026083321
+172.246.147.196 1 1 0 20141025011108
+37.200.65.208 1 1 1779 20141027195950
+162.254.148.162 1 1 1779 20141030011511
+69.64.155.184 1 1 1779 20141026100705
+66.249.84.53 1 1 0 20141024230700
+184.168.224.190 1 1 0 20141025112259
+69.58.178.58 1 1 1779 20141029204802
+150.70.173.54 1 1 8957 20141029012924
+66.249.88.155 0 1 4569 
+66.249.88.157 0 1 2278 
+66.249.88.153 1 1 1779 20141030011512
+199.30.228.150 1 1 1779 20141026070501
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 8
+20141024 46 116 1553844 5
+20141025 94 192 4371607 10
+20141026 453 533 7372360 9
+20141027 585 797 9822851 10
+20141028 223 255 1332682 7
+20141029 17 40 1665487 8
+20141030 514 580 8153155 10
+20141031 4 4 14294 2
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 6
+1h+ 11
+5mn-15mn 2
+15mn-30mn 2
+2mn-5mn 2
+0s-30s 41
+30mn-1h 3
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 25 first Pages must be first (order not required for others)
+BEGIN_SIDER 65
+/index.php 1080 15767770 1 12
+/WEB_SERVICE/Login 149 5164 4 0
+/PHP_LOGIN/login.php 119 209593 36 28
+/WEB_SERVICE/9/conference.json 65 20540 0 1
+/WEB_SERVICE/image/conference/9 56 317800 0 0
+/WEB_SERVICE/72/conference.json 53 11448 2 1
+/ 40 95721 12 10
+/WEB_SERVICE/question-answer/30 40 206 0 0
+/WEB_SERVICE/72/qa 37 1406 0 0
+/PHP_LOGIN/logout.php 27 1539 0 0
+/WEB_SERVICE/72/conference-feedback.json 26 52 0 0
+/WEB_SERVICE/71/conference.json 24 5808 0 0
+/WEB_SERVICE/question-answer/29 24 48 0 0
+/root/index.php 23 250693 0 0
+/cpanel 22 197054 6 5
+/WEB_SERVICE/71/qa 14 840 0 0
+/WEB_SERVICE/QA 13 0 0 0
+/WEB_SERVICE/9/conference-feedback.json 11 22 0 0
+/WEB_SERVICE/71/conference-feedback.json 11 2348 0 0
+/WEB_SERVICE/71/schedule.json 10 2962 0 0
+/WEB_SERVICE/question-answer/test 6 12 0 0
+/WEB_SERVICE/question-answer/aroighroi 4 8 0 1
+/WEB_SERVICE/image/speaker/1 4 246476 0 0
+/WEB_SERVICE/QA/ 4 0 0 0
+/WEB_SERVICE/71/speaker.json 4 1118 0 0
+/WEB_SERVICE/9/schedule.json 1 46 0 0
+/WEB_SERVICE/question-answer/qr4g 1 2 0 0
+/WEB_SERVICE/question-answer/reste 1 2 0 0
+/WEB_SERVICE/image/conference/2 1 101045 0 0
+/WEB_SERVICE/2/conference.json 1 304 0 0
+/WEB_SERVICE/question-answer/undefined 2 4 0 0
+/WEB_SERVICE/2/speaker.json 2 854 0 0
+/WEB_SERVICE/1/schedule.json 1 46 0 0
+/WEB_SERVICE/71/sponsor.json 3 573 0 0
+/WEB_SERVICE/1/conference-feedback.json 1 2 0 0
+/WEB_SERVICE/71/polling 4 872 0 0
+/WEB_SERVICE/question-answer/rere 2 4 0 0
+/WEB_SERVICE/image/sponsor/1 2 36714 0 0
+/WEB_SERVICE/2/sponsor.json 1 2 0 0
+/WEB_SERVICE/9/polling 1 2 0 0
+/root/PHP_LOGIN/login.php 3 5247 0 1
+/root/PHP_LOGIN/logout.php 1 57 0 0
+/WEB_SERVICE/question-answer/ererewre 1 2 0 0
+/WEB_SERVICE/question-answer/qfaweew 1 2 0 1
+/WEB_SERVICE/null/qa 1 2 0 0
+/WEB_SERVICE/null/schedule.json 1 2 0 0
+/WEB_SERVICE/question-answer/ask%20a%20question 1 2 0 0
+/WEB_SERVICE/72/polling 2 4 0 0
+/WEB_SERVICE/image/conference/1 3 303135 0 0
+/WEB_SERVICE/question-answer/wrwagresd 1 2 0 0
+/WEB_SERVICE/question-answer/hgoehgoe 1 2 0 0
+/WEB_SERVICE/9/qa 4 8 0 0
+/WEB_SERVICE/1/conference.json 4 1512 0 0
+/WEB_SERVICE/null/conference-feedback.json 3 6 0 0
+/WEB_SERVICE/question-answer/iahrogiheg 1 2 0 0
+/PHP_LOGIN/reset.php 1 1268 0 1
+/WEB_SERVICE/null/conference.json 3 15 0 0
+/WEB_SERVICE/question-answer/rerere 1 2 0 0
+/WEB_SERVICE/question-answer/rrrrrr 1 2 0 0
+/WEB_SERVICE/Polling 4 0 0 0
+/WEB_SERVICE/9/speaker.json 3 6 0 0
+/WEB_SERVICE/1/speaker.json 1 2 0 0
+/WEB_SERVICE/question-answer/tftftftftftf 1 2 0 0
+/WEB_SERVICE/9/sponsor.json 1 2 0 0
+/WEB_SERVICE/72/speaker.json 2 700 0 0
+END_SIDER

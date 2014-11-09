@@ -1,0 +1,11 @@
+--- 
+__version: '2.1'
+dstcapp.com: 
+  account_count: 1
+  accounts: 
+    admin: 
+      disk_mtime: '1414116770'
+      diskquota: 0
+      diskused: 0
+  passwd_mtime: '1415520687'
+  quota_mtime: '1415520687'
